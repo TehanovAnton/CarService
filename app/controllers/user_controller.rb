@@ -20,8 +20,9 @@ class UserController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-
+    @user = User.find(params[:id])      
+    reset_session if @user == current_user
+    @user.destroy
     redirect_to user_index_path
   end
 end
