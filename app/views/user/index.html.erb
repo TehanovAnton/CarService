@@ -1,12 +1,11 @@
 <h1>Users</h1>
 <ul>
-    <%@users.each do |user|%>
-        <li><%=user.first_name%></li>
-        <li><%=user.last_name%></li>
+    <%@users.each do |user|%>        
+        <li><%="#{user.last_name} #{user.first_name.to_s.split('').first}."%></li>
         <li><%=user.email%></li>
         <li><%=user.phone_number%></li>
         <li><%= link_to "Delete",
-                "/users/#{user.id}",
+                user_path(user),
                 method: :delete,
                 data: { confirm: "Are you sure?" } %> </li>
         <br>
