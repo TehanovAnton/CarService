@@ -1,13 +1,15 @@
 class UserController < ApplicationController
+
+  def exists_id id
+    User.all.map { |el| el.id }.include? params[id].to_i
+  end
+
   def index
     @users = User.all
   end
 
   def show
-    # проверить id
-    exists_id = User.all.map { |el| el.id }.include? params[:id].to_i
-
-    if exists_id
+    if exists_id :id
       @user = User.find(params[:id])
     else
       redirect_to user_index_path
@@ -20,9 +22,11 @@ class UserController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])      
-    reset_session if @user == current_user
-    @user.destroy
+    if exists_id :id
+      @user = User.find(params[:id])
+      reset_session if @user == current_user
+      @user.destroy
+    end
     redirect_to user_index_path
   end
 end
