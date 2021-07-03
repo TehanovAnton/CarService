@@ -5,7 +5,13 @@ class UserController < ApplicationController
 
   def show
     # проверить id
-    @user = User.find(params[:id])
+    exists_id = User.all.map { |el| el.id }.include? params[:id].to_i
+    
+    if exists_id
+      @user = User.find(params[:id])
+    else
+      redirect_to user_index_path
+    end
   end
 
   def me
