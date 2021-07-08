@@ -1,0 +1,13 @@
+<h1>info about me, to change</h1>
+<%=form_with url: 'edit/' + @user.id.to_s, method: :put, model: @user do |form|%>
+    <div>
+        <%=form.text_area :first_name %>
+        <%=form.text_area :last_name %>
+        <%=form.text_area :email %>
+        <%=form.text_area :phone_number %>
+    </div>
+
+    <div>
+        <%=form.submit%>
+    </div>
+<%end%>
