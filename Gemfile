@@ -11,6 +11,7 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'devise'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'cowsay'
+gem 'sinatra'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
