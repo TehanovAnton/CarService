@@ -10,6 +10,8 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 
 gem 'devise'
 gem 'pg', '~> 1.2', '>= 1.2.3'
+gem 'cowsay'
+gem 'sinatra'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -58,3 +60,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "webrick", "~> 1.7"
