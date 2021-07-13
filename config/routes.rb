@@ -9,6 +9,5 @@ Rails.application.routes.draw do
   get '/edit', to: 'user#edit'
   put '/edit/:id', to: 'user#update'
 
-  # get '/admin/edit', to: 'admin#edit'
-  # put '/admin/edit/:id', to: 'user#update'
+  put '/create_admin', to: 'admin#create_admin'  
 end
