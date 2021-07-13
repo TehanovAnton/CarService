@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'user#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :user, only: %i[index show destroy]
   resources :admin, only: %i[index edit update]
@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get '/edit', to: 'user#edit'
   put '/edit/:id', to: 'user#update'
 
-  put '/create_admin', to: 'admin#create_admin'  
+  put '/create_admin', to: 'admin#create_admin'
 end
