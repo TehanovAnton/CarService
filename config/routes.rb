@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  root 'user#index'
+  root 'users#index'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :user, only: %i[index show destroy]
-  resources :admin, only: %i[index edit update]
-  get '/me', to: 'user#me'
-  get '/edit', to: 'user#edit'
-  put '/edit/:id', to: 'user#update'
+  resources :users, only: %i[index show destroy]
+  resources :errors, only: %i[index]
+  get '/me', to: 'users#me'
+  get '/edit', to: 'users#edit'
+  put '/edit/:id', to: 'users#update'
 
-  put '/create_admin', to: 'admin#create_admin'  
+  match '*path', to: 'errors#index', via: :all
 end
