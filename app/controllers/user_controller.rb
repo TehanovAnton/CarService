@@ -6,7 +6,7 @@ class UserController < ApplicationController
   end
 
   def show
-    @user = User.find_by(params[:id])
+    @user = User.find params[:id]
     redirect_to user_index_path unless @user
   end
 
