@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class UserController < ApplicationController
+class UsersController < ApplicationController
   def index
     @users = User.all
   end
 
   def show
     @user = User.find_by id: params[:id]
-    redirect_to user_index_path unless @user
+    redirect_to users_path unless @user
   end
 
   def me
@@ -20,7 +20,7 @@ class UserController < ApplicationController
     unless current_user
       redirect_to new_user_session_path
     else
-      redirect_to user_index_path unless @user == current_user || current_user.is_a?(Admin)
+      redirect_to users_path unless @user == current_user || current_user.is_a?(Admin)
     end
   end
 
@@ -45,6 +45,6 @@ class UserController < ApplicationController
       @user.destroy
     end
 
-    redirect_to user_index_path
+    redirect_to users_path
   end
 end

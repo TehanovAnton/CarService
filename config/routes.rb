@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  root 'user#index'
+  root 'users#index'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :user, only: %i[index show destroy]
+  resources :users, only: %i[index show destroy]
   resources :errors, only: %i[index]
-  get '/me', to: 'user#me'
-  get '/edit', to: 'user#edit'
-  put '/edit/:id', to: 'user#update'
+  get '/me', to: 'users#me'
+  get '/edit', to: 'users#edit'
+  put '/edit/:id', to: 'users#update'
 
   match '*path', to: 'errors#index', via: :all
 end
