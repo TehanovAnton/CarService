@@ -24,9 +24,4 @@ class AdminController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :phone_number)
   end
-
-  def create_admin
-    Admin.create(email: "tehanov@gmail.com", password: "ewqqwe", first_name: "A", last_name: "T")
-    redirect_to user_index_path
-  end
 end
