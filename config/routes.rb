@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resources :user, only: %i[index show destroy]
-  resources :admin, only: %i[index edit update]
   resources :errors, only: %i[index]
   get '/me', to: 'user#me'
   get '/edit', to: 'user#edit'

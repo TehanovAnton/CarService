@@ -6,7 +6,7 @@ class UserController < ApplicationController
   end
 
   def show
-    @user = User.find params[:id]
+    @user = User.find_by id: params[:id]
     redirect_to user_index_path unless @user
   end
 
@@ -16,30 +16,35 @@ class UserController < ApplicationController
   end
 
   def edit
-    redirect_to new_user_session_path unless current_user
-    @user = current_user
+    @user = User.find_by(id: params[:id])
+    unless current_user
+      redirect_to new_user_session_path
+    else
+      redirect_to user_index_path unless @user == current_user || current_user.is_a?(Admin)
+    end
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update user_params
-      redirect_to me_path
+    @user = User.find_by id: params[:id]
+    if current_user.is_a?(Admin) || @user == current_user
+      @user.update(user_params)
+      redirect_to @user == current_user ? me_path : user_path(@user)
     else
       render :edit
     end
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number)
+    params.require(@user.is_a?(Admin) ? :admin : :user).permit(:first_name, :last_name, :email, :phone_number)
   end
 
   def destroy
-    # @user = User.find_by(params[:id])
-    @user = User.find(params[:id])
-    if @user
+    @user = User.find_by id: params[:id]
+    if @user == current_user || current_user.is_a?(Admin)
       reset_session if @user == current_user
       @user.destroy
     end
+
     redirect_to user_index_path
   end
 end

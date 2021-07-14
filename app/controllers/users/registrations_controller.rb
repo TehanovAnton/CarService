@@ -12,7 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    current_user.update type: 'Admin' if params[:admin]
   end
 
   # GET /resource/edit
