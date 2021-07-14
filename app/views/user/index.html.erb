@@ -1,4 +1,10 @@
 <h1>Users</h1>
+
+<%= link_to "SIGN_UP",
+    new_user_registration_path,
+    method: :get
+%>
+
 <ul>
     <%@users.each do |user|%>        
         <li><%=user.type == 'Admin' ? 'Admin' : 'User'%></li>
