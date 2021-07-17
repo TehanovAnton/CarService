@@ -1,7 +1,9 @@
-<h1>info about me</h1>
+<h1>Me</h1>
 <ul>
+    <li><%=@me.type%></li>
     <li><%=@me.first_name%></li>
     <li><%=@me.last_name%></li>
     <li><%=@me.email%></li>
     <li><%=@me.phone_number%></li>        
 </ul>
+<%= link_to 'index',  users_path %>

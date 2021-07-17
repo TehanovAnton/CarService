@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'users#index'
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
 
-  resources :users, only: %i[index show destroy]
+  resources :users, only: %i[index show edit destroy]
   resources :errors, only: %i[index]
   get '/me', to: 'users#me'
   get '/edit', to: 'users#edit'
