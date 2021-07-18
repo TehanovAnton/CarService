@@ -12,6 +12,8 @@ gem 'devise'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'sinatra'
 gem 'mailcatcher'
+gem 'bootstrap', '~> 5.0.1'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
