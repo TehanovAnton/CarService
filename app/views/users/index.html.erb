@@ -12,13 +12,13 @@
             <%= link_to "#{user.last_name} #{user.first_name.first}.", user_path(user)%>
         </li>
 
-        <%if user == current_user || user.is_a?(Admin) %>
+        <%if user == current_user || current_user.is_a?(Admin) %>
             <li>
                 <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" } %>
             </li>
 
             <li>
-                <%= link_to "Edit", edit_path(user, id: user.id)%>
+                <%= link_to "Edit", edit_user_path(user)%>
             </li>
         <%end%>
 

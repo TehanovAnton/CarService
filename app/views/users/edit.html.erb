@@ -1,5 +1,5 @@
 <h1>Edit</h1>
-<%=form_with url: edit_path(@user, id: @user.id), method: :put, model: @user do |form|%>
+<%=form_with url: user_path(@user), method: :put, model: @user do |form|%>
     <div>
         <%=form.text_area :first_name %>
         <%=form.text_area :last_name %>
