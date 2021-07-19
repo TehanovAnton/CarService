@@ -11,7 +11,7 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'devise'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'sinatra'
-gem 'bootstrap', '~> 5.0.1'
+gem 'bootstrap'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
 
 # Use Puma as the app server
