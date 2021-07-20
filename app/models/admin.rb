@@ -1,2 +1,7 @@
 class Admin < User
+
+  protected
+  def confirmation_required?
+    false
+  end
 end

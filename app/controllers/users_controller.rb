@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by id: params[:id]
+    @user = user_find_by_id(:id)
     redirect_to users_path unless @user
   end
 
@@ -16,35 +16,41 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
-    unless current_user
-      redirect_to new_user_session_path
-    else
-      redirect_to users_path unless @user == current_user || current_user.is_a?(Admin)
-    end
+    @user = user_find_by_id(:id)
+    redirect_to users_path unless current?(@user) || admin?(current_user)
   end
 
   def update
-    @user = User.find_by id: params[:id]
-    if current_user.is_a?(Admin) || @user == current_user
-      @user.update(user_params)
-      redirect_to @user == current_user ? me_path : user_path(@user)
-    else
-      render :edit
-    end
+    @user = user_find_by_id(:id)
+    @user.update(user_params)
+    redirect_to current?(@user) ? me_path : user_path(@user)
   end
+
+  def destroy
+    @user = user_find_by_id(:id)
+    if current?(@user) || admin?(current_user)
+      reset_session if current?(@user)
+      @user.destroy
+    end
+
+    redirect_to users_path
+  end
+
+  private
 
   def user_params
     params.require(@user.is_a?(Admin) ? :admin : :user).permit(:first_name, :last_name, :email, :phone_number)
   end
 
-  def destroy
-    @user = User.find_by id: params[:id]
-    if @user == current_user || current_user.is_a?(Admin)
-      reset_session if @user == current_user
-      @user.destroy
-    end
+  def user_find_by_id(id)
+    User.find_by id: params[id]
+  end
 
-    redirect_to users_path
+  def current?(user)
+    user == current_user
+  end
+
+  def admin?(user)
+    user.type == 'Admin'
   end
 end
