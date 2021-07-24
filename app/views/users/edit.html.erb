@@ -1,13 +1,58 @@
-<h1>Edit</h1>
-<%=form_with url: user_path(@user), method: :put, model: @user do |form|%>
-    <div>
-        <%=form.text_area :first_name %>
-        <%=form.text_area :last_name %>
-        <%=form.text_area :email %>
-        <%=form.text_area :phone_number %>
-    </div>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<link href='https://bootstraptema.ru/snippets/form/2017/recaptcha/custom.css' rel='stylesheet' type='text/css'>
 
-    <div>
-        <%=form.submit%>
-    </div>
-<%end%>
+ <div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <h1 class="text-center">Edit Form</h1>
+
+            <%=form_with url: user_path(@user), method: :put, model: @user do |form|%>
+                    <div class="messages"></div>
+
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Firstname *</label>
+                                    <%=form.text_field :first_name, class: "form-control", placeholder: "Please enter your firstname *", required: "required", data_error: "Firstname is required."%>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Lastname *</label>
+                                <%=form.text_field :last_name, class: "form-control", placeholder: "Please enter your lastname *", required: "required", data_error: "lastname is required."%>
+                                <div class="help-block with-errors"></div>
+                            </div>                    
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_email">Email *</label>
+                                <%=form.email_field :email, class: "form-control", placeholder: "Please enter your email *", required: "required", data_error: "Valid email is required."%>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form_phone">Phone</label>
+                                <%=form.text_field :phone_number, class: "form-control", placeholder: "Please enter your phone *", required: "required", data_error: "Phone number is required."%>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-send" value="Save">
+                    </div>
+                </div>
+                </div>
+            <% end %>
+        </div><!-- /.col-lg-8 col-lg-offset-2 -->
+    </div> <!-- /.row-->
+ </div> <!-- /.container-->
