@@ -48,7 +48,7 @@
     .sticker-inverse:after {
     background: #222
     }
-/* ----------------------------- */
+    /* ----------------------------- */
     .btn{
     position: relative;
     color:#fff;
@@ -107,6 +107,10 @@
                     <pre>
                         <%= "#{user.last_name} #{user.first_name.first}." %>
                     </pre>
+
+                    <div class="col-sm-2">                            
+                        <%= link_to "show", user_path(user), class: "btn btn-sm blue"%>
+                    </div>
 
                     <% if user == current_user || current_user.is_a?(Admin) %>
                         <div class="col-sm-1">                            
