@@ -101,7 +101,11 @@
         <div class="col-md-8 col-md-offset-2">            
             <div class="sticker-left" data-sticker="Information">
                 <h1 class="text-center">Index</h1>
+                <div class="col-sm-1">                        
+                    <%= link_to "sign out", destroy_user_session_path(current_user), class: "btn btn-sm blue", method: :delete %>
+                </div>
             </div>
+            <br/>
             <% @users.each do |user| %>
                 <div class="sticker-right sticker-info" data-sticker=<%= user.type %>>
                     <pre>
