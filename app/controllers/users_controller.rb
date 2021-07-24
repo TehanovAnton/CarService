@@ -36,6 +36,9 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def eaxmple
+  end
+
   private
 
   def user_params
