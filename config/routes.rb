@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show edit update destroy]
   get '/me', to: 'users#me'
-  # get '/edit', to: 'users#edit'
-  # put '/edit/:id', to: 'users#update'
+  get '/example', to: 'users#example'
 
   get '*path', to: 'errors#error_404', via: :all
 end
