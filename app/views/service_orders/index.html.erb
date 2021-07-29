@@ -1,5 +1,12 @@
-<h1>Hello, Order Index: <%= "#{@user.service_orders.count}"%></h1>
-<%= form_with model: [@user, @user.service_orders.build] do |f|%>
-  <%= f.text_field :description%>
-  <%= f.submit 'add order'%>
+<h1>Hello, Order Index: <%= "#{@user.service_orders.count}" %></h1><br/>
+
+ <% @service_orders.each do |order| %>  
+  <ul>
+    <li><%= order.description %></li>
+    <li><%= link_to 'delete', user_service_order_path(user_id: @user.id, id: order.id), method: :delete %></li>
+  </ul><br/>
 <% end %>
+
+<%= link_to 'Add order', new_user_service_order_path(@user) %><br/>
+<%= link_to 'index', root_path %>
+show each order
