@@ -1,0 +1,5 @@
+<h1>Hello, Order Index: <%= "#{@user.service_orders.count}"%></h1>
+<%= form_with model: [@user, @user.service_orders.build] do |f|%>
+  <%= f.text_field :description%>
+  <%= f.submit 'add order'%>
+<% end %>
