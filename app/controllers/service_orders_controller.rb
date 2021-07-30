@@ -14,6 +14,17 @@ class ServiceOrdersController < ApplicationController
     redirect_to user_service_orders_path(@user)
   end
 
+  def edit
+    @user = User.find_by(id: params[:user_id])
+    @order = ServiceOrder.find_by(id: params[:id])
+  end
+
+  def update
+    @order = ServiceOrder.find_by(id: params[:id])
+    @order.update(service_orders_params)
+    redirect_to user_service_orders_path(user_id: @order.user_id)
+  end
+
   def destroy
     @user = User.find_by(id: params[:user_id])
 
