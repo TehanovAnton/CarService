@@ -117,11 +117,11 @@
                     </div>
 
                     <% if user == current_user || current_user.is_a?(Admin) %>
-                        <div class="col-sm-1">                            
+                        <div class="col-sm-2">                            
                             <%= link_to "edit", edit_user_path(user), class: "btn btn-sm blue"%>
                         </div>
 
-                        <div class="col-sm-1">                            
+                        <div class="col-sm-2">                            
                             <%= link_to "delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm blue" %>
                         </div>
 
