@@ -21,7 +21,7 @@ class ServiceOrdersController < ApplicationController
 
   def update
     @order = ServiceOrder.find_by(id: params[:id])
-    @order.update(service_orders_params)
+    params[:state] ? @order.update_state : @order.update(service_orders_params)
     redirect_to user_service_orders_path(user_id: @order.user_id)
   end
 
