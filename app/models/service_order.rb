@@ -1,4 +1,8 @@
 class ServiceOrder < ApplicationRecord
+  include AASM
+
+  aasm do
+  end
   belongs_to :user
 
   validates :state, inclusion: { in: %w[accepted in_progress done] }

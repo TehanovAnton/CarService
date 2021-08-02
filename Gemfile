@@ -14,6 +14,7 @@ gem 'sinatra'
 gem 'bootstrap'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
 gem 'figaro', '~> 1.2'
+gem 'aasm', '~> 5.2'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
