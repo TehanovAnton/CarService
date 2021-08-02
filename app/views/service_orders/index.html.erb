@@ -100,36 +100,30 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">            
             <div class="sticker-left" data-sticker="Information">
-                <h1 class="text-center">Index</h1>
-                <div class="col-sm-1">                        
-                    <%= link_to "sign out", destroy_user_session_path(current_user), class: "btn btn-sm blue", method: :delete %>
+                <h1 class="text-center">service orders. now it is <%= "#{@service_orders.count}" %></h1>
+                <div class="col-sm-2">                        
+                    <%= link_to "index", root_path, class: "btn btn-sm blue" %>
+                </div>
+
+                <div class="col-sm-2">                        
+                    <%= link_to 'add order', new_user_service_order_path(@user), class: "btn btn-sm blue" %>
                 </div>
             </div>
             <br/>
-            <% @users.each do |user| %>
-                <div class="sticker-right sticker-info" data-sticker=<%= user.type %>>
+            <% @service_orders.each do |order| %>
+                  <div class="sticker-right sticker-info" data-sticker=<%= 'order' %>>
                     <pre>
-                        <%= "#{user.last_name} #{user.first_name.first}." %>
-                    </pre>
+                        <%= "#{order.description}." %>
+                    </pre>                    
 
                     <div class="col-sm-2">                            
-                        <%= link_to "show", user_path(user), class: "btn btn-sm blue"%>
+                      <%= link_to 'edit', edit_user_service_order_path(@user, order), class: "btn btn-sm blue" %>
                     </div>
 
-                    <% if user == current_user || current_user.is_a?(Admin) %>
-                        <div class="col-sm-2">                            
-                            <%= link_to "edit", edit_user_path(user), class: "btn btn-sm blue"%>
-                        </div>
-
-                        <div class="col-sm-2">                            
-                            <%= link_to "delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm blue" %>
-                        </div>
-
-                        <div class="col-sm-1">                            
-                            <%= link_to "orders", user_service_orders_path(user), class: "btn btn-sm blue"%>
-                        </div>
-                    <% end %>
-                </div>
+                    <div class="col-sm-2">                            
+                      <%= link_to 'delete', user_service_order_path(@user, order), method: :delete, class: "btn btn-sm blue" %>
+                    </div>
+                  </div>
                 <br/>
             <% end %>
         </div>

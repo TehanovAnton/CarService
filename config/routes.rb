@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: %i[index show edit update destroy]
+  resources :users, only: %i[index show edit update destroy] do
+    resources :service_orders
+  end
+  
   get '/me', to: 'users#me'
   get '/example', to: 'users#example'
 
