@@ -111,7 +111,7 @@
             </div>
             <br/>
             <% @service_orders.each do |order| %>
-                  <div class="sticker-right sticker-info" data-sticker=<%= 'order' %>>
+                  <div class="sticker-right sticker-info" data-sticker=<%= "#{ order.state }" %>>
                     <pre>
                         <%= "#{order.description}." %>
                     </pre>                    
@@ -123,6 +123,12 @@
                     <div class="col-sm-2">                            
                       <%= link_to 'delete', user_service_order_path(@user, order), method: :delete, class: "btn btn-sm blue" %>
                     </div>
+
+                    <% if current_user.is_a?(Admin) && !order.done? %>
+                        <div class="col-sm-2">                            
+                        <%= link_to 'update state', user_service_order_path(@user, order, state: 'update'), method: :put, class: "btn btn-sm blue" %>
+                        </div>
+                    <% end %>
                   </div>
                 <br/>
             <% end %>
