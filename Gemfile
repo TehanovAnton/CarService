@@ -15,6 +15,7 @@ gem 'bootstrap'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
 gem 'figaro', '~> 1.2'
 gem 'aasm', '~> 5.2'
+gem 'after_commit_everywhere', '~> 1.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
