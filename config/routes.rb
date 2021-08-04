@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   get '/me', to: 'users#me'
   get '/example', to: 'users#example'
+  get '/fake', to: 'fakes#index'
 
   get '*path', to: 'errors#error_404', via: :all
 end
