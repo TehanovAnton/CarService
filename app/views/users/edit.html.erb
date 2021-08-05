@@ -1,58 +1,53 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<link href='https://bootstraptema.ru/snippets/form/2017/recaptcha/custom.css' rel='stylesheet' type='text/css'>
+<main id="main">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact section-bg">
+      <div class="container">
 
- <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-            <h1 class="text-center">Edit Form</h1>
+        <div class="section-title">
+          <h2>Edit</h2>
+        </div>
 
-            <%=form_with url: user_path(@user), method: :put, model: @user do |form|%>
-                    <div class="messages"></div>
+        <div class="row">
 
-                    <div class="controls">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Firstname *</label>
-                                    <%=form.text_field :first_name, class: "form-control", placeholder: "Please enter your firstname *", required: "required", data_error: "Firstname is required."%>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
+          <div class="col-lg-3"></div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Lastname *</label>
-                                <%=form.text_field :last_name, class: "form-control", placeholder: "Please enter your lastname *", required: "required", data_error: "lastname is required."%>
-                                <div class="help-block with-errors"></div>
-                            </div>                    
-                        </div>
-                    </div>
+          <div class="col-lg-6 mt-4 mt-lg-0">
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="form_email">Email *</label>
-                                <%=form.email_field :email, class: "form-control", placeholder: "Please enter your email *", required: "required", data_error: "Valid email is required."%>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="form_phone">Phone</label>
-                                <%=form.text_field :phone_number, class: "form-control", placeholder: "Please enter your phone *", required: "required", data_error: "Phone number is required."%>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <input type="submit" class="btn btn-success btn-send" value="Save">
-                    </div>
+            <%= form_with url: user_path(current_user), html: {class: "php-email-form"}, model: current_user do |f| %>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <%= f.text_field :first_name, class: 'form-control', placeholder: 'Your first name', requiered: "requiered" %>
                 </div>
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <%= f.text_field :last_name, class: 'form-control', placeholder: 'Your last name', requiered: "requiered" %>
+                </div>     
+              </div><br/>
+
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Your phone number', requiered: "requiered" %>
                 </div>
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <%= f.email_field :email, class: 'form-control', placeholder: 'Your email', requiered: "requiered" %>
+                </div>     
+              </div>              
+
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit">Update</button>
+              </div>
             <% end %>
-        </div><!-- /.col-lg-8 col-lg-offset-2 -->
-    </div> <!-- /.row-->
- </div> <!-- /.container-->
+
+          </div>
+
+        </div>
+
+      </div>
+<!-- End Contact Section -->  

@@ -3,6 +3,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @orders = current_user.service_orders
   end
 
   def show
@@ -16,14 +17,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = user_find_by_id(:id)
-    redirect_to users_path unless current?(@user) || admin?(current_user)
+    @user = user_find_by_id(:id)    
   end
 
   def update
     @user = user_find_by_id(:id)
     @user.update(user_params)
-    redirect_to current?(@user) ? me_path : user_path(@user)
+    redirect_to root_path
   end
 
   def destroy
@@ -54,6 +54,6 @@ class UsersController < ApplicationController
   end
 
   def admin?(user)
-    user.type == 'Admin'
+    user.is_a Admin
   end
 end
