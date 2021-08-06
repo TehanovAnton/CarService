@@ -41,6 +41,10 @@
 
             <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "php-email-form"}) do |f| %>
 
+                <% if params[:error_message] %>
+                  <p><%= params[:error_message] %></p>
+                <% end %>
+
                 <div class="form-group mt-3">
                     <%= f.email_field :email, class: 'form-control', placeholder: 'Your email', requiered: "requiered" %>
                 </div>

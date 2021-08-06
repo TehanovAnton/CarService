@@ -3,10 +3,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :requier_login, unless: :devise_controller?  
+  before_action :check_inputs, if: :devise_controller?
+  before_action :requier_login, unless: :devise_controller?
 
   unless Rails.application.config.consider_all_requests_local
-    rescue_from ActionController::RoutingError, with: -> { render_404 }
+    rescue_from ActionController::RoutingError, with: -> { render_404 }     
   end
 
   protected
@@ -19,6 +20,15 @@ class ApplicationController < ActionController::Base
   
   def requier_login
     redirect_to new_user_session_path unless current_user
+  end
+
+  def check_inputs
+    user = params.keys.include?('user') ? User.find_by(email: new_session_inputs[:email]) : nil
+    redirect_to new_user_session_path(error_message: 'wrong email') if request.post? && user.nil?
+  end
+
+  def new_session_inputs
+    params.require(:user).permit(:email, :password)
   end
 
   def render_404
