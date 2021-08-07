@@ -39,18 +39,23 @@
 
           <div class="col-lg-6 mt-4 mt-lg-0">
 
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "php-email-form"}) do |f| %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "php-email-form"}) do |f| %>  
+                <% url = Rails.application.routes.recognize_path(request.referrer) %>
 
-                <% if params[:error_message] %>
-                  <p><%= params[:error_message] %></p>
+                <% if params[:message] %>
+                  <p><%= params[:message] %></p>
+                <% end %>
+
+                <% if url[:controller] == 'devise/registrations' && request[:controller] == 'devise/sessions' %>
+                  <p><%= 'check your email' %></p>
                 <% end %>
 
                 <div class="form-group mt-3">
-                    <%= f.email_field :email, class: 'form-control', placeholder: 'Your email', requiered: "requiered" %>
+                    <%= f.email_field :email, class: 'form-control', placeholder: 'Your email', required: true %>
                 </div>
 
                 <div class="form-group mt-3">
-                    <%= f.password_field :password, class: 'form-control', row: "9", placeholder: 'Password', requiered: "requiered" %>
+                    <%= f.password_field :password, class: 'form-control', row: "9", placeholder: 'Password', required: true %>
                 </div>
 
                 <div class="my-3">
@@ -61,6 +66,10 @@
 
                 <div class="text-center">
                     <button type="submit">Sing in</button>
+                </div>
+
+                <div class="text-center">
+                    <%= link_to 'Don\'t have an account', new_user_registration_path%>
                 </div>
             <% end %>
 
