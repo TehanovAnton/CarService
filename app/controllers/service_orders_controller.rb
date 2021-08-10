@@ -11,7 +11,7 @@ class ServiceOrdersController < ApplicationController
   def create
     @user = User.find_by(id: params[:user_id])
     @user.service_orders.create(service_orders_params)
-    redirect_to user_service_orders_path(@user)
+    redirect_to root_path
   end
 
   def edit
@@ -21,13 +21,11 @@ class ServiceOrdersController < ApplicationController
 
   def update
     @order = ServiceOrder.find_by(id: params[:id])
-    # puts "STATE #{@order.state} ..."
 
     if params[:state]
       case @order.state
       when 'accepted'
         @order.progress!
-        puts "################# #{@order.state} : #{@order.in_progress?} ..."
       when 'in_progress'
         @order.finish!
       end
@@ -35,7 +33,7 @@ class ServiceOrdersController < ApplicationController
       @order.update(service_orders_params) unless params[:state]
     end
 
-    redirect_to user_service_orders_path(user_id: @order.user_id)
+    redirect_to root_path
   end
 
   def destroy
