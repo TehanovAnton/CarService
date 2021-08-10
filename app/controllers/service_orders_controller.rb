@@ -21,7 +21,20 @@ class ServiceOrdersController < ApplicationController
 
   def update
     @order = ServiceOrder.find_by(id: params[:id])
-    params[:state] ? @order.update_state : @order.update(service_orders_params)
+    # puts "STATE #{@order.state} ..."
+
+    if params[:state]
+      case @order.state
+      when 'accepted'
+        @order.progress!
+        puts "################# #{@order.state} : #{@order.in_progress?} ..."
+      when 'in_progress'
+        @order.finish!
+      end
+    else
+      @order.update(service_orders_params) unless params[:state]
+    end
+
     redirect_to user_service_orders_path(user_id: @order.user_id)
   end
 

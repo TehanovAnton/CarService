@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.2.0)
+      concurrent-ruby (~> 1.0)
     actioncable (6.1.4)
       actionpack (= 6.1.4)
       activesupport (= 6.1.4)
@@ -62,8 +64,10 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    autoprefixer-rails (10.2.5.1)
-      execjs (> 0)
+    after_commit_everywhere (1.0.0)
+      activerecord (>= 4.2)
+    autoprefixer-rails (10.3.1.0)
+      execjs (~> 2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.7)
@@ -134,7 +138,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.5.7)
-    nokogiri (1.11.7-x86_64-linux)
+    nokogiri (1.12.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
@@ -261,6 +265,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  aasm (~> 5.2)
+  after_commit_everywhere (~> 1.0)
   bootsnap (>= 1.4.4)
   bootstrap
   byebug
