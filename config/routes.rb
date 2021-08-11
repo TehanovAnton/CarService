@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   
   get '/me', to: 'users#me'
-  get '/example', to: 'users#example'
+  get '/no_orders', to: 'users#no_orders'
   get '/fake', to: 'fakes#index'
 
   get '*path', to: 'errors#error_404', via: :all

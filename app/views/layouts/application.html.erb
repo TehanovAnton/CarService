@@ -36,7 +36,58 @@
     <link href="/assets/theme/css/style.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body>    
+    <% unless ApplicationController::sign? params %>
+      <!-- ======= Header ======= -->
+      <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center justify-content-between">
+
+          <h1 class="logo"><a href="index.html">CarService.</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a class="nav-link scrollto active" href=<%= root_path %> >Home</a> </li>
+              <li class="dropdown"><a><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li><a href=<%= me_path %>>Me</a></li>
+                  <li><a href=<%= edit_user_path(current_user) %>>Edit</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li>
+                    <% if current_user.service_orders.empty? %>
+                      <a href=<%= no_orders_path %>>Actual</a>
+                    <% else %>
+                      <a href='#actual'> Actual </a>
+                    <% end %>
+                  </li>
+                  <li><%= link_to 'New', new_user_service_order_path(current_user) %></li>
+                </ul>
+              </li>
+              <li><a class="nav-link scrollto" href="#services">Services</a></li>          
+              <li><a class="nav-link scrollto" href="#team">Team</a></li>
+              <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>          
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+
+        </div>
+      </header><!-- End Header -->
+      <br/>
+      <br/>
+    <% end %>
+
+    <!-- flash notifications -->    
+      <% logger.info("flash => #{flash.keys}") %>
+      <% flash.each do |type, msg| %>
+        <div style="margin: 50px" class='alert alert-primary' role='alert'>
+          <%= msg %>
+        </div>
+      <% end %>
+
     <%= yield %>
   </body>
 </html>

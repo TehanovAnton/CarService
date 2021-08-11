@@ -1,34 +1,36 @@
 <main id="main">
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
-      <div class="container">
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact section-bg">
+    <div class="container">
 
-        <div class="section-title">
-          <h2>Order</h2>
-        </div>
+      <div class="section-title">
+        <h2>Order</h2>
+      </div>
 
-        <div class="row">
+      <div class="row">
 
-          <div class="col-lg-3"></div>
+        <div class="col-lg-3"></div>
 
-          <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="col-lg-6 mt-4 mt-lg-0">
 
-            <%= form_with url: user_service_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.service_orders.build do |f| %>
-              <div class="row">
-                <div class="form-group mt-3">
-                  <%= f.text_field :description, class: 'form-control', placeholder: 'Description', requiered: "requiered" %>
-                </div>     
-              </div>
-              <br/>              
+          <%= form_with url: user_service_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.service_orders.build do |f| %>
+            <div class="row">
+              <div class="form-group mt-3">
+                <%= f.text_field :description, class: 'form-control', placeholder: 'Description', requiered: "requiered" %>
+              </div>     
+            </div>
+            <br/>              
 
-              <div class="text-center">
-                <button type="submit">Create</button>
-              </div>
-            <% end %>
-
-          </div>
+            <div class="text-center">
+              <button type="submit">Create</button>
+            </div>
+          <% end %>
 
         </div>
 
       </div>
+
+    </div>
+  </section>
+</main>
 <!-- End Contact Section -->  

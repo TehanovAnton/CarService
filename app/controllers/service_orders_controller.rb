@@ -11,7 +11,7 @@ class ServiceOrdersController < ApplicationController
   def create
     @user = User.find_by(id: params[:user_id])
     @user.service_orders.create(service_orders_params)
-    redirect_to root_path
+    redirect_to root_path, notice: 'new order added'
   end
 
   def edit

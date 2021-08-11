@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def me
-    redirect_to new_user_session_path unless current_user
     @me = current_user
   end
 
@@ -23,7 +22,7 @@ class UsersController < ApplicationController
   def update
     @user = user_find_by_id(:id)
     @user.update(user_params)
-    redirect_to root_path
+    redirect_to root_path, notice: 'updated successfully'
   end
 
   def destroy
@@ -36,7 +35,8 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def eaxmple
+  def no_orders
+    redirect_to root_path, notice: 'You have no orders yet'
   end
 
   private
