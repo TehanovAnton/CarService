@@ -7,8 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = user_find_by_id(:id)
-    redirect_to users_path unless @user
+    @users_all = User.all
   end
 
   def me
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = user_find_by_id(:id)    
+    @user = user_find_by_id(:id)
   end
 
   def update
