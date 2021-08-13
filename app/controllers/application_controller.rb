@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   Constants = {
     registrations: 'devise/registrations',
     sessions: 'devise/sessions',
-    new_action: 'new'
+    new_action: 'new',
+    users: 'users',
+    users_guest_action: 'guest'
   }
 
   protect_from_forgery with: :exception
@@ -12,6 +14,7 @@ class ApplicationController < ActionController::Base
   before_action :requier_login, unless: :devise_controller?
   before_action :check_sessions_inputs, if: :devise_controller?
   before_action :check_registrations_inputs, if: :devise_controller?
+  before_action :guest_only_for_unauthorized
 
   unless Rails.application.config.consider_all_requests_local
     rescue_from ActionController::RoutingError, with: -> { render_404 }
@@ -24,6 +27,10 @@ class ApplicationController < ActionController::Base
     Constants.values.include?(controller) && Constants.values.include?(action)
   end
 
+  def self.guest?(params)
+    Constants.values.include?(params[:controller]) && Constants.values.include?(params[:action])
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -31,6 +38,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def guest_only_for_unauthorized
+    redirect_to root_path if params[:action] == Constants[:users_guest_action] && current_user
+  end
   
   def requier_login
     redirect_to new_user_session_path unless current_user
@@ -43,7 +54,7 @@ class ApplicationController < ActionController::Base
     load_sign_in('wrong email') if new_sessions && !user
   end
 
-  def check_registrations_inputs
+  def check_registrations_inputs 
     new_registration = post_with_user_params? && params[:controller] == 'devise/registrations'
     user = User.find_by(email: new_registration_inputs[:email]) if new_registration
     logger.info("filter !!! #{user.id}") if user

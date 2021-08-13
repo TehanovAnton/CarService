@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UsersController < ApplicationController 
+  skip_before_action :requier_login, only: [:guest]
+  
+  def guest
+  end
+   
   def index
     @users = User.all
     @orders = current_user.service_orders

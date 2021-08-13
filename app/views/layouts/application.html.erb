@@ -50,29 +50,31 @@
             <ul>
               <li><a class="nav-link scrollto active" href=<%= root_path %> >Home</a> </li>
 
-              <li class="dropdown"><a><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
-                <ul>
-                  <li><a href=<%= me_path %>>Me</a></li>
-                  <li><a href=<%= edit_user_path(current_user) %>>Edit</a></li>
-                </ul>
-              </li>
+              <% unless ApplicationController::guest? params %>
+                <li class="dropdown"><a><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                  <ul>
+                    <li><a href=<%= me_path %>>Me</a></li>
+                    <li><a href=<%= edit_user_path(current_user) %>>Edit</a></li>
+                  </ul>
+                </li>
 
-              <li class="dropdown"><a><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
-                <ul>
-                  <li>
-                    <% if current_user.service_orders.empty? %>
-                      <a href=<%= no_orders_path %>>Actual</a>
-                    <% else %>
-                      <a href='#actual'> Actual </a>
-                    <% end %>
-                  </li>
-                  <li><%= link_to 'New', new_user_service_order_path(current_user) %></li>
-                </ul>
-              </li>
+                <li class="dropdown"><a><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
+                  <ul>
+                    <li>
+                      <% if current_user.service_orders.empty? %>
+                        <a href=<%= no_orders_path %>>Actual</a>
+                      <% else %>
+                        <a href= <%= "#{root_path}#actual" %>> Actual </a>
+                      <% end %>
+                    </li>
+                    <li><%= link_to 'New', new_user_service_order_path(current_user) %></li>
+                  </ul>
+                </li>
+              <% end %>
 
-              <li><a class="nav-link scrollto" href="#services">Services</a></li>          
+              <li><a class="nav-link scrollto" href=<%= "#{root_path}#services" %>>Services</a></li>          
 
-              <li><a class="nav-link scrollto" href="#team">Team</a></li>
+              <li><a class="nav-link scrollto" href=<%= "#{root_path}#team" %>>Team</a></li>
 
               <% if current_user.is_a? Admin%>
                 <li><a class="nav-link scrollto" href=<%= user_path(current_user) %> >Show all</a></li>
