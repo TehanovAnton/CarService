@@ -15,6 +15,7 @@ class ServiceOrder < ApplicationRecord
   end
 
   belongs_to :user
+  belongs_to :mechanic
 
   validates :state, inclusion: { in: %w[accepted in_progress done] }
 
