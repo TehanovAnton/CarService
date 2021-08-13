@@ -6,10 +6,13 @@ class ServiceOrdersController < ApplicationController
 
   def new
     @user = User.find_by(id: params[:user_id])
+    @mechanics = Mechanic.all
   end
 
   def create
     @user = User.find_by(id: params[:user_id])
+    mechanic_index = params[:service_order][:mechanic_id].to_i - 1
+    params[:service_order][:mechanic_id] = Mechanic.all[mechanic_index].id
     @user.service_orders.create(service_orders_params)
     redirect_to root_path, notice: 'new order added'
   end
@@ -48,6 +51,6 @@ class ServiceOrdersController < ApplicationController
   private
 
   def service_orders_params
-    params.require(:service_order).permit(:description)
+    params.require(:service_order).permit(:description, :mechanic_id)
   end
 end
