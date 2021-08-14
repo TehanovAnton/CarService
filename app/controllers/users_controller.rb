@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @orders = current_user.service_orders
   end
 
+  def show_mechanics
+    @mechanics = Mechanic.all
+  end
+
   def show
     @users_all = User.all
   end

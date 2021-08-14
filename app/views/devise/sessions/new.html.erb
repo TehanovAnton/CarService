@@ -42,34 +42,26 @@
             <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "php-email-form"}) do |f| %>  
                 <% url = Rails.application.routes.recognize_path(request.referrer) %>
 
-                <% if params[:message] %>
-                  <p><%= params[:message] %></p>
-                <% end %>
-
-                <% if url[:controller] == 'devise/registrations' && request[:controller] == 'devise/sessions' %>
-                  <p><%= 'check your email' %></p>
-                <% end %>
-
                 <div class="form-group mt-3">
-                    <%= f.email_field :email, class: 'form-control', placeholder: 'Your email', required: true %>
+                  <div class="form-floating">                    
+                    <input type="email" id="email" name="user[email]" class="form-control" required>
+                    <label for="email">Your email</label>
+                  </div>
                 </div>
 
-                <div class="form-group mt-3">
-                    <%= f.password_field :password, class: 'form-control', row: "9", placeholder: 'Password', required: true %>
-                </div>
-
-                <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
+                <div class="form-group mt-3">                    
+                    <div class="form-floating">                    
+                      <input type="password" id="password" name="user[password]" class="form-control" row='9' required>
+                      <label for="password">Password</label>
+                    </div>
+                </div><br/>
 
                 <div class="text-center">
                     <button type="submit">Sing in</button>
                 </div>
 
-                <div class="text-center">
-                    <%= link_to 'Don\'t have an account', new_user_registration_path%>
+                <div class="text-center">                
+                  <a href=<%= new_user_registration_path %>>Don't have an account</a>
                 </div>
             <% end %>
 

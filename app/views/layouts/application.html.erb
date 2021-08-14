@@ -49,7 +49,6 @@
           <nav id="navbar" class="navbar">
             <ul>
               <li><a class="nav-link scrollto active" href=<%= root_path %> >Home</a> </li>
-
               <% unless ApplicationController::guest? params %>
                 <li class="dropdown"><a><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
@@ -57,7 +56,6 @@
                     <li><a href=<%= edit_user_path(current_user) %>>Edit</a></li>
                   </ul>
                 </li>
-
                 <li class="dropdown"><a><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li>
@@ -71,15 +69,12 @@
                   </ul>
                 </li>
               <% end %>
-
-              <li><a class="nav-link scrollto" href=<%= "#{root_path}#services" %>>Services</a></li>          
-
+              <li><a class="nav-link scrollto" href=<%= "#{root_path}#services" %>>Services</a></li>    
               <li><a class="nav-link scrollto" href=<%= "#{root_path}#team" %>>Team</a></li>
-
+              <li><a class="nav-link scrollto" href=<%= mechanics_path %>>Mechanics</a></li>
               <% if current_user.is_a? Admin%>
                 <li><a class="nav-link scrollto" href=<%= user_path(current_user) %> >Show all</a></li>
               <% end %>
-
               <li><a class="nav-link scrollto" href=<%= destroy_user_session_path %> data-method='delete'>Sign out</a></li>          
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

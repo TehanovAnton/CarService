@@ -15,8 +15,12 @@
           <%= form_with url: user_service_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.service_orders.build do |f| %>
             <div class="row">
               <div class="form-group mt-3">
-                <%= f.text_field :description, class: 'form-control', placeholder: 'Description', required: true %><br/>
-                
+
+                <div class="form-floating">
+                  <input type="text" id="description" name="description" class="form-control" required>
+                  <label for="description">Description</label>
+                </div><br/>
+
                 <div class="form-floating">
                   <select class="form-select" aria-label="Default select example"
                           name="mechanic_id" id="mechanics">
@@ -28,6 +32,7 @@
                   </select>
                   <label for="mechanics">Choose a mechanic</label>
                 </div>
+
               </div>     
             </div>
             <br/>              
