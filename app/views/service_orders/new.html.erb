@@ -16,7 +16,18 @@
             <div class="row">
               <div class="form-group mt-3">
                 <%= f.text_field :description, class: 'form-control', placeholder: 'Description', required: true %><br/>
-                <%= f.text_field :mechanic_id, class: 'form-control', placeholder: 'Mechanic number', required: true %>
+                
+                <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example"
+                          name="mechanic_id" id="mechanics">
+                    <% @mechanics.each do |m| %>
+                      <option value=<%= m.id %>>
+                        <%= m.first_name %> <%= m.last_name %>
+                      </option>
+                    <% end %>
+                  </select>
+                  <label for="mechanics">Choose a mechanic</label>
+                </div>
               </div>     
             </div>
             <br/>              
