@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/no_orders', to: 'users#no_orders'
   get '/guest', to: 'users#guest'
   get '/mechanics', to: 'users#show_mechanics'
+  get '/actual_orders', to: 'service_orders#show_actual_orders'
   get '/fake', to: 'fakes#index'
 
   get '*path', to: 'errors#error_404', via: :all

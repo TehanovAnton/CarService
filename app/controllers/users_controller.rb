@@ -9,10 +9,15 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @orders = current_user.service_orders
+    @teammates = Teammate.all
   end
 
   def show_mechanics
     @mechanics = Mechanic.all
+  end
+
+  def show_actual_orders
+    @actual_orders = current_user.service_orders
   end
 
   def show
@@ -41,10 +46,6 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
-  end
-
-  def no_orders
-    redirect_to root_path, notice: 'You have no orders yet'
   end
 
   private

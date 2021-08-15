@@ -9,11 +9,13 @@ class ServiceOrdersController < ApplicationController
     @mechanics = Mechanic.all
   end
 
-  def create
-    @user = User.find_by(id: params[:user_id])
-    mechanic_index = params[:service_order][:mechanic_id].to_i - 1
-    params[:service_order][:mechanic_id] = Mechanic.all[mechanic_index].id
-    @user.service_orders.create(service_orders_params)
+  def show_actual_orders
+    @orders = current_user.service_orders
+    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty? 
+  end
+
+  def create    
+    current_user.service_orders.create(service_orders_params)
     redirect_to root_path, notice: 'new order added'
   end
 

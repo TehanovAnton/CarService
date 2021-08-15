@@ -59,11 +59,7 @@
                 <li class="dropdown"><a><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li>
-                      <% if current_user.service_orders.empty? %>
-                        <a href=<%= no_orders_path %>>Actual</a>
-                      <% else %>
-                        <a href= <%= "#{root_path}#actual" %>> Actual </a>
-                      <% end %>
+                      <a href= <%= actual_orders_path %>> Actual </a>
                     </li>
                     <li><%= link_to 'New', new_user_service_order_path(current_user) %></li>
                   </ul>
