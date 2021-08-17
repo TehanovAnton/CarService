@@ -23,7 +23,7 @@
 
                 <div class="form-floating">
                   <select class="form-select" aria-label="Default select example"
-                          name="mechanic_id" id="mechanics">
+                          name="service_order[mechanic_id]" id="mechanics">
                     <% @mechanics.each do |m| %>
                       <option value=<%= m.id %>>
                         <%= m.first_name %> <%= m.last_name %>

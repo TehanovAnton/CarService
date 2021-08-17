@@ -11,7 +11,7 @@ class ServiceOrdersController < ApplicationController
 
   def show_actual_orders
     @orders = current_user.service_orders
-    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty? 
+    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
   def create    
