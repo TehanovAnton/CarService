@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController 
+class UsersController < ApplicationController
   skip_before_action :requier_login, only: [:guest]
   
   def guest
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def update
     @user = user_find_by_id(:id)
     @user.update(user_params)
-    redirect_to root_path, notice: 'updated successfully'
+    redirect_to users_path, notice: 'updated successfully'
   end
 
   def destroy

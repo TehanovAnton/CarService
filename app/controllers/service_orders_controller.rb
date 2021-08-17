@@ -11,12 +11,12 @@ class ServiceOrdersController < ApplicationController
 
   def show_actual_orders
     @orders = current_user.service_orders
-    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty?
+    redirect_to users_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
   def create    
     current_user.service_orders.create(service_orders_params)
-    redirect_to root_path, notice: 'new order added'
+    redirect_to users_path, notice: 'new order added'
   end
 
   def edit
@@ -38,7 +38,7 @@ class ServiceOrdersController < ApplicationController
       @order.update(service_orders_params) unless params[:state]
     end
 
-    redirect_to root_path
+    redirect_to users_path
   end
 
   def destroy

@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     Constants.values.include?(params[:controller]) && Constants.values.include?(params[:action])
   end
 
+  def self.authorized?
+    current_user
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -40,7 +44,7 @@ class ApplicationController < ActionController::Base
   private
 
   def guest_only_for_unauthorized
-    redirect_to root_path if params[:action] == Constants[:users_guest_action] && current_user
+    redirect_to users_path if params[:action] == Constants[:users_guest_action] && current_user
   end
   
   def requier_login
