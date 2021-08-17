@@ -48,7 +48,7 @@
 
           <nav id="navbar" class="navbar">
             <ul>
-              <li><a class="nav-link scrollto active" href=<%= root_path %> >Home</a> </li>
+              <li><a class="nav-link scrollto active" href=<%= users_path %> >Home</a> </li>
               <% unless ApplicationController::guest? params %>
                 <li class="dropdown"><a><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
@@ -65,8 +65,8 @@
                   </ul>
                 </li>
               <% end %>
-              <li><a class="nav-link scrollto" href=<%= "#{root_path}#services" %>>Services</a></li>    
-              <li><a class="nav-link scrollto" href=<%= "#{root_path}#team" %>>Team</a></li>
+              <li><a class="nav-link scrollto" href=<%= "#{users_path}#services" %>>Services</a></li>    
+              <li><a class="nav-link scrollto" href=<%= "#{users_path}#team" %>>Team</a></li>
               <li><a class="nav-link scrollto" href=<%= mechanics_path %>>Mechanics</a></li>
               <% if current_user.is_a? Admin%>
                 <li><a class="nav-link scrollto" href=<%= user_path(current_user) %> >Show all</a></li>
@@ -78,6 +78,7 @@
 
         </div>
       </header><!-- End Header -->
+      <br/>
       <br/>
       <br/>
     <% end %>
