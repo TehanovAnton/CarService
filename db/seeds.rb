@@ -8,6 +8,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create(first_name: 'admin', last_name: 'adminov', phone_number: '911', email: 'admin@gmail.com', password: 'ewqqwe')
+User.create(first_name: 'Anton', last_name: 'Tehanov', phone_number: '1234', email: 'tehanovanton@gmail.com', password: 'ewqqwe')
 
 Mechanic.create(first_name: 'Wilson', last_name: 'mech', phone_number: '911', email: 'wilsonmech@gmail.com', password: 'ewqqwe')
 Mechanic.create(first_name: 'Koner', last_name: 'mech', phone_number: '191', email: 'Konermech@gmail.com', password: 'ewqqwe')
@@ -22,3 +23,5 @@ Position.create(position: 'Chief Executive officer', teammate_id: Teammate.find_
 Position.create(position: 'Product Manager', teammate_id: Teammate.find_by(email: 'sarajhonson@gmail.com').id)
 Position.create(position: 'Chiefe Engineer', teammate_id: Teammate.find_by(email: 'williamanderson@gmail.com').id)
 Position.create(position: 'Accountant', teammate_id: Teammate.find_by(email: 'amandajepson@gmail.com').id)
+
+Service.create( title: 'ruber replacement', price: 10)
