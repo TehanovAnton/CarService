@@ -7,6 +7,7 @@ class ServiceOrdersController < ApplicationController
   def new
     @user = User.find_by(id: params[:user_id])
     @mechanics = Mechanic.all
+    @services = Service.all
   end
 
   def show_actual_orders
@@ -16,6 +17,7 @@ class ServiceOrdersController < ApplicationController
 
   def create    
     current_user.service_orders.create(service_orders_params)
+    Specialization.create(mechanic_id: service_orders_params[:mechanic_id], service_id: service_orders_params[:service_id])
     redirect_to users_path, notice: 'new order added'
   end
 
@@ -53,6 +55,6 @@ class ServiceOrdersController < ApplicationController
   private
 
   def service_orders_params
-    params.require(:service_order).permit(:description, :mechanic_id)
+    params.require(:service_order).permit(:description, :mechanic_id, :service_id)
   end
 end

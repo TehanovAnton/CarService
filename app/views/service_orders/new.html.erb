@@ -20,7 +20,8 @@
                   <input type="text" id="description" name="service_order[description]" class="form-control" required>
                   <label for="description">Description</label>
                 </div><br/>
-
+                
+                <!-- Mechanics select -->
                 <div class="form-floating">
                   <select class="form-select" aria-label="Default select example"
                           name="service_order[mechanic_id]" id="mechanics">
@@ -31,7 +32,21 @@
                     <% end %>
                   </select>
                   <label for="mechanics">Choose a mechanic</label>
+                </div><br/>
+                <!-- End Mechanics select -->
+                
+                <!-- Service select -->
+                <div class="form-floating" >
+                  <select name="service_order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
+                    <% @services.each do |s| %>
+                      <option value=<%= s.id %>>
+                        <%= s.title %>: <%= s.price %>$
+                      </option>
+                    <% end %>
+                  </select>
+                  <label for="mechanics">Choose a service</label>
                 </div>
+                <!-- End Service select -->
 
               </div>     
             </div>

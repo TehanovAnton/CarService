@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_many :service_orders, dependent: :destroy
+  has_many :mechanics, through: :service_orders
 
   validates_confirmation_of :password
 
