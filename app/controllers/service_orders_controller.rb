@@ -8,6 +8,8 @@ class ServiceOrdersController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @mechanics = Mechanic.all
     @services = Service.all
+    @service_id = params[:service_id].to_i
+    logger.info("!!!service_id: #{@service_id}; is_i?: #{@service_id.is_a? Integer}")
   end
 
   def show_actual_orders
@@ -15,7 +17,7 @@ class ServiceOrdersController < ApplicationController
     redirect_to users_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
-  def create    
+  def create
     current_user.service_orders.create(service_orders_params)
     Specialization.create(mechanic_id: service_orders_params[:mechanic_id], service_id: service_orders_params[:service_id])
     redirect_to users_path, notice: 'new order added'
@@ -56,5 +58,5 @@ class ServiceOrdersController < ApplicationController
 
   def service_orders_params
     params.require(:service_order).permit(:description, :mechanic_id, :service_id)
-  end
+  end  
 end

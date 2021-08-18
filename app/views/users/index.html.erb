@@ -71,7 +71,7 @@
           <div class="col-xl-7">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
-                <div class="col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-6 d-10 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                   <div class="icon-box iconbox-blue">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -79,11 +79,13 @@
                       </svg>
                       <i class="bx bxl-dribbble"></i>
                     </div>
-                    <h4><a href="">Rubber replacement</a></h4>
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'rubber replacement')) %>>
+                        Rubber replacement</a>
+                    </h4>
                   </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-lg-6 d-10 align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
                   <div class="icon-box iconbox-orange ">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -91,11 +93,12 @@
                       </svg>
                       <i class="bx bx-file"></i>
                     </div>
-                    <h4><a href="">Technical inspectation</a></h4>                    
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'technical inspectation')) %>>
+                        Technical inspectation</a></h4>                    
                   </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-lg-6 d-10 align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
                   <div class="icon-box iconbox-pink">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -103,11 +106,12 @@
                       </svg>
                       <i class="bx bx-tachometer"></i>
                     </div>
-                    <h4><a href="">replacement of parts</a></h4>                    
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'replacement of parts')) %>>
+                        Replacement of parts</a></h4>                    
                   </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-6 d-10 align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                   <div class="icon-box iconbox-teal">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +119,8 @@
                       </svg>
                       <i class="bx bx-layer"></i>
                     </div>
-                    <h4><a href="">Renovation work</a></h4>
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'renovation work')) %>>
+                        Renovation work</a></h4>
                   </div>
                 </div>
               </div>

@@ -39,7 +39,7 @@
                 <div class="form-floating" >
                   <select name="service_order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
                     <% @services.each do |s| %>
-                      <option value=<%= s.id %>>
+                      <option value=<%= s.id %> <% if s.id == @service_id %> selected <% end %>>
                         <%= s.title %>: <%= s.price %>$
                       </option>
                     <% end %>
@@ -47,7 +47,6 @@
                   <label for="mechanics">Choose a service</label>
                 </div>
                 <!-- End Service select -->
-
               </div>     
             </div>
             <br/>              

@@ -24,4 +24,7 @@ Position.create(position: 'Product Manager', teammate_id: Teammate.find_by(email
 Position.create(position: 'Chiefe Engineer', teammate_id: Teammate.find_by(email: 'williamanderson@gmail.com').id)
 Position.create(position: 'Accountant', teammate_id: Teammate.find_by(email: 'amandajepson@gmail.com').id)
 
-Service.create( title: 'ruber replacement', price: 10)
+Service.create(title: 'rubber replacement', price: 10)
+Service.create(title: 'technical inspectation', price: 15)
+Service.create(title: 'renovation work', price: 20)
+Service.create(title: 'replacement of parts', price: 10)
