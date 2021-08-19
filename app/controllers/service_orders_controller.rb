@@ -17,6 +17,10 @@ class ServiceOrdersController < ApplicationController
     redirect_to users_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
+  def show_services
+    @services = Service.all
+  end
+
   def create
     current_user.service_orders.create(service_orders_params)
     Specialization.create(mechanic_id: service_orders_params[:mechanic_id], service_id: service_orders_params[:service_id])
