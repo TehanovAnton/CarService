@@ -37,7 +37,7 @@
   </head>
 
   <body>    
-    <% unless ApplicationController::sign? params %>
+    <% if current_user %>
       <!-- ======= Header ======= -->
       <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center justify-content-between">
@@ -86,7 +86,6 @@
       <br/>
       <br/>
       <br/>
-    <% end %>
 
     <!-- flash notifications -->    
       <% logger.info("flash => #{flash.keys}") %>
@@ -95,6 +94,8 @@
           <%= msg %>
         </div>
       <% end %>
+
+    <% end %>
 
     <%= yield %>
   </body>

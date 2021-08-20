@@ -62,5 +62,5 @@ class ServiceOrdersController < ApplicationController
 
   def service_orders_params
     params.require(:service_order).permit(:description, :mechanic_id, :service_id)
-  end  
+  end
 end

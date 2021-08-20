@@ -4,7 +4,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Sign In</h2>
+          <h2><%= t 'new_session.sign_in' %></h2>
         </div>
 
         <div class="row">
@@ -15,22 +15,22 @@
               <div class="col-md-12">
                 <div class="info-box">
                   <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <h3><%= t 'new_session.our_address' %></h3>
+                  <p><%= t 'new_session.a108_adam_street' %>, <%= t 'new_session.new_york_ny_535022' %></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
+                  <h3><%= t 'new_session.email_us' %></h3>
+                  <p><%= t 'new_session.info_example_com' %><br><%= t 'new_session.contact_example_com' %></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-phone-call"></i>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                  <h3><%= t 'new_session.call_us' %></h3>
+                  <p><%= t 'new_session.phone1_5589_55488_55' %><br><%= t 'new_session.phone1_6678_254445_41' %></p>
                 </div>
               </div>
             </div>
@@ -45,23 +45,23 @@
                 <div class="form-group mt-3">
                   <div class="form-floating">                    
                     <input type="email" id="email" name="user[email]" class="form-control" required>
-                    <label for="email">Your email</label>
+                    <label for="email"><%= t 'new_session.your_email' %></label>
                   </div>
                 </div>
 
                 <div class="form-group mt-3">                    
                     <div class="form-floating">                    
                       <input type="password" id="password" name="user[password]" class="form-control" row='9' required>
-                      <label for="password">Password</label>
+                      <label for="password"><%= t 'new_session.password' %>Password</label>
                     </div>
                 </div><br/>
 
                 <div class="text-center">
-                    <button type="submit">Sing in</button>
+                    <button type="submit"><%= t 'new_session.sign_in' %></button>
                 </div>
 
                 <div class="text-center">                
-                  <a href=<%= new_user_registration_path %>>Don't have an account</a>
+                  <a href=<%= new_user_registration_path %>><%= t 'new_session.don_t_have_an_account' %></a>
                 </div>
             <% end %>
 

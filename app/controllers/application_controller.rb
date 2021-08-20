@@ -9,12 +9,15 @@ class ApplicationController < ActionController::Base
     users_guest_action: 'guest'
   }
 
+  around_action :switch_locale
+
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :requier_login, unless: :devise_controller?
   before_action :check_sessions_inputs, if: :devise_controller?
   before_action :check_registrations_inputs, if: :devise_controller?
   before_action :guest_only_for_unauthorized
+
 
   unless Rails.application.config.consider_all_requests_local
     rescue_from ActionController::RoutingError, with: -> { render_404 }
@@ -23,7 +26,7 @@ class ApplicationController < ActionController::Base
   def self.sign?(params)
     controller = params[:controller]
     action = params[:action]
-    logger.info("Controlle#action : #{controller}##{action}")
+    logger.info("!!!self.sign? Controlle#action : #{controller}##{action}")
     Constants.values.include?(controller) && Constants.values.include?(action)
   end
 
@@ -31,11 +34,12 @@ class ApplicationController < ActionController::Base
     Constants.values.include?(params[:controller]) && Constants.values.include?(params[:action])
   end
 
-  def self.authorized?
-    current_user
-  end
-
   protected
+
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :phone_number, :type) }

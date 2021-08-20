@@ -2,14 +2,14 @@
 <header id="header" class="fixed-top ">
   <div class="container d-flex align-items-center justify-content-between">
 
-    <h1 class="logo"><a href="index.html">CarService.</a></h1>
+    <h1 class="logo"><a href="index.html"><%= t 'guest.carservice' %></a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" href=<%= new_user_session_path %>> Sign in </a> </li>
-        <li><a class="nav-link scrollto active" href=<%= new_user_registration_path %>> Sign up </a> </li>
+        <li><a class="nav-link scrollto active" href=<%= new_user_session_path %>><%= t 'guest.sign_in' %></a> </li>
+        <li><a class="nav-link scrollto active" href=<%= new_user_registration_path %>><%= t 'guest.sign_up' %></a> </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
@@ -25,11 +25,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6 pt-2 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-        <h1>Greate Solution For Your Car</h1>
+        <h1><%= t 'guest.Greate_Solution_For_Your_Car' %></h1>
         <ul>
-          <li><i class="ri-check-line"></i> Quick service</li>
-          <li><i class="ri-check-line"></i> Professional work</li>
-          <li><i class="ri-check-line"></i> Excellent prices </li>
+          <li><i class="ri-check-line"></i><%= t 'guest.Quick_service' %></li>
+          <li><i class="ri-check-line"></i><%= t 'guest.Professional_work' %></li>
+          <li><i class="ri-check-line"></i><%= t 'guest.Excellent_prices' %> </li>
         </ul>          
       </div>
       <div class="col-lg-6 order-1 order-lg-2 hero-img">
@@ -51,7 +51,7 @@
           <div class="count-box">
             <i class="bi bi-emoji-smile"></i>
             <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Happy Clients</p>
+            <p><%= t 'guest.Happy_Clients' %></p>
           </div>
         </div>
 
@@ -59,7 +59,7 @@
           <div class="count-box">
             <i class="bi bi-headset"></i>
             <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
+            <p><%= t 'guest.Hours_Of_Support' %></p>
           </div>
         </div>
 
@@ -67,7 +67,7 @@
           <div class="count-box">
             <i class="bi bi-people"></i>
             <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hard Workers</p>
+            <p><%= t 'guest.Hard_Workers' %></p>
           </div>
         </div>
 
@@ -81,7 +81,7 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Services</h2>
+        <h2><%= t 'guest.services' %></h2>
       </div>
 
       <div class="row">
@@ -99,7 +99,7 @@
                     </svg>
                     <i class="bx bxl-dribbble"></i>
                   </div>
-                  <h4><a href="">Rubber replacement</a></h4>
+                  <h4><a href=""><%= t 'guest.rubber_replacement' %></a></h4>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@
                     </svg>
                     <i class="bx bx-file"></i>
                   </div>
-                  <h4><a href="">Technical inspectation</a></h4>                    
+                  <h4><a href=""><%= t 'guest.technical_inspectation' %></a></h4>                    
                 </div>
               </div>
 
@@ -123,7 +123,7 @@
                     </svg>
                     <i class="bx bx-tachometer"></i>
                   </div>
-                  <h4><a href="">replacement of parts</a></h4>                    
+                  <h4><a href=""><%= t 'guest.replacement_of_parts' %></a></h4>                    
                 </div>
               </div>
 
@@ -135,7 +135,7 @@
                     </svg>
                     <i class="bx bx-layer"></i>
                   </div>
-                  <h4><a href="">Renovation work</a></h4>
+                  <h4><a href=""><%= t 'guest.renovation_work' %></a></h4>
                 </div>
               </div>
             </div>
@@ -151,8 +151,8 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Team</h2>
-        <p>Here you can see the leaders of our company. Each of them is a real professional in their field.</p>
+        <h2><%= t 'guest.team' %></h2>
+        <p><%= t 'guest.here_you_can_see_the_leaders_of_our_company_Each_of_them_is_a_real_professional_in_their_field' %></p>
       </div>
 
       <div class="row">
@@ -169,8 +169,8 @@
               </div>
             </div>
             <div class="member-info">
-              <h4>Walter White</h4>
-              <span>Chief Executive Officer</span>
+              <h4><%= t 'guest.walter_white' %></h4>
+              <span><%= t 'guest.chief_executive_officer' %></span>
             </div>
           </div>
         </div>
@@ -187,8 +187,8 @@
               </div>
             </div>
             <div class="member-info">
-              <h4>Sarah Jhonson</h4>
-              <span>Product Manager</span>
+              <h4><%= t 'guest.sarah_jhonson' %></h4>
+              <span><%= t 'guest.product_manager' %></span>
             </div>
           </div>
         </div>
@@ -205,8 +205,8 @@
               </div>
             </div>
             <div class="member-info">
-              <h4>William Anderson</h4>
-              <span>Chief Engineer</span>
+              <h4><%= t 'guest.william_anderson' %></h4>
+              <span><%= t 'guest.chief_engineer' %></span>
             </div>
           </div>
         </div>
@@ -223,8 +223,8 @@
               </div>
             </div>
             <div class="member-info">
-              <h4>Amanda Jepson</h4>
-              <span>Accountant</span>
+              <h4><%= t 'guest.amanda_jepson' %></h4>
+              <span><%= t 'guest.accountant' %></span>
             </div>
           </div>
         </div>
@@ -239,25 +239,25 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Frequently Asked Questions</h2>
+        <h2><%= t 'guest.frequently_asked_questions' %></h2>
       </div>
 
       <ul class="faq-list">
 
         <li>
-          <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">How long does it take to serice? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+          <div data-bs-toggle="collapse" class="collapsed question" href="#faq1"><%= t 'guest.how_long_does_it_take_to_serice' %><i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
           <div id="faq1" class="collapse" data-bs-parent=".faq-list">
             <p>
-              Each order has its own lead time, but our masters will complete everything as soon as possible.
+              <%= t 'guest.each_order_has_its_own_lead_time_but_our_masters_will_complete_everything_as_soon_as_possible' %>
             </p>
           </div>
         </li>
 
         <li>
-          <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">What is your work schedule? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+          <div data-bs-toggle="collapse" href="#faq2" class="collapsed question"><%= t 'guest.what_is_your_work_schedule' %><i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
           <div id="faq2" class="collapse" data-bs-parent=".faq-list">
             <p>
-              We work every day from 8.00 to 16.00 o'clock.
+              <%= t 'guest.we_work_every_day_from_800_to_1600_oclock' %>
             </p>
           </div>
         </li>
@@ -275,22 +275,22 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>CarService.</h3>
+          <h3><%= t 'guest.carservice' %></h3>
           <p>
-            A108 Adam Street <br>
-            New York, NY 535022<br>
-            United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> carserviceror@gmail.com<br>
+            <%= t 'guest.a108_adam_street' %><br>
+            <%= t 'guest.new_york_ny_535022' %><br>
+            <%= t 'guest.united_states' %><br><br>
+            <strong><%= t 'guest.phone' %></strong><%= t 'guest.phone1_5589_55488_55' %><br>
+            <strong><%= t 'guest.email' %></strong><%= t 'guest.carserviceror_gmail_com' %><br>
           </p>
         </div>
 
         <div class="col-lg-2 col-md-6 footer-links">          
-          <h4>Useful Links</h4>
+          <h4><%= t 'guest.useful_links' %></h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#team">Team</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#"><%= t 'guest.home' %></a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#team"><%= t 'guest.team' %></a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#services"><%= t 'guest.services' %></a></li>
           </ul>
         </div>
       </div>
