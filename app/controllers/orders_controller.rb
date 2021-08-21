@@ -1,7 +1,7 @@
-class ServiceOrdersController < ApplicationController
+class OrdersController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
-    @service_orders = @user.service_orders
+    @orders = @user.orders
   end
 
   def new
@@ -13,7 +13,7 @@ class ServiceOrdersController < ApplicationController
   end
 
   def show_actual_orders
-    @orders = current_user.service_orders
+    @orders = current_user.orders
     redirect_to users_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
@@ -22,18 +22,18 @@ class ServiceOrdersController < ApplicationController
   end
 
   def create
-    current_user.service_orders.create(service_orders_params)
-    Specialization.create(mechanic_id: service_orders_params[:mechanic_id], service_id: service_orders_params[:service_id])
+    current_user.orders.create(orders_params)
+    Specialization.create(mechanic_id: orders_params[:mechanic_id], service_id: orders_params[:service_id])
     redirect_to users_path, notice: 'new order added'
   end
 
   def edit
     @user = User.find_by(id: params[:user_id])
-    @order = ServiceOrder.find_by(id: params[:id])
+    @order = Order.find_by(id: params[:id])
   end
 
   def update
-    @order = ServiceOrder.find_by(id: params[:id])
+    @order = Order.find_by(id: params[:id])
 
     if params[:state]
       case @order.state
@@ -43,7 +43,7 @@ class ServiceOrdersController < ApplicationController
         @order.finish!
       end
     else
-      @order.update(service_orders_params) unless params[:state]
+      @order.update(orders_params) unless params[:state]
     end
 
     redirect_to users_path
@@ -54,13 +54,13 @@ class ServiceOrdersController < ApplicationController
 
     puts "params_id: #{params[:user_id]}"
 
-    ServiceOrder.find_by(id: params[:id]).destroy
-    redirect_to user_service_orders_path(@user)
+    Order.find_by(id: params[:id]).destroy
+    redirect_to user_orders_path(@user)
   end
 
   private
 
-  def service_orders_params
-    params.require(:service_order).permit(:description, :mechanic_id, :service_id)
+  def orders_params
+    params.require(:order).permit(:description, :mechanic_id, :service_id)
   end
 end

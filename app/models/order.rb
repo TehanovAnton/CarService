@@ -1,4 +1,4 @@
-class ServiceOrder < ApplicationRecord
+class Order < ApplicationRecord
   include AASM
 
   aasm column: 'state', whiny_transitions: false do

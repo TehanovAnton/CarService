@@ -20,14 +20,14 @@
                     <section id="actual" class="why-us">
                         <div class="container">
                             <div class="row">
-                                <% u.service_orders.each do |order|%>
+                                <% u.orders.each do |order|%>
                                     <div class="col-lg-4 mt-4 mt-lg-4">
                                         <div class="box">
                                         <span><%= order.id %></span>
                                         <h4><%= order.state %></h4>
                                         <p><%= order.description %></p>
                                         <% if current_user.is_a?(Admin) && order.state != 'done' %>
-                                            <%= link_to 'Update state', user_service_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
+                                            <%= link_to 'Update state', user_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
                                         <% end %>
                                         </div>
                                     </div>

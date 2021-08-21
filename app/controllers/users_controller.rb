@@ -8,7 +8,7 @@ class UsersController < ApplicationController
    
   def index
     @users = User.all
-    @orders = current_user.service_orders
+    @orders = current_user.orders
     @teammates = Teammate.all
   end
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show_actual_orders
-    @actual_orders = current_user.service_orders
+    @actual_orders = current_user.orders
   end
 
   def show
