@@ -1,29 +1,41 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  skip_before_action :requier_login, only: [:guest]
+  
+  def guest
+  end
+   
   def index
     @users = User.all
     @orders = current_user.service_orders
+    @teammates = Teammate.all
+  end
+
+  def show_mechanics
+    @mechanics = Mechanic.all
+  end
+
+  def show_actual_orders
+    @actual_orders = current_user.service_orders
   end
 
   def show
-    @user = user_find_by_id(:id)
-    redirect_to users_path unless @user
+    @users_all = User.all
   end
 
   def me
-    redirect_to new_user_session_path unless current_user
     @me = current_user
   end
 
   def edit
-    @user = user_find_by_id(:id)    
+    @user = user_find_by_id(:id)
   end
 
   def update
     @user = user_find_by_id(:id)
     @user.update(user_params)
-    redirect_to root_path
+    redirect_to users_path, notice: 'updated successfully'
   end
 
   def destroy
@@ -34,9 +46,6 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
-  end
-
-  def eaxmple
   end
 
   private

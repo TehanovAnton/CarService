@@ -1,0 +1,91 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+
+  guest:
+    sign_up: "Sign up"  
+    sign_in: "Sign in"
+    carservice: "CarService"
+    Greate_Solution_For_Your_Car: "Greate Solution For Your Car"
+    Quick_service: "Quick service"
+    Professional_work: "Professional work"
+    Excellent_prices: "Excellent prices"
+    Happy_Clients: "Happy Clients"
+    Hours_Of_Support: "Hours Of Support"
+    Hard_Workers: "Hard Workers"
+    rubber_replacement: "Rubber replacement"
+    technical_inspectation: "Technical inspectation"
+    replacement_of_parts: "Replacement of parts"
+
+    team: "Team"
+    here_you_can_see_the_leaders_of_our_company_Each_of_them_is_a_real_professional_in_their_field: "Here you can see the leaders of our company. Each of them is a real professional in their field."
+    renovation_work: "Renovation work"
+    accountant: "Accountant"
+    amanda_jepson: "Amanda Jepson"  
+    william_anderson: "William Anderson"
+    chief_engineer: "Chief Engineer"
+    walter_white: "Walter White"
+    chief_executive_officer: "Chief Executive Officer"
+    sarah_jhonson: "Sarah Jhonson"
+    product_manager: "Product Manager"
+
+    frequently_asked_questions: Frequently Asked Questions
+    how_long_does_it_take_to_serice: "How long does it take to serice?"
+    ach_order_has_its_own_lead_time_but_our_masters_will_complete_everything_as_soon_as_possible: "Each order has its own lead time, but our masters will complete everything as soon as possible"
+    we_work_every_day_from_800_to_1600_oclock: "We work every day from 8.00 to 16.00 o'clock."
+    what_is_your_work_schedule: "What is your work schedule?"
+
+    united_states: "United States"
+    phone: "Phone:"
+    email: "Email:"
+    carserviceror_gmail_com: " carserviceror@gmail.com"
+    useful_links: "Useful Links"
+    home: "Home"
+    services: "Services"
+  
+  # new_session:
+  #   a108_adam_street: "A108 Adam Street"
+  #   new_york_ny_535022: "New York, NY 535022"
+  #   phone1_5589_55488_55: " +1 5589 55488 55"
+  #   phone1_6678_254445_41: '+1 6678 254445 41'
+  #   your_email: 'Your email'
+  #   password: 'Password'
+  #   sign_in: "Sign in"
+  #   don_t_have_an_account: 'Don't have an account'
+  #   our_address: 'Our Address'
+  #   email_us: 'Email Us'
+  #   info_example_com: 'info@example.com'
+  #   contact_example_com: 'contact@example.com'
+  #   call_us: 'Call Us'
+
+
+

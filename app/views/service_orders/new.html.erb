@@ -1,34 +1,97 @@
 <main id="main">
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
-      <div class="container">
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact section-bg">
+    <div class="container">
 
-        <div class="section-title">
-          <h2>Order</h2>
-        </div>
+      <div class="section-title">
+        <h2>Order</h2>
+      </div>
 
-        <div class="row">
+      <div class="row">
 
-          <div class="col-lg-3"></div>
+        <div class="col-lg-3"></div>
 
-          <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="col-lg-6 mt-4 mt-lg-0">
+          <%= form_with url: user_service_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.service_orders.build do |f| %>
+            <div class="row">
+              <div class="form-group mt-3">
 
-            <%= form_with url: user_service_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.service_orders.build do |f| %>
-              <div class="row">
-                <div class="form-group mt-3">
-                  <%= f.text_field :description, class: 'form-control', placeholder: 'Description', requiered: "requiered" %>
-                </div>     
-              </div>
-              <br/>              
+                <div class="form-floating">
+                  <input type="text" id="description" name="service_order[description]" class="form-control" required>
+                  <label for="description">Description</label>
+                </div><br/>
+                
+                <!-- Mechanics select -->
+                <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example"
+                          name="service_order[mechanic_id]" id="mechanics">
+                    <% @mechanics.each do |m| %>
+                      <option value=<%= m.id %>>
+                        <%= m.first_name %> <%= m.last_name %>
+                      </option>
+                    <% end %>
+                  </select>
+                  <label for="mechanics">Choose a mechanic</label>
+                </div><br/>
+                <!-- End Mechanics select -->
+                
+                <!-- Service select -->
+                <div class="form-floating" >
+                  <select name="service_order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
+                    <% @services.each do |s| %>
+                      <option value=<%= s.id %> <% if s.id == @service_id %> selected <% end %>>
+                        <%= s.title %>: <%= s.price %>$
+                      </option>
+                    <% end %>
+                  </select>
+                  <label for="mechanics">Choose a service</label>
+                </div>
+                <!-- End Service select -->
+              </div>     
+            </div>
+            <br/>              
 
-              <div class="text-center">
-                <button type="submit">Create</button>
-              </div>
-            <% end %>
-
-          </div>
-
+            <div class="text-center">
+              <button type="submit">Create</button>
+            </div>
+          <% end %>
         </div>
 
       </div>
+
+    </div>
+  </section>
+
+  <section id="team" class="team section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Mechanics</h2>
+        <p>Here you can see our mechanics.</p>
+      </div>
+
+      <div class="row">
+        <% @mechanics.each_with_index do |m, i| %>
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <div class="member-img">
+                <img src="/assets/theme/img/team/team-1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> <%= i+1 %>. <%= m.first_name %> <%= m.last_name %></h4>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </section><!-- End Team Section -->
+</main>
 <!-- End Contact Section -->  

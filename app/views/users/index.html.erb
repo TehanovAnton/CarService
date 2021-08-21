@@ -1,38 +1,3 @@
-
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="index.html">CarService.</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#me">Me</a></li>
-              <li><%= link_to 'Edit', edit_user_path(current_user) %></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#"><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#actual">Actual</a></li>
-              <li><%= link_to 'New', new_user_service_order_path(current_user) %></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>          
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>          
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
@@ -106,7 +71,7 @@
           <div class="col-xl-7">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
-                <div class="col-lg-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-6 d-10 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                   <div class="icon-box iconbox-blue">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -114,11 +79,13 @@
                       </svg>
                       <i class="bx bxl-dribbble"></i>
                     </div>
-                    <h4><a href="">Rubber replacement</a></h4>
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'rubber replacement')) %>>
+                        Rubber replacement</a>
+                    </h4>
                   </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+                <div class="col-lg-6 d-10 align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
                   <div class="icon-box iconbox-orange ">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -126,11 +93,12 @@
                       </svg>
                       <i class="bx bx-file"></i>
                     </div>
-                    <h4><a href="">Technical inspectation</a></h4>                    
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'technical inspectation')) %>>
+                        Technical inspectation</a></h4>                    
                   </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-lg-6 d-10 align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
                   <div class="icon-box iconbox-pink">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -138,11 +106,12 @@
                       </svg>
                       <i class="bx bx-tachometer"></i>
                     </div>
-                    <h4><a href="">replacement of parts</a></h4>                    
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'replacement of parts')) %>>
+                        Replacement of parts</a></h4>                    
                   </div>
                 </div>
 
-                <div class="col-lg-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-6 d-10 align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                   <div class="icon-box iconbox-teal">
                     <div class="icon">
                       <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +119,8 @@
                       </svg>
                       <i class="bx bx-layer"></i>
                     </div>
-                    <h4><a href="">Renovation work</a></h4>
+                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'renovation work')) %>>
+                        Renovation work</a></h4>
                   </div>
                 </div>
               </div>
@@ -195,11 +165,11 @@
         </div>
 
         <div class="row">
-
+        <% @teammates.each_with_index do |t, i| %>
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member">
               <div class="member-img">
-                <img src="assets/theme/img/team/team-1.jpg" class="img-fluid" alt="">
+                <img src="/assets/theme/img/team/team-1.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -208,67 +178,17 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4><%= t.first_name %> <%= t.last_name %></h4>
+                <span>
+                  <% t.positions.each do |p| %>
+                    <%= p.position %>
+                  <% end %>
+                </span>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/theme/img/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/theme/img/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Chief Engineer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="assets/theme/img/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <% end %>
+      </div>
 
       </div>
     </section><!-- End Team Section -->
@@ -335,12 +255,6 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#team">Team</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
             </ul>
-          </div>
-
-          <div id="me" class="col-lg-4 col-md-6 footer-newsletter">
-              <h4><%= "#{current_user.type}: #{current_user.first_name} #{current_user.last_name}" %></h4>
-              <p><%= "#{current_user.email}" %></p>
-              <p><%= "#{current_user.phone_number}" %></p>
           </div>
         </div>
       </div>

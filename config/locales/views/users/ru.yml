@@ -1,0 +1,48 @@
+ru:
+  guest:
+    sign_in: "Войти"
+    sign_up: "Создать акаунт"
+    Greate_Solution_For_Your_Car: "Отличное решение для вашего авто"
+
+    Quick_service: "Быстрый сервис"
+    Professional_work: "Професиональная работа"
+    Excellent_prices: "Отличные цены"
+    Happy_Clients: "Счастливые клиенты"
+    Hours_Of_Support: "Долгая Поддержка"
+    Hard_Workers: "Трудо любивые работники"
+
+    services: "Услуги"
+    rubber_replacement: "Замена покрышек"
+    technical_inspectation: "Технический осмотр"
+    replacement_of_parts: "Замена деталей"
+    renovation_work: "Реставрация"
+
+    team: "Команда"
+    here_you_can_see_the_leaders_of_our_company_Each_of_them_is_a_real_professional_in_their_field: "Здесь вы можете увидеть руководителей нашей компании. Каждый из них - настоящий профессионал своего дела."  
+    amanda_jepson: "Аманда Джепсон"  
+    accountant: "Бухгалтер"
+    william_anderson: "Вилием Андерсон"
+    chief_engineer: "Главные инженер"
+    walter_white: "Волтер Вайт"
+    chief_executive_officer: "Директор"
+    sarah_jhonson: "Сара Джонсон"
+    product_manager: "Менеджер по продуктам"
+
+    frequently_asked_questions: "Часто задоваемые вопросы"
+    how_long_does_it_take_to_serice: "Как много времени занимает обслуживание?"
+    each_order_has_its_own_lead_time_but_our_masters_will_complete_everything_as_soon_as_possible: "Каждый заказ имеет свое время выполнения, но наши мастера выполнят все в кратчайшие сроки."
+    what_is_your_work_schedule: "Каков ваш график работы?"
+    we_work_every_day_from_800_to_1600_oclock: "Мы работаем каждый день с 8.00 до 16.00."
+
+    a108_adam_street: "A108 Adam Street"
+    new_york_ny_535022: "New York, NY 535022"
+    united_states: "United States"
+    phone: "Телефон:"
+    phone1_5589_55488_55: " +1 5589 55488 55"
+    email: "Почта:"
+    carserviceror_gmail_com: " carserviceror@gmail.com"
+    useful_links: "Полезные ссылки"
+    home: "Главная"
+
+  new_session:
+    
