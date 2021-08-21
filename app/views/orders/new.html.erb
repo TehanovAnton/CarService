@@ -12,19 +12,19 @@
         <div class="col-lg-3"></div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <%= form_with url: user_service_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.service_orders.build do |f| %>
+          <%= form_with url: user_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.orders.build do |f| %>
             <div class="row">
               <div class="form-group mt-3">
 
                 <div class="form-floating">
-                  <input type="text" id="description" name="service_order[description]" class="form-control" required>
+                  <input type="text" id="description" name="order[description]" class="form-control" required>
                   <label for="description">Description</label>
                 </div><br/>
                 
                 <!-- Mechanics select -->
                 <div class="form-floating">
                   <select class="form-select" aria-label="Default select example"
-                          name="service_order[mechanic_id]" id="mechanics">
+                          name="order[mechanic_id]" id="mechanics">
                     <% @mechanics.each do |m| %>
                       <option value=<%= m.id %>>
                         <%= m.first_name %> <%= m.last_name %>
@@ -37,7 +37,7 @@
                 
                 <!-- Service select -->
                 <div class="form-floating" >
-                  <select name="service_order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
+                  <select name="order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
                     <% @services.each do |s| %>
                       <option value=<%= s.id %> <% if s.id == @service_id %> selected <% end %>>
                         <%= s.title %>: <%= s.price %>$

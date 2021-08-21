@@ -79,7 +79,7 @@
                       </svg>
                       <i class="bx bxl-dribbble"></i>
                     </div>
-                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'rubber replacement')) %>>
+                    <h4><a href=<%= new_user_order_path(current_user, service_id: Service.find_by(title: 'rubber replacement')) %>>
                         Rubber replacement</a>
                     </h4>
                   </div>
@@ -93,7 +93,7 @@
                       </svg>
                       <i class="bx bx-file"></i>
                     </div>
-                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'technical inspectation')) %>>
+                    <h4><a href=<%= new_user_order_path(current_user, service_id: Service.find_by(title: 'technical inspectation')) %>>
                         Technical inspectation</a></h4>                    
                   </div>
                 </div>
@@ -106,7 +106,7 @@
                       </svg>
                       <i class="bx bx-tachometer"></i>
                     </div>
-                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'replacement of parts')) %>>
+                    <h4><a href=<%= new_user_order_path(current_user, service_id: Service.find_by(title: 'replacement of parts')) %>>
                         Replacement of parts</a></h4>                    
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                       </svg>
                       <i class="bx bx-layer"></i>
                     </div>
-                    <h4><a href=<%= new_user_service_order_path(current_user, service_id: Service.find_by(title: 'renovation work')) %>>
+                    <h4><a href=<%= new_user_order_path(current_user, service_id: Service.find_by(title: 'renovation work')) %>>
                         Renovation work</a></h4>
                   </div>
                 </div>
@@ -144,7 +144,7 @@
                 <h4><%= order.state %></h4>
                 <p><%= order.description %></p>
                 <% if current_user.is_a?(Admin) && order.state != 'done' %>
-                    <%= link_to 'Update state', user_service_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
+                    <%= link_to 'Update state', user_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
                 <% end %>
                 </div>
             </div>
@@ -251,7 +251,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <%= link_to 'Edit profile', edit_user_path(current_user) %></li>              
               <li><i class="bx bx-chevron-right"></i> <a href="#actual">Actual orders</a></li>
-              <li><i class="bx bx-chevron-right"></i> <%= link_to 'Create new order', new_user_service_order_path(current_user) %></li>
+              <li><i class="bx bx-chevron-right"></i> <%= link_to 'Create new order', new_user_order_path(current_user) %></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#team">Team</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#services">Services</a></li>
             </ul>

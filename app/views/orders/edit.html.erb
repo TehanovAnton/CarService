@@ -7,7 +7,7 @@
         <div class="col-lg-3 col-lg-offset-4">
             <h1 class="text-center">Edit Order</h1>
 
-            <%= form_with url: user_service_order_path(@user, @order), model: @order do |f| %>
+            <%= form_with url: user_order_path(@user, @order), model: @order do |f| %>
                     <div class="messages"></div>
 
                     <div class="controls">

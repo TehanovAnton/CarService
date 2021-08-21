@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :service_orders, dependent: :destroy
-  has_many :mechanics, through: :service_orders
+  has_many :orders, dependent: :destroy
+  has_many :mechanics, through: :orders
 
   validates_confirmation_of :password
 
