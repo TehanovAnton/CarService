@@ -1,12 +1,11 @@
 class Order < ApplicationRecord
   include AASM
-
   aasm column: 'state', whiny_transitions: false do
-    state :accepted, initial: true
+    state :in_review, initial: true
     state :in_progress, :done
 
     event :progress do
-      transitions from: :accepted, to: :in_progress
+      transitions from: :in_review, to: :in_progress
     end
 
     event :finish do
@@ -19,7 +18,7 @@ class Order < ApplicationRecord
   belongs_to :mechanic
 
 
-  validates :state, inclusion: { in: %w[accepted in_progress done] }
+  validates :state, inclusion: { in: %w[in_review in_progress done] }
 
   def done?
     state == 'done'

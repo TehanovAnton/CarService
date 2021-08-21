@@ -4,14 +4,17 @@
     <div class="row">
 
       <% @orders.each do |order|%>
+      <% @mechanic = Mechanic.find_by(id: order.mechanic_id) %>
         <div class="col-lg-4 mt-4 mt-lg-4">
             <div class="box">
-            <span><%= order.id %></span>
-            <h4><%= order.state %></h4>
-            <p><%= order.description %></p>
-            <% if current_user.is_a?(Admin) && order.state != 'done' %>
+              <span><%= order.state %></span>
+              <h4><%= order.description %></h4>
+              <p><%= "#{@mechanic.first_name} #{@mechanic.last_name}" %></p>
+
+              <% if current_user.is_a?(Admin) && order.state != 'done' %>
                 <%= link_to 'Update state', user_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
-            <% end %>
+              <% end %>
+
             </div>
         </div>
       <% end %> 
