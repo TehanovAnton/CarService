@@ -22,9 +22,9 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     current_user.orders.create(orders_params)
-    Specialization.create(mechanic_id: orders_params[:mechanic_id], service_id: orders_params[:service_id])
-    redirect_to users_path, notice: 'new order added'
+    redirect_to actual_orders_path, notice: 'new order added'
   end
 
   def edit
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
 
     if params[:state]
       case @order.state
-      when 'accepted'
+      when 'in_review'
         @order.progress!
       when 'in_progress'
         @order.finish!
@@ -61,6 +61,8 @@ class OrdersController < ApplicationController
   private
 
   def orders_params
-    params.require(:order).permit(:description, :mechanic_id, :service_id)
+    p = params.require(:order).permit(:description, :mechanic_id, :service_id, :user_id)
+    p[:user_id] = params[:user_id]
+    p
   end
 end

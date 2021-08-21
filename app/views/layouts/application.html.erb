@@ -37,15 +37,12 @@
   </head>
 
   <body>    
-    <% if current_user %>
-      <!-- ======= Header ======= -->
-      <header id="header" class="fixed-top ">
+    <header id="header" class="fixed-top ">
+      <% if current_user %>
+        <!-- ======= Authorized user header  ======= -->
         <div class="container d-flex align-items-center justify-content-between">
 
           <h1 class="logo"><a href="index.html">CarService.</a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
           <nav id="navbar" class="navbar">
             <ul>
               <li><a class="nav-link scrollto active" href=<%= users_path %> >Home</a> </li>
@@ -81,11 +78,29 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
 
+        </div>      
+        <!-- ======= End Authorized user header ======= -->
+      <% else %>
+        <!-- ======= Unauthorized user header ======= -->
+        <div class="container d-flex align-items-center justify-content-between">
+
+          <h1 class="logo"><a href="index.html"><%= t 'guest.carservice' %></a></h1>
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a class="nav-link scrollto active" href=<%= root_path %>><%= t 'guest.home' %></a> </li>
+              <li><a class="nav-link scrollto active" href=<%= new_user_session_path %>><%= t 'guest.sign_in' %></a> </li>
+              <li><a class="nav-link scrollto active" href=<%= new_user_registration_path %>><%= t 'guest.sign_up' %></a> </li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+
         </div>
-      </header><!-- End Header -->
-      <br/>
-      <br/>
-      <br/>
+        <!-- ======= End unauthorized user header ======= -->
+      <% end %>
+    </header>
+    <br/>
+    <br/>
+    <br/>
 
     <!-- flash notifications -->    
       <% logger.info("flash => #{flash.keys}") %>
@@ -93,9 +108,7 @@
         <div style="margin: 50px" class='alert alert-primary' role='alert'>
           <%= msg %>
         </div>
-      <% end %>
-
-    <% end %>
+      <% end %>    
 
     <%= yield %>
   </body>
