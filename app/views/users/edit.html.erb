@@ -16,29 +16,35 @@
             <%= form_with url: user_path(current_user), html: {class: "php-email-form"}, model: current_user do |f| %>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <%= f.text_field :first_name, class: 'form-control', placeholder: 'Your first name', requiered: "requiered" %>
+                  <div class="form-floating">
+                    <%= f.text_field :first_name, class: 'form-control', requiered: "requiered" %>
+                    <label>Your first name</label>
+                  </div>
                 </div>
 
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <%= f.text_field :last_name, class: 'form-control', placeholder: 'Your last name', requiered: "requiered" %>
+                  <div class="form-floating">
+                    <%= f.text_field :last_name, class: 'form-control', requiered: "requiered" %>
+                    <label>Your last name</label>
+                  </div>         
                 </div>     
               </div><br/>
 
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <%= f.text_field :phone_number, class: 'form-control', placeholder: 'Your phone number', requiered: "requiered" %>
+                  <div class="form-floating">
+                    <%= f.text_field :phone_number, class: 'form-control', requiered: "requiered" %>
+                    <label>Your phone number</label>
+                  </div>     
                 </div>
 
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <%= f.email_field :email, class: 'form-control', placeholder: 'Your email', requiered: "requiered" %>
+                  <div class="form-floating">
+                    <%= f.email_field :email, class: 'form-control', requiered: "requiered" %>
+                    <label>Your email</label>
+                  </div>     
                 </div>     
-              </div>              
-
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+              </div><br/>        
 
               <div class="text-center">
                 <button type="submit">Update</button>
