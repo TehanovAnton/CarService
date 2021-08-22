@@ -1,33 +1,96 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<link href='https://bootstraptema.ru/snippets/form/2017/recaptcha/custom.css' rel='stylesheet' type='text/css'>
+<main id="main">
+  <section id="contact" class="contact section-bg">
+    <div class="container">
 
- <div class="container">
-    <div class="row">
-        <div class="col-lg-3 col-lg-offset-4">
-            <h1 class="text-center">Edit Order</h1>
+      <div class="section-title">
+        <h2>Edit order</h2>
+      </div>
 
-            <%= form_with url: user_order_path(@user, @order), model: @order do |f| %>
-                    <div class="messages"></div>
+      <div class="row">
 
-                    <div class="controls">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Description *</label>
-                            <%=f.text_field :description, class: "form-control", placeholder: "Please enter your firstname *", required: "required", data_error: "Firstname is required."%>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                      </div>
+        <div class="col-lg-3"></div>
 
-                      <div class="col-md-12">
-                        <input type="submit" class="btn btn-success btn-send" value="save">
-                      </div>
-                    </div>
+        <div class="col-lg-6 mt-4 mt-lg-0">
+          <%= form_with url: user_order_path(current_user, @order), html: {class: "php-email-form"}, model: @order do |f| %>
+            <div class="row">
+              <div class="form-group mt-3">
 
+                <div class="form-floating">
+                  <input type="text" id="description" name="order[description]" value=<%= @order.description %> class="form-control" required>                  
+                  <label for="description">Description</label>
+                </div><br/>
+                
+                <!-- Mechanics select -->
+                <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example"
+                          name="order[mechanic_id]" id="mechanics">
+                    <% @mechanics.each do |m| %>
+                      <option value=<%= m.id %> <% if m.id == @order.mechanic_id %> selected <% end %>>
+                        <%= m.first_name %> <%= m.last_name %>
+                      </option>
+                    <% end %>
+                  </select>
+                  <label for="mechanics">Choose a mechanic</label>
+                </div><br/>
+                <!-- End Mechanics select -->
+                
+                <!-- Service select -->
+                <div class="form-floating" >
+                  <select name="order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
+                    <% @services.each do |s| %>
+                      <option value=<%= s.id %> <% if s.id == @order.service_id %> selected <% end %>>
+                        <%= s.title %>: <%= s.price %>$
+                      </option>
+                    <% end %>
+                  </select>
+                  <label for="mechanics">Choose a service</label>
                 </div>
-            <% end %>
-        </div><!-- /.col-lg-8 col-lg-offset-2 -->
-    </div> <!-- /.row-->
- </div> <!-- /.container-->
+                <!-- End Service select -->
+              </div>     
+            </div>
+            <br/>              
+
+            <div class="text-center">
+              <button type="submit">Update</button>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="team" class="team section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Mechanics</h2>
+        <p>Here you can see our mechanics.</p>
+      </div>
+
+      <div class="row">
+        <% @mechanics.each_with_index do |m, i| %>
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <div class="member-img">
+                <img src="/assets/theme/img/team/team-1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> <%= i+1 %>. <%= m.first_name %> <%= m.last_name %></h4>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </section><!-- End Team Section -->
+</main>
+<!-- End Contact Section -->  
