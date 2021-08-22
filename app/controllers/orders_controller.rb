@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     current_user.orders.create(orders_params)
     redirect_to actual_orders_path, notice: 'new order added'
   end
