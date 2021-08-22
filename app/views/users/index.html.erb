@@ -131,30 +131,6 @@
       </div>
     </section><!-- End Services Section -->    
 
-    <!-- ======= My orders ======= -->
-    <section id="actual" class="why-us">
-      <div class="container">
-
-        <div class="row">
-
-          <% @orders.each do |order|%>
-            <div class="col-lg-4 mt-4 mt-lg-4">
-                <div class="box">
-                <span><%= order.id %></span>
-                <h4><%= order.state %></h4>
-                <p><%= order.description %></p>
-                <% if current_user.is_a?(Admin) && order.state != 'done' %>
-                    <%= link_to 'Update state', user_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
-                <% end %>
-                </div>
-            </div>
-          <% end %> 
-
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
       <div class="container">
