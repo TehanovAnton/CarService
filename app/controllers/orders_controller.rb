@@ -4,14 +4,6 @@ class OrdersController < ApplicationController
     @orders = @user.orders
   end
 
-  def new
-    @user = User.find_by(id: params[:user_id])
-    @mechanics = Mechanic.all
-    @services = Service.all
-    @service_id = params[:service_id].to_i
-    logger.info("!!!service_id: #{@service_id}; is_i?: #{@service_id.is_a? Integer}")
-  end
-
   def show_actual_orders
     @orders = current_user.orders
     redirect_to users_path, notice: 'You have no orders yet' if @orders.empty?
@@ -19,6 +11,14 @@ class OrdersController < ApplicationController
 
   def show_services
     @services = Service.all
+  end
+
+  def new
+    @user = User.find_by(id: params[:user_id])
+    @mechanics = Mechanic.all
+    @services = Service.all
+    @service_id = params[:service_id].to_i
+    logger.info("!!!service_id: #{@service_id}; is_i?: #{@service_id.is_a? Integer}")
   end
 
   def create
@@ -29,6 +29,8 @@ class OrdersController < ApplicationController
   def edit
     @user = User.find_by(id: params[:user_id])
     @order = Order.find_by(id: params[:id])
+    @mechanics = Mechanic.all
+    @services = Service.all
   end
 
   def update
@@ -41,11 +43,11 @@ class OrdersController < ApplicationController
       when 'in_progress'
         @order.finish!
       end
-    else
-      @order.update(orders_params) unless params[:state]
+    elsif @order.state == 'in_review'
+      @order.update(orders_params)
     end
 
-    redirect_to users_path
+    redirect_to actual_orders_path, notice: 'order updated'
   end
 
   def destroy

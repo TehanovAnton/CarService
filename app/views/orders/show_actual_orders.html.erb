@@ -16,12 +16,12 @@
                   <p><%= "#{@mechanic.first_name} #{@mechanic.last_name}" %></p>
                 </div>                     
 
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
+                <% if order.in_review? %>
+                  <div class="social">
+                    <a href=<%= edit_user_order_path(current_user, order) %>>Edit</a>
+                    <a href="">delet</a>
+                  </div>
+                <% end %>
 
               </div>
             </div>
