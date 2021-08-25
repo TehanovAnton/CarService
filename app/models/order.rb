@@ -14,8 +14,10 @@ class Order < ApplicationRecord
   end
 
   belongs_to :client
-  belongs_to :service
   belongs_to :mechanic
+
+  has_many :service_orders
+  has_many :services, through: :service_orders
 
 
   validates :state, inclusion: { in: %w[in_review in_progress done] }

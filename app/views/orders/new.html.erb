@@ -36,7 +36,7 @@
                 
                 <!-- Service select -->
                 <div class="form-floating" >
-                  <select name="order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
+                  <select name="service_id" id="mechanics" class="form-select" aria-label="Default select example">
                     <% @services.each do |s| %>
                       <option value=<%= s.id %> <% if s.id == @service_id %> selected <% end %>>
                         <%= s.title %>: <%= s.price %>$
