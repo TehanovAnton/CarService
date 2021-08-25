@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   get '/guest', to: 'clients#guest'
   get '/mechanics', to: 'users#show_mechanics'
   get '/actual_orders', to: 'orders#show_actual_orders'
+
   get '/fake', to: 'fakes#index'
-  get '/localization', to: 'fakes#example'
+  get '/example', to: 'fakes#example'
+  post '/example_post', to: 'fakes#example_post'
+  
+  
   get '/show_services', to: 'orders#show_services'
 
   get '*path', to: 'errors#error_404', via: :all

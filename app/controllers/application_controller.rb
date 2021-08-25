@@ -45,10 +45,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :phone_number, :type) }
   end
 
-  def client_find_by_id(id)
-    Client.find_by id: id
-  end
-
   private
 
 
