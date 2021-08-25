@@ -1,3 +1,4 @@
+
 class Order < ApplicationRecord
   include AASM
   aasm column: 'state', whiny_transitions: false do
@@ -20,7 +21,7 @@ class Order < ApplicationRecord
   has_many :services, through: :service_orders
 
 
-  validates :state, inclusion: { in: %w[in_review in_progress done] }
+  validates :state, inclusion: { in: %w[in_review in_progress done] }  
 
   def done?
     state == 'done'

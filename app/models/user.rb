@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
 
-  validates_confirmation_of :password
+  validates :password, confirmation: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

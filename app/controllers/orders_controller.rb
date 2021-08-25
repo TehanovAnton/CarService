@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def index
     @user = User.find_by(id: params[:user_id])
     @orders = @user.orders
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @client = client_find_by_id(params[:client_id])
+    @client = Client.find_by(id: params[:client_id])
     @mechanics = Mechanic.all
     @services = Service.all
     @service_id = params[:service_id].to_i
@@ -22,14 +23,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @client = client_find_by_id(params[:client_id])
+    @client = Client.find_by(id: params[:client_id])
 
-    @order = @client.orders.create(orders_params)
-    params[:services].map(&:to_i).each do |id|
-      ServiceOrder.create(order_id: @order.id, service_id: id)
+    if is_there_mechanic?
+      @order = @client.orders.create(orders_params)
+
+      binding.pry
+
+      params[:services].map(&:to_i).each do |id|
+        ServiceOrder.create(order_id: @order.id, service_id: id)
+      end
+
+      redirect_to actual_orders_path, notice: 'new order added'
+    else
+      redirect_to new_client_order_path(@client), notice: 'no mechanic for that order'
     end
 
-    redirect_to actual_orders_path, notice: 'new order added'
   end
 
   def edit
@@ -68,8 +77,31 @@ class OrdersController < ApplicationController
   private
 
   def orders_params
-    p = params.require(:order).permit(:description, :mechanic_id, :client_id)
+    p = params.require(:order).permit(:description, :client_id)
     p[:client_id] = params[:client_id]    
+    p[:mechanic_id] = find_order_mechanic_id(params[:services])
     p
+  end
+
+  def is_there_mechanic?
+    mechanics = Mechanic.all.map do |m|
+      m.services.map(&:id)
+    end
+
+    services_ids = params[:services].map(&:to_i)
+
+    mechanics.map { |m|
+      services_ids & m  == services_ids
+    }.include? true
+  end
+
+  def find_order_mechanic_id(services_ids)
+    services_ids.map!(&:to_i)
+
+    mech = Mechanic.all.select { |m|
+      services_ids & m.services.map(&:id) == services_ids
+    }.first
+
+    mech.id
   end
 end
