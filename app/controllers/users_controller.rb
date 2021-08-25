@@ -2,40 +2,9 @@
 
 class UsersController < ApplicationController
   skip_before_action :requier_login, only: [:guest]
-  
-  def guest
-  end
-   
-  def index
-    @users = User.all
-    @orders = current_user.orders
-    @teammates = Teammate.all
-  end
 
   def show_mechanics
     @mechanics = Mechanic.all
-  end
-
-  def show_actual_orders
-    @actual_orders = current_user.orders
-  end
-
-  def show
-    @users_all = User.all
-  end
-
-  def me
-    @me = current_user
-  end
-
-  def edit
-    @user = user_find_by_id(:id)
-  end
-
-  def update
-    @user = user_find_by_id(:id)
-    @user.update(user_params)
-    redirect_to users_path, notice: 'updated successfully'
   end
 
   def destroy
@@ -52,11 +21,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(@user.is_a?(Admin) ? :admin : :user).permit(:first_name, :last_name, :email, :phone_number)
-  end
-
-  def user_find_by_id(id)
-    User.find_by id: params[id]
-  end
+  end  
 
   def current?(user)
     user == current_user

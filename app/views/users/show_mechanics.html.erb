@@ -22,11 +22,15 @@
               </div>
               <div class="member-info">
                 <h4> <%= i+1 %>. <%= m.first_name %> <%= m.last_name %></h4>
-                <ul>
+                <%
+=begin%>
+ <ul>
                   <% m.services.each do |s| %>
                     <li> <%= s.title %> </li>
                   <% end %>
-                <ul>
+                <ul> 
+<%
+=end%>
               </div>
             </div>
           </div>

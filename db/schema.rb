@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_211449) do
+ActiveRecord::Schema.define(version: 2021_08_25_065740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 2021_08_24_211449) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "client_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
     t.string "state", default: "in_review", null: false
     t.integer "mechanic_id", null: false
     t.integer "service_id", null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_211449) do
   end
 
   add_foreign_key "orders", "services"
-  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users", column: "client_id"
   add_foreign_key "orders", "users", column: "mechanic_id"
   add_foreign_key "specializations", "services"
   add_foreign_key "specializations", "users", column: "mechanic_id"
