@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_080037) do
+ActiveRecord::Schema.define(version: 2021_08_25_083738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2021_08_25_080037) do
     t.string "description"
     t.string "state", default: "in_review", null: false
     t.integer "mechanic_id", null: false
-    t.integer "service_id", null: false
     t.index ["client_id"], name: "index_orders_on_client_id"
   end
 
@@ -50,6 +49,13 @@ ActiveRecord::Schema.define(version: 2021_08_25_080037) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "teammate_id", null: false
+  end
+
+  create_table "service_orders", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "service_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "services", force: :cascade do |t|
@@ -87,7 +93,6 @@ ActiveRecord::Schema.define(version: 2021_08_25_080037) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "orders", "services"
   add_foreign_key "orders", "users", column: "client_id"
   add_foreign_key "orders", "users", column: "mechanic_id"
   add_foreign_key "specializations", "services"
