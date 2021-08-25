@@ -16,7 +16,7 @@ class Order < ApplicationRecord
   belongs_to :client
   belongs_to :mechanic
 
-  has_many :service_orders
+  has_many :service_orders, dependent: :destroy
   has_many :services, through: :service_orders
 
 

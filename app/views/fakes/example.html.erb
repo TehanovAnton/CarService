@@ -2,3 +2,20 @@
 <h1><%= t :hello_world %></h1>
 <p><%= flash[:notice] %></p>
 <p><%= t('product_price', price: 10) %></p>
+
+<%= form_with url: example_post_path do |f| %>
+  <%
+=begin%>
+ <%= f.select :city, ["Berlin", "Chicago", "Madrid"],
+             { :prompt => "Please select"},
+             { :multiple => true, :size => 2 } %> 
+<%
+=end%>
+
+  <select name="city[]" size="2" multiple>
+    <option value="StockGolm">StockGolm</option>
+    <option value="Azeroh">Azeroh</option>
+    <option value="ShtormGrad">ShtormGrad</option>
+  </select>
+  <%= f.submit %>
+<% end %>

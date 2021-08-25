@@ -7,4 +7,8 @@ class FakesController < ApplicationController
   def example
     flash[:notice] = t :hello_flash
   end
+
+  def example_post
+    redirect_to example_path
+  end
 end

@@ -23,8 +23,12 @@ class OrdersController < ApplicationController
 
   def create
     @client = client_find_by_id(params[:client_id])
+
     @order = @client.orders.create(orders_params)
-    ServiceOrder.create(order_id: @order.id, service_id: params[:service_id])
+    params[:services].map(&:to_i).each do |id|
+      ServiceOrder.create(order_id: @order.id, service_id: id)
+    end
+
     redirect_to actual_orders_path, notice: 'new order added'
   end
 
@@ -65,7 +69,7 @@ class OrdersController < ApplicationController
 
   def orders_params
     p = params.require(:order).permit(:description, :mechanic_id, :client_id)
-    p[:client_id] = params[:client_id]
+    p[:client_id] = params[:client_id]    
     p
   end
 end
