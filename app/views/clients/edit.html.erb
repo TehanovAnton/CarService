@@ -13,7 +13,7 @@
 
           <div class="col-lg-6 mt-4 mt-lg-0">
 
-            <%= form_with url: user_path(current_user), html: {class: "php-email-form"}, model: current_user do |f| %>
+            <%= form_with url: client_path(@client), html: {class: "php-email-form"}, model: @client do |f| %>
               <div class="row">
                 <div class="col-md-6 form-group">
                   <div class="form-floating">

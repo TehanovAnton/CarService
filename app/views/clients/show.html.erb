@@ -3,24 +3,24 @@
     <div class="container">
 
     <div class="section-title">
-        <h2>Frequently Asked Questions</h2>
+        <h2>Clients</h2>
     </div>
 
     <ul class="faq-list">
 
-        <% @users_all.each do |u| %>
+        <% @clients_all.each do |c| %>
             <li>
 
-                <div data-bs-toggle="collapse" class="collapsed question" href=<%= "#faq#{u.id}" %>>
-                    <%= u.first_name %> <%= u.last_name %>
+                <div data-bs-toggle="collapse" class="collapsed question" href=<%= "#faq#{c.id}" %>>
+                    <%= "#{c.first_name} #{c.last_name} #{c.phone_number}" %>
                     <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i>
                 </div>
 
-                <div id=<%= "faq#{u.id}" %> class="collapse" data-bs-parent=".faq-list">
+                <div id=<%= "faq#{c.id}" %> class="collapse" data-bs-parent=".faq-list">
                     <section id="actual" class="why-us">
                         <div class="container">
                             <div class="row">
-                                <% u.orders.each do |order|%>
+                                <% c.orders.each do |order|%>
                                     <div class="col-lg-4 mt-4 mt-lg-4">
                                         <div class="box">
                                         <span><%= order.id %></span>

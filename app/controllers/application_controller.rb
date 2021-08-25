@@ -45,10 +45,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :phone_number, :type) }
   end
 
+  def client_find_by_id(id)
+    Client.find_by id: id
+  end
+
   private
 
+
   def guest_only_for_unauthorized
-    redirect_to users_path if params[:action] == Constants[:users_guest_action] && current_user
+    redirect_to clients_path if params[:action] == Constants[:users_guest_action] && current_user
   end
   
   def requier_login

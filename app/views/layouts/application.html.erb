@@ -37,6 +37,7 @@
   </head>
 
   <body>    
+    <!-- Head -->
     <header id="header" class="fixed-top ">
       <% if current_user %>
         <!-- ======= Authorized user header  ======= -->
@@ -45,33 +46,40 @@
           <h1 class="logo"><a href="index.html">CarService.</a></h1>
           <nav id="navbar" class="navbar">
             <ul>
-              <li><a class="nav-link scrollto active" href=<%= users_path %> >Home</a> </li>
+              <li><a class="nav-link scrollto active" href=<%= clients_path %> >Home</a> </li>
+
               <% unless ApplicationController::guest? params %>
                 <li class="dropdown"><a><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li><a href=<%= me_path %>>Me</a></li>
-                    <li><a href=<%= edit_user_path(current_user) %>>Edit</a></li>
+                    <li><a href=<%= edit_client_path(current_user) %>>Edit</a></li>
                   </ul>
                 </li>
+
                 <li class="dropdown"><a><span>Orders</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li>
                       <a href= <%= actual_orders_path %>> Actual </a>
                     </li>
-                    <li><%= link_to 'New', new_user_order_path(current_user) %></li>
+                    <li><%= link_to 'New', new_client_order_path(current_user) %></li>
                   </ul>
-                </li>
+                </li>                
               <% end %>
-              <li class="dropdown"><a href=<%= "#{users_path}#services" %>><span>Services</span> <i class="bi bi-chevron-down"></i></a>
-                  <ul>
-                    <li><a href=<%= show_services_path %>> info </a></li>
-                  </ul>
-                </li>
-              <li><a class="nav-link scrollto" href=<%= "#{users_path}#team" %>>Team</a></li>
+
+              <li class="dropdown"><a href=<%= "#{clients_path}#services" %>><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li><a href=<%= show_services_path %>> info </a></li>
+                </ul>
+              </li>
+
+              <li><a class="nav-link scrollto" href=<%= "#{clients_path}#team" %>>Team</a></li>
+
               <li><a class="nav-link scrollto" href=<%= mechanics_path %>>Mechanics</a></li>
+
               <% if current_user.is_a? Admin%>
-                <li><a class="nav-link scrollto" href=<%= user_path(current_user) %> >Show all</a></li>
+                <li><a class="nav-link scrollto" href=<%= client_path(current_user) %> >Show all</a></li>
               <% end %>
+
               <li><a class="nav-link scrollto" href=<%= destroy_user_session_path %> data-method='delete'>Sign out</a></li>          
             </ul>
 
@@ -98,6 +106,7 @@
         <!-- ======= End unauthorized user header ======= -->
       <% end %>
     </header>
+    <!-- End head -->
     <br/>
     <br/>
     <br/>
@@ -109,6 +118,7 @@
           <%= msg %>
         </div>
       <% end %>    
+    <!-- End flash notifications -->    
 
     <%= yield %>
   </body>

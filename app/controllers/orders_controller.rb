@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def show_actual_orders
     @orders = current_user.orders
-    redirect_to users_path, notice: 'You have no orders yet' if @orders.empty?
+    redirect_to clients_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
   def show_services
@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @user = User.find_by(id: params[:user_id])
+    @client = client_find_by_id(params[:client_id])
     @mechanics = Mechanic.all
     @services = Service.all
     @service_id = params[:service_id].to_i
@@ -22,7 +22,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    current_user.orders.create(orders_params)
+    @client = client_find_by_id(params[:client_id])
+    @client.orders.create(orders_params)
     redirect_to actual_orders_path, notice: 'new order added'
   end
 
@@ -62,8 +63,8 @@ class OrdersController < ApplicationController
   private
 
   def orders_params
-    p = params.require(:order).permit(:description, :mechanic_id, :service_id, :user_id)
-    p[:user_id] = params[:user_id]
+    p = params.require(:order).permit(:description, :mechanic_id, :service_id, :client_id)
+    p[:client_id] = params[:client_id]
     p
   end
 end

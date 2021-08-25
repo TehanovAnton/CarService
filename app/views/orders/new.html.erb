@@ -11,7 +11,7 @@
         <div class="col-lg-3"></div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <%= form_with url: user_orders_path(current_user), html: {class: "php-email-form"}, model: current_user.orders.build do |f| %>
+          <%= form_with url: client_orders_path(@client), html: {class: "php-email-form"}, model: @client.orders.build do |f| %>
             <div class="row">
               <div class="form-group mt-3">
 
