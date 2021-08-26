@@ -4,7 +4,7 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Sign Up</h2>
+          <h2><%= t 'new_registration.sign_in' %></h2>
         </div>
 
         <div class="row">
@@ -15,22 +15,22 @@
               <div class="col-md-12">
                 <div class="info-box">
                   <i class="bx bx-map"></i>
-                  <h3>Our Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <h3><%= t 'new_registration.our_adress' %></h3>
+                  <p><%= t 'new_registration.a108_adam_street' %></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
+                  <h3><%= t 'new_registration.email_us' %></h3>
+                  <p><%= t 'new_registration.info_example_com' %><br><%= t 'new_registration.contact_example_com' %></p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box mt-4">
                   <i class="bx bx-phone-call"></i>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                  <h3><%= t 'new_registration.call_us' %></h3>
+                  <p><%= t 'new_registration.phone1_5589_55488_55' %><br/><%= t 'new_registration.phone1_6678_254445_41' %></p>
                 </div>
               </div>
             </div>
@@ -45,14 +45,14 @@
                 <div class="col-md-6 form-group">
                    <div class="form-floating">                    
                       <input type="text" id="first_name" name="user[first_name]" class="form-control" row='9' required>
-                      <label for="first_name">Your first name</label>
+                      <label for="first_name"><%= t 'new_registration.Your_first_name' %></label>
                     </div>
                 </div>
 
                 <div class="col-md-6 form-group mt-3 mt-md-0">
                   <div class="form-floating">                    
                     <input type="text" id="last_name" name="user[last_name]" class="form-control" row='9' required>
-                    <label for="last_name">Your last name</label>
+                    <label for="last_name"><%= t 'new_registration.Your_last_name' %></label>
                   </div>
                 </div>     
               </div><br/>
@@ -61,14 +61,14 @@
                 <div class="col-md-6 form-group">
                   <div class="form-floating">                    
                     <input type="text" id="phone_number" name="user[phone_number]" class="form-control" row='9' required>
-                    <label for="phone_number">Your phone number</label>
+                    <label for="phone_number"><%= t 'new_registration.Your_phone_numbe' %></label>
                   </div>
                 </div>
 
                 <div class="col-md-6 form-group mt-3 mt-md-0">
                   <div class="form-floating">                    
                     <input type="text" id="email" name="user[email]" class="form-control" row='9' required>
-                    <label for="email">Your email</label>
+                    <label for="email"><%= t 'new_registration.Your_email' %></label>
                   </div>
                 </div>     
               </div>
@@ -76,23 +76,19 @@
               <div class="form-group mt-3">
                 <div class="form-floating">                    
                   <input type="password" id="password" name="user[password]" class="form-control" row='9' required>
-                  <label for="password">Password</label>
+                  <label for="password"><%= t 'new_registration.Password' %></label>
                 </div>
               </div>
 
               <div class="form-group mt-3">
                 <div class="form-floating">                    
                   <input type="password" id="password" name="user[password_confirmation]" class="form-control" row='9' required>
-                  <label for="password">Password onfirmation</label>
+                  <label for="password"><%= t 'new_registration.Password_сonfirmation' %></label>
                 </div>
               </div><br/>
 
               <div class="text-center">
-                <button type="submit">Sing up</button>
-              </div>
-
-              <div class="text-center">
-                <a href="new_user_session_path">Already have an account</a>
+                <button type="submit"><%= t 'new_registration.Sing_up' %></button>
               </div>
             <% end %>
 
