@@ -20,6 +20,8 @@ class Order < ApplicationRecord
   has_many :service_orders, dependent: :destroy
   has_many :services, through: :service_orders
 
+  accepts_nested_attributes_for :service_orders
+
 
   validates :state, inclusion: { in: %w[in_review in_progress done] }  
 

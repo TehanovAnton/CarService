@@ -11,39 +11,26 @@
         <div class="col-lg-3"></div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <%= form_with url: user_order_path(current_user, @order), html: {class: "php-email-form"}, model: @order do |f| %>
+          <%= form_with url: client_order_path(current_user, @order), html: {class: "php-email-form"}, model: @order do |f| %>
             <div class="row">
               <div class="form-group mt-3">
 
                 <div class="form-floating">
-                  <input type="text" id="description" name="order[description]" value=<%= @order.description %> class="form-control" required>                  
+                  <input type="text" id="description" name="order[description]" value=<%= @order.description %> class="form-control" required>
                   <label for="description">Description</label>
                 </div><br/>
                 
-                <!-- Mechanics select -->
-                <div class="form-floating">
-                  <select class="form-select" aria-label="Default select example"
-                          name="order[mechanic_id]" id="mechanics">
-                    <% @mechanics.each do |m| %>
-                      <option value=<%= m.id %> <% if m.id == @order.mechanic_id %> selected <% end %>>
-                        <%= m.first_name %> <%= m.last_name %>
-                      </option>
-                    <% end %>
-                  </select>
-                  <label for="mechanics">Choose a mechanic</label>
-                </div><br/>
-                <!-- End Mechanics select -->
-                
                 <!-- Service select -->
-                <div class="form-floating" >
-                  <select name="order[service_id]" id="mechanics" class="form-select" aria-label="Default select example">
+                <div>
+                  <select name="services[]" class="form-select" size="3" multiple aria-label="multiple select example"> multiple>
+                    <option disabled>Choose a service</option>
                     <% @services.each do |s| %>
-                      <option value=<%= s.id %> <% if s.id == @order.service_id %> selected <% end %>>
+                      <option value=<%= s.id %>
+                              <% if @order.services.map(&:id).include?(s.id) %> selected <% end %>>
                         <%= s.title %>: <%= s.price %>$
                       </option>
                     <% end %>
                   </select>
-                  <label for="mechanics">Choose a service</label>
                 </div>
                 <!-- End Service select -->
               </div>     

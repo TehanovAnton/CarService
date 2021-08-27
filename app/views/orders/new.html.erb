@@ -16,13 +16,14 @@
               <div class="form-group mt-3">
 
                 <div class="form-floating">
+                  <input type="hidden" id="client_id" name="order[client_id]" value=<%= @client.id %>>
                   <input type="text" id="description" name="order[description]" class="form-control" required>
                   <label for="description">Description</label>
                 </div><br/>
                 
                 <!-- Service select -->
                 <div>
-                  <select name="services[]" class="form-select" size="3" multiple aria-label="multiple select example"> multiple>
+                  <select name="order[services][]" class="form-select" size="3" multiple aria-label="multiple select example"> multiple>
                     <option disabled>Choose a service</option>
                     <% @services.each do |s| %>
                       <option value=<%= s.id %>
