@@ -15,7 +15,7 @@
               <div class="col-md-12">
                 <div class="info-box">
                   <i class="bx bx-map"></i>
-                  <h3><%= t 'new_session.our_address' %></h3>
+                  <h3><%= t 'new_session.our_adress' %></h3>
                   <p><%= t 'new_session.a108_adam_street' %>, <%= t 'new_session.new_york_ny_535022' %></p>
                 </div>
               </div>
@@ -52,16 +52,12 @@
                 <div class="form-group mt-3">                    
                     <div class="form-floating">                    
                       <input type="password" id="password" name="user[password]" class="form-control" row='9' required>
-                      <label for="password"><%= t 'new_session.password' %>Password</label>
+                      <label for="password"><%= t 'new_session.password' %></label>
                     </div>
                 </div><br/>
 
                 <div class="text-center">
                     <button type="submit"><%= t 'new_session.sign_in' %></button>
-                </div>
-
-                <div class="text-center">                
-                  <a href=<%= new_user_registration_path %>><%= t 'new_session.don_t_have_an_account' %></a>
                 </div>
             <% end %>
 

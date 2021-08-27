@@ -25,6 +25,8 @@ class OrdersController < ApplicationController
   def create
     @client = Client.find_by(id: params[:client_id])
 
+    binding 
+
     if is_there_mechanic?
       @order = @client.orders.create(orders_params)
 
@@ -58,9 +60,16 @@ class OrdersController < ApplicationController
       end
     elsif @order.state == 'in_review'
       @order.update(orders_params)
+
+      @order.services.destroy_all
+
+      params[:services].map(&:to_i).each do |id|
+        ServiceOrder.create(order_id: @order.id, service_id: id)
+      end
     end
 
-    redirect_to actual_orders_path, notice: 'order updated'
+    redirect_to actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
+    redirect_to client_path(current_user), notice: 'order state updated' if current_user.is_a? Admin
   end
 
   def destroy
@@ -74,17 +83,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def orders_params
-    p = params.require(:order).permit(:description, :client_id)
-    p[:client_id] = params[:client_id]    
-    p[:mechanic_id] = find_order_mechanic_id(params[:services])
-    p
+  def orders_params    
+    params.require(:order).permit(:description, :client_id, services: [])
   end
 
   def is_there_mechanic?
     mechanics = Mechanic.all.map do |m|
       m.services.map(&:id)
-    end
+    end    
 
     services_ids = params[:services].map(&:to_i)
 
