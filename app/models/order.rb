@@ -1,4 +1,3 @@
-
 class Order < ApplicationRecord
   include AASM
   aasm column: 'state', whiny_transitions: false do
@@ -22,8 +21,17 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :service_orders
 
+  validates :state, inclusion: { in: %w[in_review in_progress done] }
+  validate :valid_mechanic?
 
-  validates :state, inclusion: { in: %w[in_review in_progress done] }  
+  def valid_mechanic?
+    mechanic_services = mechanic.services
+
+    binding.pry
+    errors.add(:services, 'One of the services is not supported by mechanic') unless service_orders.map(&:service).all? do |service|
+      mechanic_services.include? service
+    end
+  end
 
   def done?
     state == 'done'

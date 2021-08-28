@@ -16,27 +16,30 @@ class OrdersController < ApplicationController
 
   def new
     @client = Client.find_by(id: params[:client_id])
-    @mechanics = Mechanic.all
-    @services = Service.all
     @service_id = params[:service_id].to_i
+    @mechanics = Mechanic.all
+    @order = @client.orders.build
+    @mechanics_for_options = Mechanic.all.map do |m|
+      ["#{m.first_name} #{m.last_name}", m.id]
+    end
+
+    @services_for_options = Service.all.map do |s|
+      [s.title, s.id]
+    end
+
     logger.info("!!!service_id: #{@service_id}; is_i?: #{@service_id.is_a? Integer}")
   end
 
   def create
     @client = Client.find_by(id: params[:client_id])
-
-    binding 
-
-    if is_there_mechanic?
-      @order = @client.orders.create(orders_params)
-
-      params[:services].map(&:to_i).each do |id|
-        ServiceOrder.create(order_id: @order.id, service_id: id)
-      end
-
+    @order = Order.new(order_params)
+    
+    if @order.valid?
+      @order.save
       redirect_to actual_orders_path, notice: 'new order added'
     else
-      redirect_to new_client_order_path(@client), notice: 'no mechanic for that order'
+      binding.pry
+      redirect_to new_client_order_path(@client), error: @order.error_messages
     end
 
   end
@@ -59,7 +62,7 @@ class OrdersController < ApplicationController
         @order.finish!
       end
     elsif @order.state == 'in_review'
-      @order.update(orders_params)
+      @order.update(order_params)
 
       @order.services.destroy_all
 
@@ -83,8 +86,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def orders_params    
-    params.require(:order).permit(:description, :client_id, services: [])
+  def order_params
+    params.require(:order).permit(:description, :client_id, :mechanic_id, service_orders_attributes: [:service_id])
   end
 
   def is_there_mechanic?
