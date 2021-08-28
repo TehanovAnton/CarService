@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
 
   def index
-    @user = User.find_by(id: params[:user_id])
-    @orders = @user.orders
+    @client = Client.find_by(id: params[:client_id])
+    @orders = @client.orders
   end
 
   def show_actual_orders

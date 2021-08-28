@@ -38,8 +38,7 @@
                 <!-- Mechanics select -->
                 <div>
                   <%= f.label 'Mechanics', for: 'mechanics' %>
-                  <%= select_tag('order[mechanic_id]', options_for_select(@mechanics_for_options),
-                      class: 'form-select', id: 'mechanics')
+                  <%= f.collection_select(:mechanic_id, Mechanic.all, :id, :full_name, class: 'form-select', id: 'mechanics')
                   %>
                 </div>
                 <!-- End Mechanics select -->
