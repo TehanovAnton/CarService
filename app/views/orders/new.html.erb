@@ -22,15 +22,16 @@
                   <%= f.label 'Description', for: 'description' %>
                 </div><br/>
                 <!-- End Description -->
-                
 
-                <!-- Service select -->
+
                 <div>
-                  <%= f.label 'Services', for: 'services' %>
-                  <%= select_tag('order[service_orders_attributes][][service_id]', options_for_select(@services_for_options),
-                      class: 'form-select', id: 'services', multiple: true, size: 2)
-                  %>
-                </div><br/>
+                  <%= f.fields_for :service_order_attributes do |ff| %>
+                    <div>
+                      <%= ff.collection_select(:service_id, Service.all, :id, :title, {}, {size: 2 }) %>
+                    </div><br/>
+                  <% end %>
+                <div>
+                <!-- Service select -->
                 <!-- End Service select -->
 
 
@@ -42,9 +43,9 @@
                   %>
                 </div>
                 <!-- End Mechanics select -->
-              </div>     
+              </div>
             </div>
-            <br/>              
+            <br/>
 
             <div class="text-center">
               <button type="submit">Create</button>
@@ -90,6 +91,5 @@
     </div>
   </section><!-- End Team Section -->
 </main>
-<!-- End Contact Section -->  
 
-<% console.log('is this js') %>
+<!-- End Contact Section -->

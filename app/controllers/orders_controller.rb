@@ -19,9 +19,6 @@ class OrdersController < ApplicationController
     @service_id = params[:service_id].to_i
     @mechanics = Mechanic.all
     @order = @client.orders.build
-    @mechanics_for_options = Mechanic.all.map do |m|
-      ["#{m.first_name} #{m.last_name}", m.id]
-    end
 
     @services_for_options = Service.all.map do |s|
       [s.title, s.id]
@@ -31,17 +28,15 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @client = Client.find_by(id: params[:client_id])
     @order = Order.new(order_params)
-    
+
     if @order.valid?
       @order.save
       redirect_to actual_orders_path, notice: 'new order added'
     else
-      binding.pry
-      redirect_to new_client_order_path(@client), error: @order.error_messages
+      redirect_to new_client_order_path(@order.client), flash: { errors:  @order.errors.map(&:message)
+ }
     end
-
   end
 
   def edit
@@ -87,28 +82,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:description, :client_id, :mechanic_id, service_orders_attributes: [:service_id])
-  end
-
-  def is_there_mechanic?
-    mechanics = Mechanic.all.map do |m|
-      m.services.map(&:id)
-    end    
-
-    services_ids = params[:services].map(&:to_i)
-
-    mechanics.map { |m|
-      services_ids & m  == services_ids
-    }.include? true
-  end
-
-  def find_order_mechanic_id(services_ids)
-    services_ids.map!(&:to_i)
-
-    mech = Mechanic.all.select { |m|
-      services_ids & m.services.map(&:id) == services_ids
-    }.first
-
-    mech.id
+    params.require(:order).permit(:description, :client_id, :mechanic_id, service_order_attributes: :service_id)
   end
 end
