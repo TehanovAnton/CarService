@@ -14,7 +14,6 @@
           <%= form_for(@client.orders.build, as: :order, url: client_orders_path(@client), html: { class: "php-email-form" }) do |f| %>
             <div class="row">
               <div class="form-group mt-3">
-
                 <!-- Description -->
                 <div class="form-floating">
                   <%= f.hidden_field :client_id, value: @client.id %>
@@ -23,23 +22,19 @@
                 </div><br/>
                 <!-- End Description -->
 
-
-                <div>
-                  <%= f.fields_for :service_order_attributes do |ff| %>
-                    <div>
-                      <%= ff.collection_select(:service_id, Service.all, :id, :title, {}, {size: 2 }) %>
-                    </div><br/>
-                  <% end %>
-                <div>
-                <!-- Service select -->
+                <!-- Service select -->              
+                <%= f.fields_for :service_order_attributes do |ff| %>
+                  <div class='form-floating'>
+                    <%= ff.collection_select(:service_id, Service.all, :id, :title, {}, { class: 'form-select', id: 'serices', aria_lable: 'Default select example' }) %>
+                    <%= f.label 'Services', for: 'services' %>
+                  </div><br/>
+                <% end %>                
                 <!-- End Service select -->
 
-
                 <!-- Mechanics select -->
-                <div>
+                <div class='form-floating'>
+                  <%= f.collection_select(:mechanic_id, Mechanic.all, :id, :full_name, {}, { class: 'form-select', id: 'mechanics', aria_lable: 'Defult select example' }) %>
                   <%= f.label 'Mechanics', for: 'mechanics' %>
-                  <%= f.collection_select(:mechanic_id, Mechanic.all, :id, :full_name, class: 'form-select', id: 'mechanics')
-                  %>
                 </div>
                 <!-- End Mechanics select -->
               </div>
