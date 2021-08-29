@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     new_action: 'new',
     users: 'users',
     users_guest_action: 'guest'
-  }
+  }.freeze
 
   around_action :switch_locale
 
@@ -18,10 +18,7 @@ class ApplicationController < ActionController::Base
   before_action :check_registrations_inputs, if: :devise_controller?
   before_action :guest_only_for_unauthorized
 
-
-  unless Rails.application.config.consider_all_requests_local
-    rescue_from ActionController::RoutingError, with: -> { render_404 }
-  end
+  rescue_from ActionController::RoutingError, with: -> { render_404 } unless Rails.application.config.consider_all_requests_local
 
   def self.sign?(params)
     controller = params[:controller]
@@ -47,11 +44,10 @@ class ApplicationController < ActionController::Base
 
   private
 
-
   def guest_only_for_unauthorized
     redirect_to clients_path if params[:action] == Constants[:users_guest_action] && current_user
   end
-  
+
   def requier_login
     redirect_to new_user_session_path unless current_user
   end
@@ -63,7 +59,7 @@ class ApplicationController < ActionController::Base
     load_sign_in('wrong email') if new_sessions && !user
   end
 
-  def check_registrations_inputs 
+  def check_registrations_inputs
     new_registration = post_with_user_params? && params[:controller] == 'devise/registrations'
     user = User.find_by(email: new_registration_inputs[:email]) if new_registration
     logger.info("filter !!! #{user.id}") if user

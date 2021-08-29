@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -44,16 +46,15 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000', protocol: :http }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: 'smtp.gmail.com',
     port: 587,
-    authentication: "plain",
+    authentication: 'plain',
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_SENDER_USERNAME"],
-    password: ENV["GMAIL_SENDER_PASSWORD"],
-    domain: "smtp.gmail.com",
-    openssl_verify_mode: "none",
+    user_name: ENV['GMAIL_SENDER_USERNAME'],
+    password: ENV['GMAIL_SENDER_PASSWORD'],
+    domain: 'smtp.gmail.com',
+    openssl_verify_mode: 'none'
   }
-
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(@user.is_a?(Admin) ? :admin : :user).permit(:first_name, :last_name, :email, :phone_number)
-  end  
+  end
 
   def current?(user)
     user == current_user

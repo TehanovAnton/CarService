@@ -1,5 +1,6 @@
-class OrdersController < ApplicationController
+# frozen_string_literal: true
 
+class OrdersController < ApplicationController
   def index
     @client = Client.find_by(id: params[:client_id])
     @orders = @client.orders
@@ -34,16 +35,18 @@ class OrdersController < ApplicationController
       @order.save
       redirect_to actual_orders_path, notice: 'new order added'
     else
-      redirect_to new_client_order_path(@order.client), flash: { errors:  @order.errors.map(&:message)
- }
+      redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.map(&:message) }
     end
   end
 
   def edit
-    @user = User.find_by(id: params[:user_id])
+    @client = Client.find_by(id: params[:client_id])
     @order = Order.find_by(id: params[:id])
     @mechanics = Mechanic.all
+    @mechanic_fot_options = Mechanic.all.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
+
     @services = Service.all
+    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h
   end
 
   def update
@@ -57,26 +60,24 @@ class OrdersController < ApplicationController
         @order.finish!
       end
     elsif @order.state == 'in_review'
-      @order.update(order_params)
-
-      @order.services.destroy_all
-
-      params[:services].map(&:to_i).each do |id|
-        ServiceOrder.create(order_id: @order.id, service_id: id)
+      binding.pry
+      if Order.new(order_params).valid?
+        @order.update(order_params)
+        redirect_to actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
+      else
+        redirect_to edit_client_order_path(client_id: params[:client_id], id: @order.id), notice: 'this mechanic can\'t do this service' unless current_user.is_a? Admin
       end
     end
 
-    redirect_to actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
     redirect_to client_path(current_user), notice: 'order state updated' if current_user.is_a? Admin
   end
 
   def destroy
     @user = User.find_by(id: params[:user_id])
 
-    puts "params_id: #{params[:user_id]}"
-
     Order.find_by(id: params[:id]).destroy
-    redirect_to user_orders_path(@user)
+
+    redirect_to actual_orders_path
   end
 
   private
