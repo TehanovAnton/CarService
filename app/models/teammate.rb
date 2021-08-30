@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Teammate < User
   has_many :positions, dependent: :destroy
 

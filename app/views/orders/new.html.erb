@@ -11,32 +11,35 @@
         <div class="col-lg-3"></div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <%= form_with url: client_orders_path(@client), html: {class: "php-email-form"}, model: @client.orders.build do |f| %>
+          <%= form_for(@client.orders.build, as: :order, url: client_orders_path(@client), html: { class: "php-email-form" }) do |f| %>
             <div class="row">
               <div class="form-group mt-3">
-
+                <!-- Description -->
                 <div class="form-floating">
-                  <input type="hidden" id="client_id" name="order[client_id]" value=<%= @client.id %>>
-                  <input type="text" id="description" name="order[description]" class="form-control" required>
-                  <label for="description">Description</label>
+                  <%= f.hidden_field :client_id, value: @client.id %>
+                  <%= f.text_field :description, class: 'form-control', id: 'description', required: true %>
+                  <%= f.label 'Description', for: 'description' %>
                 </div><br/>
-                
-                <!-- Service select -->
-                <div>
-                  <select name="order[services][]" class="form-select" size="3" multiple aria-label="multiple select example"> multiple>
-                    <option disabled>Choose a service</option>
-                    <% @services.each do |s| %>
-                      <option value=<%= s.id %>
-                              <% if s.id == @service_id %> selected <% end %>>
-                        <%= s.title %>: <%= s.price %>$
-                      </option>
-                    <% end %>
-                  </select>
-                </div>
+                <!-- End Description -->
+
+                <!-- Service select -->              
+                <%= f.fields_for :service_order_attributes do |ff| %>
+                  <div class='form-floating'>
+                    <%= ff.collection_select(:service_id, Service.all, :id, :title, {}, { class: 'form-select', id: 'serices', aria_lable: 'Default select example' }) %>
+                    <%= f.label 'Services', for: 'services' %>
+                  </div><br/>
+                <% end %>                
                 <!-- End Service select -->
-              </div>     
+
+                <!-- Mechanics select -->
+                <div class='form-floating'>
+                  <%= f.collection_select(:mechanic_id, Mechanic.all, :id, :full_name, {}, { class: 'form-select', id: 'mechanics', aria_lable: 'Defult select example' }) %>
+                  <%= f.label 'Mechanics', for: 'mechanics' %>
+                </div>
+                <!-- End Mechanics select -->
+              </div>
             </div>
-            <br/>              
+            <br/>
 
             <div class="text-center">
               <button type="submit">Create</button>
@@ -47,6 +50,40 @@
       </div>
 
     </div>
+
   </section>
+
+  <section id="team" class="team section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Mechanics</h2>
+        <p>Here you can see our mechanics.</p>
+      </div>
+
+      <div class="row">
+        <% @mechanics.each_with_index do |m, i| %>
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <div class="member-img">
+                <img src="/assets/theme/img/team/team-1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> <%= i+1 %>. <%= m.first_name %> <%= m.last_name %></h4>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </section><!-- End Team Section -->
 </main>
-<!-- End Contact Section -->  
+
+<!-- End Contact Section -->

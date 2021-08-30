@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class Order < ApplicationRecord
   include AASM
@@ -17,13 +18,17 @@ class Order < ApplicationRecord
   belongs_to :client
   belongs_to :mechanic
 
-  has_many :service_orders, dependent: :destroy
-  has_many :services, through: :service_orders
+  has_one :service_order, dependent: :destroy
+  has_one :service, through: :service_order
 
-  accepts_nested_attributes_for :service_orders
+  accepts_nested_attributes_for :service_order, allow_destroy: true
 
+  validates :state, inclusion: { in: %w[in_review in_progress done] }
+  validate :valid_mechanic?
 
-  validates :state, inclusion: { in: %w[in_review in_progress done] }  
+  def valid_mechanic?
+    errors.add(:services, 'One of the services is not supported by mechanic') unless mechanic.services.include?(service_order.service)
+  end
 
   def done?
     state == 'done'

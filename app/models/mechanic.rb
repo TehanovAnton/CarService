@@ -1,5 +1,6 @@
-class Mechanic < User
+# frozen_string_literal: true
 
+class Mechanic < User
   has_many :orders
   has_many :clients, through: :orders
 
@@ -7,6 +8,7 @@ class Mechanic < User
   has_many :services, through: :mechanic_services
 
   protected
+
   def confirmation_required?
     false
   end
