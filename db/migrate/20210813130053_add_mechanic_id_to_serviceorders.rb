@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddMechanicIdToServiceorders < ActiveRecord::Migration[6.1]
   def change
     add_column :service_orders, :mechanic_id, :integer, null: false

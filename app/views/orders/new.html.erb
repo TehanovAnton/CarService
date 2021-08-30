@@ -7,42 +7,46 @@
       </div>
 
       <div class="row">
-
         <div class="col-lg-3"></div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <%= form_with url: client_orders_path(@client), html: {class: "php-email-form"}, model: @client.orders.build do |f| %>
+          <%= form_for(@order, as: :order, url: client_orders_path(@client), html: {class: "php-email-form"}) do |f| %>
             <div class="row">
               <div class="form-group mt-3">
 
+                <!-- Description -->
                 <div class="form-floating">
-                  <input type="text" id="description" name="order[description]" class="form-control" required>
-                  <label for="description">Description</label>
+                  <%= f.hidden_field :client_id, value: @client.id %>
+                  <%= f.text_field :description, class: 'form-control', id: 'description', value: @description, required: true %>
+                  <%= f.label 'Description', for: 'description' %>
                 </div><br/>
-                
-                <!-- Service select -->
-                <div>
-                  <select name="services[]" class="form-select" size="3" multiple aria-label="multiple select example"> multiple>
-                    <option disabled>Choose a service</option>
-                    <% @services.each do |s| %>
-                      <option value=<%= s.id %>
-                              <% if s.id == @service_id %> selected <% end %>>
-                        <%= s.title %>: <%= s.price %>$
-                      </option>
-                    <% end %>
-                  </select>
-                </div>
+                <!-- End Description -->
+
+                <!-- Service select -->              
+                <%= f.fields_for :service_order_attributes do |ff| %>
+                  <div class='form-floating'>
+                    <%= ff.collection_select(:service_id, @services, :id, :title, {}, { class: 'form-select', id: 'services', aria_lable: 'Default select example' }) %>
+                    <%= f.label 'Services', for: 'services' %>
+                  </div><br/>
+                <% end %>                
                 <!-- End Service select -->
+
+                <!-- Mechanics select -->
+                <div class='form-floating'>
+                  <%= f.collection_select(:mechanic_id, @mechanics, :id, :full_name, {}, { class: 'form-select', id: 'mechanics', selected: 197, aria_lable: 'Defult select example' }) %>
+                  <%= f.label 'Mechanics', for: 'mechanics' %>
+                </div>
+                <!-- End Mechanics select -->
+
               </div>     
             </div>
             <br/>              
 
             <div class="text-center">
-              <button type="submit">Create</button>
+              <%= f.button 'Create' %>
             </div>
           <% end %>
         </div>
-
       </div>
 
     </div>

@@ -1,5 +1,6 @@
-class OrdersController < ApplicationController
+# frozen_string_literal: true
 
+class OrdersController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
     @orders = @user.orders
@@ -16,10 +17,13 @@ class OrdersController < ApplicationController
 
   def new
     @client = Client.find_by(id: params[:client_id])
+    @order = @client.orders.build
     @mechanics = Mechanic.all
     @services = Service.all
-    @service_id = params[:service_id].to_i
-    logger.info("!!!service_id: #{@service_id}; is_i?: #{@service_id.is_a? Integer}")
+
+    @description = Faker::Coffee.blend_name
+    @mechanic = @mechanics[Faker::Number.between(from: 0, to: @mechanics.count - 1)]
+    @service = @mechanic.services.first
   end
 
   def create
@@ -36,7 +40,6 @@ class OrdersController < ApplicationController
     else
       redirect_to new_client_order_path(@client), notice: 'no mechanic for that order'
     end
-
   end
 
   def edit
@@ -76,7 +79,7 @@ class OrdersController < ApplicationController
 
   def orders_params
     p = params.require(:order).permit(:description, :client_id)
-    p[:client_id] = params[:client_id]    
+    p[:client_id] = params[:client_id]
     p[:mechanic_id] = find_order_mechanic_id(params[:services])
     p
   end
@@ -88,17 +91,17 @@ class OrdersController < ApplicationController
 
     services_ids = params[:services].map(&:to_i)
 
-    mechanics.map { |m|
-      services_ids & m  == services_ids
-    }.include? true
+    mechanics.map do |m|
+      services_ids & m == services_ids
+    end.include? true
   end
 
   def find_order_mechanic_id(services_ids)
     services_ids.map!(&:to_i)
 
-    mech = Mechanic.all.select { |m|
+    mech = Mechanic.all.select do |m|
       services_ids & m.services.map(&:id) == services_ids
-    }.first
+    end.first
 
     mech.id
   end
