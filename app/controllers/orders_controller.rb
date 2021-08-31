@@ -17,15 +17,13 @@ class OrdersController < ApplicationController
 
   def new
     @client = Client.find_by(id: params[:client_id])
-    @service_id = params[:service_id].to_i
-    @mechanics = Mechanic.all
     @order = @client.orders.build
+    @mechanics = Mechanic.all
+    @services = Service.all
 
-    @services_for_options = Service.all.map do |s|
-      [s.title, s.id]
-    end
-
-    logger.info("!!!service_id: #{@service_id}; is_i?: #{@service_id.is_a? Integer}")
+    @description = Faker::Coffee.blend_name
+    @mechanic = @mechanics[Faker::Number.between(from: 0, to: @mechanics.count - 1)]
+    @service = @mechanic.services.first
   end
 
   def create
@@ -81,7 +79,7 @@ class OrdersController < ApplicationController
   end
 
   private
-
+  
   def order_params
     params.require(:order).permit(:description, :client_id, :mechanic_id, service_order_attributes: :service_id)
   end
