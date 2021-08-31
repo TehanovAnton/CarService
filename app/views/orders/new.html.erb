@@ -23,22 +23,25 @@
                 </div><br/>
                 <!-- End Description -->
 
-                <!-- Service select -->              
-                <%= f.fields_for :service_order_attributes do |ff| %>
-                  <div class='form-floating'>
-                    <%= ff.collection_select(:service_id, @services, :id, :title, {}, { class: 'form-select', id: 'services', aria_lable: 'Default select example' }) %>
-
-                    <%= f.label 'Services', for: 'services' %>
-                  </div><br/>
-                <% end %>                
+               <!-- Service select -->
+                <div class='form-floating'>
+                  <%= select_tag('order[service_order_attributes][service_id]',
+                        options_for_select(@services_for_options, @service.id), 
+                        { class: 'form-select', id: 'services', aria_lable: 'Default select example' } )
+                  %>
+                  <%= f.label 'Services', for: 'services' %>
+                </div><br/>
                 <!-- End Service select -->
 
-                <!-- Mechanics select -->
+                <!-- Mechanic select -->
                 <div class='form-floating'>
-                  <%= f.collection_select(:mechanic_id, @mechanics, :id, :full_name, {}, { class: 'form-select', id: 'mechanics', selected: 197, aria_lable: 'Defult select example' }) %>
+                  <%= select_tag('order[mechanic_id]',
+                        options_for_select(@mechanics_fot_options, @mechanic.id), 
+                        { class: 'form-select', id: 'mechanics', aria_lable: 'Default select example' } )
+                  %>
                   <%= f.label 'Mechanics', for: 'mechanics' %>
                 </div>
-                <!-- End Mechanics select -->
+                <!-- End Mechanic select -->
 
               </div>     
             </div>
