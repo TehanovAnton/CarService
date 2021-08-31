@@ -1,41 +1,10 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-
   guest:
     sign_up: "Sign up"  
     sign_in: "Sign in"
     carservice: "CarService"
     Greate_Solution_For_Your_Car: "Greate Solution For Your Car"
+
     Quick_service: "Quick service"
     Professional_work: "Professional work"
     Excellent_prices: "Excellent prices"
@@ -71,21 +40,3 @@ en:
     useful_links: "Useful Links"
     home: "Home"
     services: "Services"
-  
-  # new_session:
-  #   a108_adam_street: "A108 Adam Street"
-  #   new_york_ny_535022: "New York, NY 535022"
-  #   phone1_5589_55488_55: " +1 5589 55488 55"
-  #   phone1_6678_254445_41: '+1 6678 254445 41'
-  #   your_email: 'Your email'
-  #   password: 'Password'
-  #   sign_in: "Sign in"
-  #   don_t_have_an_account: 'Don't have an account'
-  #   our_address: 'Our Address'
-  #   email_us: 'Email Us'
-  #   info_example_com: 'info@example.com'
-  #   contact_example_com: 'contact@example.com'
-  #   call_us: 'Call Us'
-
-
-

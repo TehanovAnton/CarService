@@ -19,20 +19,39 @@
                 <div id=<%= "faq#{c.id}" %> class="collapse" data-bs-parent=".faq-list">
                     <section id="actual" class="why-us">
                         <div class="container">
+
                             <div class="row">
                                 <% c.orders.each do |order|%>
-                                    <div class="col-lg-4 mt-4 mt-lg-4">
-                                        <div class="box">
-                                        <span><%= order.id %></span>
-                                        <h4><%= order.state %></h4>
-                                        <p><%= order.description %></p>
-                                        <% if current_user.is_a?(Admin) && order.state != 'done' %>
-                                            <%= link_to 'Update state', user_order_path(current_user, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
-                                        <% end %>
+                                <% @mechanic = Mechanic.find_by(id: order.mechanic_id) %>
+                                    <div class="team col-lg-4">     
+                                        <div class="col-lg-12">
+                                            <div class="member">              
+                                                <div class="member-img col-lg-12 mt-6 mt-lg-6">
+
+                                                    <div class="box">
+                                                        <span><%= order.state %></span>
+                                                        <h4><%= order.description %></h4>
+                                                        <p><%= "#{@mechanic.first_name} #{@mechanic.last_name}" %></p>
+                                                        
+                                                        <% if current_user.is_a?(Admin) && order.state != 'done' %>
+                                                        <%= link_to 'Update state', client_order_path(c, order, state: 'change'), method: :put, zclass: 'btn-get-started scrollto'%>
+                                                        <% end %>
+                                                    </div>                     
+
+                                                    <% if order.in_review? %>
+                                                    <div class="social">
+                                                        <a href=<%= edit_client_order_path(current_user, order) %>>Edit</a>
+                                                        <a href="">delet</a>
+                                                    </div>
+                                                    <% end %>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div>  
                                 <% end %> 
                             </div>
+
                         </div>
                     </section>
                 </div>

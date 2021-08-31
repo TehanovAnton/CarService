@@ -98,15 +98,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">            
+        <div class="col-md-8 col-md-offset-2">
             <div class="sticker-left" data-sticker="Information">
                 <h1 class="text-center">service orders. now it is <%= "#{@orders.count}" %></h1>
-                <div class="col-sm-2">                        
-                    <%= link_to "index", users_path, class: "btn btn-sm blue" %>
+                <div class="col-sm-2">
+                    <%= link_to "index", clients_path, class: "btn btn-sm blue" %>
                 </div>
 
-                <div class="col-sm-2">                        
-                    <%= link_to 'add order', new_user_order_path(@user), class: "btn btn-sm blue" %>
+                <div class="col-sm-2">
+                    <%= link_to 'add order', new_client_order_path(@client), class: "btn btn-sm blue" %>
                 </div>
             </div>
             <br/>
@@ -114,19 +114,19 @@
                   <div class="sticker-right sticker-info" data-sticker=<%= "#{ order.state }" %>>
                     <pre>
                         <%= "#{order.description}." %>
-                    </pre>                    
+                    </pre>
 
-                    <div class="col-sm-2">                            
-                      <%= link_to 'edit', edit_user_order_path(@user, order), class: "btn btn-sm blue" %>
+                    <div class="col-sm-2">
+                      <%= link_to 'edit', edit_client_order_path(@client, order), class: "btn btn-sm blue" %>
                     </div>
 
-                    <div class="col-sm-2">                            
-                      <%= link_to 'delete', user_order_path(@user, order), method: :delete, class: "btn btn-sm blue" %>
+                    <div class="col-sm-2">
+                      <%= link_to 'delete', client_order_path(@client, order), method: :delete, class: "btn btn-sm blue" %>
                     </div>
 
                     <% if current_user.is_a?(Admin) && !order.done? %>
-                        <div class="col-sm-2">                            
-                        <%= link_to 'update state', user_order_path(@user, order, state: 'update'), method: :put, class: "btn btn-sm blue" %>
+                        <div class="col-sm-2">
+                        <%= link_to 'update state', client_order_path(@client, order, state: 'update'), method: :put, class: "btn btn-sm blue" %>
                         </div>
                     <% end %>
                   </div>

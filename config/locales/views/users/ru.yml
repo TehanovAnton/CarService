@@ -45,4 +45,36 @@ ru:
     home: "Главная"
 
   new_session:
-    
+    sign_in: "войти"
+    our_adress: 'наш адрес'
+    a108_adam_street: "A108 Adam Street"
+    new_york_ny_535022: "New York, NY 535022"
+    email_us: 'наша почта'
+    info_example_com: 'инфо@пример.com'
+    contact_example_com: 'контакт@пример.com'
+    call_us: 'наш номер'
+    phone1_5589_55488_55: " +1 5589 55488 55"
+    phone1_6678_254445_41: '+1 6678 254445 41'
+
+    your_email: 'Ваша почта'
+    password: 'Пароль'
+
+  new_registration:
+    sign_in: "войти"
+    our_adress: 'наш адрес'
+    a108_adam_street: "A108 Adam Street"
+    new_york_ny_535022: "New York, NY 535022"
+    email_us: 'наша почта'
+    info_example_com: 'инфо@пример.com'
+    contact_example_com: 'контакт@пример.com'
+    call_us: 'наш номер'
+    phone1_5589_55488_55: " +1 5589 55488 55"
+    phone1_6678_254445_41: '+1 6678 254445 41'
+
+    Your_first_name: 'Ваше имя'
+    Your_last_name: 'Ваша фамилия'
+    Your_phone_numbe: 'Ваш номер телефона'
+    Your_email: 'Ваша почта'
+    Password: 'Пароль'
+    Password_сonfirmation: 'Подтверждение пароля'
+    Sing_up: 'Зарегистрировать'    
