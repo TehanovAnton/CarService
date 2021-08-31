@@ -21,7 +21,7 @@ positions = ['Chief Executive officer', 'Product Manager', 'Chiefe Engineer', 'A
                             email: Faker::Internet.unique.free_email(name: last_name),
                             password: 'ewqqwe')
 
-  p = Position.create(position: positions[i], teammate_id: teamate.id)  
+  p = Position.create(position: positions[i], teammate_id: teamate.id)
 end
 
 rubber_replacement = Service.create(title: 'rubber replacement', price: 10)
@@ -30,7 +30,7 @@ renovation_work = Service.create(title: 'renovation work', price: 20)
 replacement_of_parts = Service.create(title: 'replacement of parts', price: 10)
 services = [rubber_replacement, technical_inspectation, renovation_work, replacement_of_parts]
 
-4.times do |e|
+4.times do |_e|
   last_name = Faker::Name.unique.last_name
 
   mechanic = Mechanic.create(first_name: Faker::Name.first_name,
@@ -38,7 +38,6 @@ services = [rubber_replacement, technical_inspectation, renovation_work, replace
                              phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
                              email: Faker::Internet.unique.free_email(name: last_name),
                              password: 'ewqqwe')
-  
 
   2.times do
     MechanicService.create(mechanic_id: mechanic.id,

@@ -19,7 +19,8 @@ class OrdersController < ApplicationController
     @client = Client.find_by(id: params[:client_id])
     @order = @client.orders.build
     @mechanics = Mechanic.all
-    @services = Service.all
+    @mechanics_fot_options = @mechanics.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
+    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h
 
     @description = Faker::Coffee.blend_name
     @mechanic = @mechanics[Faker::Number.between(from: 0, to: @mechanics.count - 1)]
@@ -41,10 +42,10 @@ class OrdersController < ApplicationController
     @client = Client.find_by(id: params[:client_id])
     @order = Order.find_by(id: params[:id])
     @mechanics = Mechanic.all
-    @mechanic_fot_options = Mechanic.all.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
+    @mechanic_fot_options = @mechanics.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
 
     @services = Service.all
-    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h
+    @services_for_options = @services.map { |service| [service.title, service.id] }.to_h
   end
 
   def update
@@ -58,7 +59,6 @@ class OrdersController < ApplicationController
         @order.finish!
       end
     elsif @order.state == 'in_review'
-      binding.pry
       if Order.new(order_params).valid?
         @order.update(order_params)
         redirect_to actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def order_params
     params.require(:order).permit(:description, :client_id, :mechanic_id, service_order_attributes: :service_id)
   end
