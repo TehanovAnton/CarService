@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
   def create
     @client = Client.find_by(id: params[:client_id])
 
-    binding
 
     if is_there_mechanic?
       @order = @client.orders.create(orders_params)

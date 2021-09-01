@@ -44,7 +44,7 @@
           <h1 class="logo"><a href="index.html"><%= t 'header.carservice' %></a></h1>
           <nav id="navbar" class="navbar">
             <ul> 
-              <li><a class="nav-link scrollto" href=''>switch locale</a></li>              
+              <li><a class="nav-link scrollto" href=<%= url_for(locale: I18n.locale == :en ? :ru : :en) %>>switch locale</a></li>              
 
               <li><a class="nav-link scrollto active" href=<%= root_path %>><%= t 'header.home' %></a> </li>
 

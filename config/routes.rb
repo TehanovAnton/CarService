@@ -3,7 +3,7 @@
 Rails.application.routes.draw do 
 
   scope ':locale', locale: /en|ru/ do
-    root 'users#guest', locale: :ru
+    root 'users#guest', locale: :en
 
     devise_for :users
 
