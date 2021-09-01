@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h
 
     @description = Faker::Coffee.blend_name
-    @mechanic = @mechanics[Faker::Number.between(from: 0, to: @mechanics.count - 1)]
+    @mechanic = @mechanics.sample
     @service = @mechanic.services.first
   end
 
