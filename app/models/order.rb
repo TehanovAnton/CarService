@@ -24,6 +24,7 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :service_order, allow_destroy: true
 
   validates :state, inclusion: { in: %w[in_review in_progress done] }
+
   validate :valid_mechanic?
 
   def valid_mechanic?

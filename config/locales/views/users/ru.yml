@@ -1,7 +1,24 @@
 ru:
-  guest:
+  header:
     sign_in: "Войти"
     sign_up: "Создать акаунт"
+    team: "Команда"
+    home: "Главная"
+    Profile: 'Профиль'
+    Me: 'Мой аккаунт'
+    Edit: 'Редактировать'
+    Orders: 'Заказы'
+    Actual: 'Актуалные'
+    New: 'Новый'
+    Services: 'Сервисы'
+    info: 'инфо'
+    Mechanics: 'Механики'
+    Show_all: 'Показать всё'
+    Sign_out: 'выйти'
+
+
+
+  guest:
     Greate_Solution_For_Your_Car: "Отличное решение для вашего авто"
 
     Quick_service: "Быстрый сервис"
@@ -11,13 +28,11 @@ ru:
     Hours_Of_Support: "Долгая Поддержка"
     Hard_Workers: "Трудо любивые работники"
 
-    services: "Услуги"
     rubber_replacement: "Замена покрышек"
     technical_inspectation: "Технический осмотр"
     replacement_of_parts: "Замена деталей"
     renovation_work: "Реставрация"
 
-    team: "Команда"
     here_you_can_see_the_leaders_of_our_company_Each_of_them_is_a_real_professional_in_their_field: "Здесь вы можете увидеть руководителей нашей компании. Каждый из них - настоящий профессионал своего дела."  
     amanda_jepson: "Аманда Джепсон"  
     accountant: "Бухгалтер"
@@ -42,7 +57,6 @@ ru:
     email: "Почта:"
     carserviceror_gmail_com: " carserviceror@gmail.com"
     useful_links: "Полезные ссылки"
-    home: "Главная"
 
   new_session:
     sign_in: "войти"

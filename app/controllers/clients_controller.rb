@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ClientsController < ApplicationController
-  def guest; end
 
   def index
     @teammates = Teammate.all
