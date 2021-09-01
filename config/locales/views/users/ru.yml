@@ -75,6 +75,7 @@ ru:
 
   new_registration:
     sign_in: "войти"
+    sign_up: "войти"
     our_adress: 'наш адрес'
     a108_adam_street: "A108 Adam Street"
     new_york_ny_535022: "New York, NY 535022"

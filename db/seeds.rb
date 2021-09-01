@@ -7,34 +7,48 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create(first_name: 'admin', last_name: 'adminov', phone_number: '911', email: 'admin@gmail.com', password: 'ewqqwe')
-User.create(first_name: 'Anton', last_name: 'Tehanov', phone_number: '1234', email: 'tehanovanton@gmail.com', password: 'ewqqwe')
 
-teammate_walter_white = Teammate.create(first_name: 'Walter', last_name: 'White', phone_number: '119', email: 'walterwhiteh@gmail.com', password: 'ewqqwe')
-Position.create(position: 'Chief Executive officer', teammate_id: teammate_walter_white.id)
+def generate_user_attributes
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.unique.last_name
+  email = Faker::Internet.unique.free_email(name: last_name)
+  phone_number = Faker::PhoneNumber.cell_phone_with_country_code
 
-teammate_sara_jhonson = Teammate.create(first_name: 'Sara', last_name: 'Jhonson', phone_number: '191', email: 'sarajhonson@gmail.com', password: 'ewqqwe')
-Position.create(position: 'Product Manager', teammate_id: teammate_sara_jhonson.id)
+  {
+    last_name: last_name,
+    first_name: first_name,
+    email: email,
+    phone_number: phone_number,
+    password: 'ewqqwe'
+  }
+end
 
-teammate_william_anderson = Teammate.create(first_name: 'William', last_name: 'Anderson', phone_number: '911', email: 'williamanderson@gmail.com', password: 'ewqqwe')
-Position.create(position: 'Chiefe Engineer', teammate_id: teammate_william_anderson.id)
+Admin.create(generate_user_attributes)
+User.create(generate_user_attributes)
 
-teammate_amanda_jepson = Teammate.create(first_name: 'Amanda', last_name: 'Jepson', phone_number: '119', email: 'amandajepson@gmail.com', password: 'ewqqwe')
-Position.create(position: 'Accountant', teammate_id: teammate_amanda_jepson.id)
+positions = ['Chief Executive officer', 'Product Manager', 'Chief Engineer', 'Accountant']
+positions.each do |position|
+  teamate = Teammate.create(generate_user_attributes)
 
-rubber_replacement = Service.create(title: 'rubber replacement', price: 10)
-technical_inspectation = Service.create(title: 'technical inspectation', price: 15)
-renovation_work = Service.create(title: 'renovation work', price: 20)
-replacement_of_parts = Service.create(title: 'replacement of parts', price: 10)
+  Position.create(position: position, teammate_id: teamate.id)
+end
 
-wilsonmech = Mechanic.create(first_name: 'Wilson', last_name: 'mech', phone_number: '911', email: 'wilsonmech@gmail.com', password: 'ewqqwe')
-MechanicService.create(mechanic_id: wilsonmech.id, service_id: rubber_replacement.id)
-MechanicService.create(mechanic_id: wilsonmech.id, service_id: technical_inspectation.id)
+services_attributes = [
+  { title: 'rubber replacement', price: 10 },
+  { title: 'technical inspectation', price: 15 },
+  { title: 'renovation work', price: 20 },
+  { title: 'replacement of parts', price: 10 }
+]
 
-konermech = Mechanic.create(first_name: 'Koner', last_name: 'mech', phone_number: '191', email: 'konermech@gmail.com', password: 'ewqqwe')
-MechanicService.create(mechanic_id: konermech.id, service_id: technical_inspectation.id)
-MechanicService.create(mechanic_id: konermech.id, service_id: renovation_work.id)
+services = services_attributes.map do |service_attributes|
+  Service.create(service_attributes)
+end
 
-raynmech = Mechanic.create(first_name: 'Rayn', last_name: 'mech', phone_number: '119', email: 'raynmech@gmail.com', password: 'ewqqwe')
-MechanicService.create(mechanic_id: raynmech.id, service_id: renovation_work.id)
-MechanicService.create(mechanic_id: raynmech.id, service_id: replacement_of_parts.id)
+services.each_slice(2) do |master_services|
+  mechanic = Mechanic.create(generate_user_attributes)
+
+  master_services.each do |service|
+    MechanicService.create(mechanic_id: mechanic.id,
+                           service_id: service.id)
+  end
+end
