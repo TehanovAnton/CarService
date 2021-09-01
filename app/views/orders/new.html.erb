@@ -17,7 +17,7 @@
                 <!-- Description -->
                 <div class="form-floating">
                   <%= f.hidden_field :client_id, value: @client.id %>
-                  <%= f.text_field :description, class: 'form-control', id: 'description', value: @description, required: true %>
+                  <%= f.text_field :description, class: 'form-control', id: 'description', required: true %>
 
                   <%= f.label 'Description', for: 'description' %>
                 </div><br/>
@@ -26,7 +26,7 @@
                <!-- Service select -->
                 <div class='form-floating'>
                   <%= select_tag('order[service_order_attributes][service_id]',
-                        options_for_select(@services_for_options, @service.id), 
+                        options_for_select(@services_for_options), 
                         { class: 'form-select', id: 'services', aria_lable: 'Default select example' } )
                   %>
                   <%= f.label 'Services', for: 'services' %>
@@ -36,7 +36,7 @@
                 <!-- Mechanic select -->
                 <div class='form-floating'>
                   <%= select_tag('order[mechanic_id]',
-                        options_for_select(@mechanics_fot_options, @mechanic.id), 
+                        options_for_select(@mechanics_fot_options), 
                         { class: 'form-select', id: 'mechanics', aria_lable: 'Default select example' } )
                   %>
                   <%= f.label 'Mechanics', for: 'mechanics' %>

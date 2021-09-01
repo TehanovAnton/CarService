@@ -8,41 +8,47 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create(first_name: 'admin', last_name: 'adminov', phone_number: '911', email: 'admin@gmail.com', password: 'ewqqwe')
-User.create(first_name: 'Anton', last_name: 'Tehanov', phone_number: '1234', email: 'tehanovanton@gmail.com', password: 'ewqqwe')
-
-positions = ['Chief Executive officer', 'Product Manager', 'Chiefe Engineer', 'Accountant']
-4.times do |i|
+def generate_user_attributes
+  first_name = Faker::Name.first_name
   last_name = Faker::Name.unique.last_name
+  email = Faker::Internet.unique.free_email(name: last_name)
+  phone_number = Faker::PhoneNumber.cell_phone_with_country_code
 
-  teamate = Teammate.create(first_name: Faker::Name.first_name,
-                            last_name: last_name,
-                            phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
-                            email: Faker::Internet.unique.free_email(name: last_name),
-                            password: 'ewqqwe')
-
-  p = Position.create(position: positions[i], teammate_id: teamate.id)
+  {
+    last_name: last_name,
+    first_name: first_name,
+    email: email,
+    phone_number: phone_number,
+    password: 'ewqqwe'
+  }
 end
 
-rubber_replacement = Service.create(title: 'rubber replacement', price: 10)
-technical_inspectation = Service.create(title: 'technical inspectation', price: 15)
-renovation_work = Service.create(title: 'renovation work', price: 20)
-replacement_of_parts = Service.create(title: 'replacement of parts', price: 10)
-services = [rubber_replacement, technical_inspectation, renovation_work, replacement_of_parts]
+Admin.create(generate_user_attributes)
+User.create(generate_user_attributes)
 
-4.times do |_e|
-  last_name = Faker::Name.unique.last_name
+positions = ['Chief Executive officer', 'Product Manager', 'Chief Engineer', 'Accountant']
+positions.each do |position|
+  teamate = Teammate.create(generate_user_attributes)
 
-  mechanic = Mechanic.create(first_name: Faker::Name.first_name,
-                             last_name: last_name,
-                             phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
-                             email: Faker::Internet.unique.free_email(name: last_name),
-                             password: 'ewqqwe')
+  Position.create(position: position, teammate_id: teamate.id)
+end
 
-  2.times do
+services_attributes = [
+  { title: 'rubber replacement', price: 10 },
+  { title: 'technical inspectation', price: 15 },
+  { title: 'renovation work', price: 20 },
+  { title: 'replacement of parts', price: 10 }
+]
+
+services = services_attributes.map do |service_attributes|
+  Service.create(service_attributes)
+end
+
+services.each_slice(2) do |master_services|
+  mechanic = Mechanic.create(generate_user_attributes)
+
+  master_services.each do |service|
     MechanicService.create(mechanic_id: mechanic.id,
-                           service_id: services[Faker::Number.unique.between(from: 0, to: services.count - 1)].id)
+                           service_id: service.id)
   end
-
-  Faker::Number.unique.clear
 end
