@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class Order < ApplicationRecord
   include AASM
@@ -22,8 +23,7 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :service_orders
 
-
-  validates :state, inclusion: { in: %w[in_review in_progress done] }  
+  validates :state, inclusion: { in: %w[in_review in_progress done] }
 
   def done?
     state == 'done'

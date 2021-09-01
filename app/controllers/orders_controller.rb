@@ -1,5 +1,6 @@
-class OrdersController < ApplicationController
+# frozen_string_literal: true
 
+class OrdersController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
     @orders = @user.orders
@@ -25,7 +26,7 @@ class OrdersController < ApplicationController
   def create
     @client = Client.find_by(id: params[:client_id])
 
-    binding 
+    binding
 
     if is_there_mechanic?
       @order = @client.orders.create(orders_params)
@@ -38,7 +39,6 @@ class OrdersController < ApplicationController
     else
       redirect_to new_client_order_path(@client), notice: 'no mechanic for that order'
     end
-
   end
 
   def edit
@@ -83,28 +83,28 @@ class OrdersController < ApplicationController
 
   private
 
-  def orders_params    
+  def orders_params
     params.require(:order).permit(:description, :client_id, services: [])
   end
 
   def is_there_mechanic?
     mechanics = Mechanic.all.map do |m|
       m.services.map(&:id)
-    end    
+    end
 
     services_ids = params[:services].map(&:to_i)
 
-    mechanics.map { |m|
-      services_ids & m  == services_ids
-    }.include? true
+    mechanics.map do |m|
+      services_ids & m == services_ids
+    end.include? true
   end
 
   def find_order_mechanic_id(services_ids)
     services_ids.map!(&:to_i)
 
-    mech = Mechanic.all.select { |m|
+    mech = Mechanic.all.select do |m|
       services_ids & m.services.map(&:id) == services_ids
-    }.first
+    end.first
 
     mech.id
   end

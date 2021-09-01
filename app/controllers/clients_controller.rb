@@ -1,12 +1,10 @@
+# frozen_string_literal: true
+
 class ClientsController < ApplicationController
-  def guest
-  end
 
   def index
     @teammates = Teammate.all
   end
-
-
 
   def me
     @me = current_user
@@ -14,8 +12,7 @@ class ClientsController < ApplicationController
 
   def show
     @clients_all = Client.all
-  end  
-
+  end
 
   def edit
     @client = client_find_by_id(params[:id])
@@ -31,6 +28,5 @@ class ClientsController < ApplicationController
 
   def client_params
     params.require(@client.is_a?(Admin) ? :admin : :client).permit(:first_name, :last_name, :email, :phone_number)
-  end 
-
+  end
 end

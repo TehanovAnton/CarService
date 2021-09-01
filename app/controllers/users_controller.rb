@@ -3,6 +3,9 @@
 class UsersController < ApplicationController
   skip_before_action :requier_login, only: [:guest]
 
+  def guest
+  end
+
   def show_mechanics
     @mechanics = Mechanic.all
   end
@@ -15,13 +18,13 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
-  end
+  end  
 
   private
 
   def user_params
     params.require(@user.is_a?(Admin) ? :admin : :user).permit(:first_name, :last_name, :email, :phone_number)
-  end  
+  end
 
   def current?(user)
     user == current_user

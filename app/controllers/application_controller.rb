@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   before_action :requier_login, unless: :devise_controller?
   before_action :check_sessions_inputs, if: :devise_controller?
   before_action :check_registrations_inputs, if: :devise_controller?
-  before_action :guest_only_for_unauthorized
+
+  # before_action :guest_only_for_unauthorized
 
 
   unless Rails.application.config.consider_all_requests_local
@@ -36,8 +37,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
+
     I18n.with_locale(locale, &action)
   end
 

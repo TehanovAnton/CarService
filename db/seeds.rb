@@ -10,7 +10,6 @@
 Admin.create(first_name: 'admin', last_name: 'adminov', phone_number: '911', email: 'admin@gmail.com', password: 'ewqqwe')
 User.create(first_name: 'Anton', last_name: 'Tehanov', phone_number: '1234', email: 'tehanovanton@gmail.com', password: 'ewqqwe')
 
-
 teammate_walter_white = Teammate.create(first_name: 'Walter', last_name: 'White', phone_number: '119', email: 'walterwhiteh@gmail.com', password: 'ewqqwe')
 Position.create(position: 'Chief Executive officer', teammate_id: teammate_walter_white.id)
 
@@ -22,7 +21,6 @@ Position.create(position: 'Chiefe Engineer', teammate_id: teammate_william_ander
 
 teammate_amanda_jepson = Teammate.create(first_name: 'Amanda', last_name: 'Jepson', phone_number: '119', email: 'amandajepson@gmail.com', password: 'ewqqwe')
 Position.create(position: 'Accountant', teammate_id: teammate_amanda_jepson.id)
-
 
 rubber_replacement = Service.create(title: 'rubber replacement', price: 10)
 technical_inspectation = Service.create(title: 'technical inspectation', price: 15)

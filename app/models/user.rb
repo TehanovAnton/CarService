@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-
   validates :password, confirmation: true
 
   # Include default devise modules. Others available are:
