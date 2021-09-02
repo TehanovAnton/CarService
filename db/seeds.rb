@@ -44,11 +44,16 @@ services = services_attributes.map do |service_attributes|
   Service.create(service_attributes)
 end
 
-services.each_slice(2) do |master_services|
-  mechanic = Mechanic.create(generate_user_attributes)
+def mechanic_params(mechanic_services)
+  mechanic_services = [mechanic_services] unless mechanic_services.is_a?(Array)
+  mechanic_services_attributes = mechanic_services.map { |service| { service_id: service.id } }
 
-  master_services.each do |service|
-    MechanicService.create(mechanic_id: mechanic.id,
-                           service_id: service.id)
-  end
+  {
+    **generate_user_attributes,
+    mechanic_services_attributes: mechanic_services_attributes
+  }
+end
+
+services.each_slice(2) do |mechanic_services|
+  Mechanic.create(mechanic_params(mechanic_services))
 end
