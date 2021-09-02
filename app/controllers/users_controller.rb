@@ -3,6 +3,9 @@
 class UsersController < ApplicationController
   skip_before_action :requier_login, only: [:guest]
 
+  def guest
+  end
+
   def show_mechanics
     @mechanics = Mechanic.all
   end
@@ -15,7 +18,7 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
-  end
+  end  
 
   private
 
