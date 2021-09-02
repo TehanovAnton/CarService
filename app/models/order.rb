@@ -7,11 +7,11 @@ class Order < ApplicationRecord
     state :in_progress, :done
 
     event :progress do
-      transitions from: :in_review, to: :in_progress
+      transitions from: :in_review, to: :in_progress, guard: :valid?
     end
 
-    event :finish do
-      transitions from: :in_progress, to: :done
+    event :finish, guards: [:valid?] do
+      transitions from: :in_progress, to: :done, guard: :valid?
     end
   end
 

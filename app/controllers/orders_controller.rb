@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
     @mechanics = Mechanic.all
     @mechanics_fot_options = @mechanics.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
-    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h    
+    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h
   end
 
   def create
