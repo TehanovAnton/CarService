@@ -32,11 +32,7 @@ class ApplicationController < ActionController::Base
     Constants.values.include?(params[:controller]) && Constants.values.include?(params[:action])
   end
 
-  protected
-
-  def default_url_options
-    { locale: I18n.locale }
-  end
+  protected  
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
