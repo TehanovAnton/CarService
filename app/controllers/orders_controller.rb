@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
       @order.save
       redirect_to actual_orders_path, notice: 'new order added'
     else
-      redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.map(&:message) }
+      redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.full_messages }
     end
   end
 

@@ -95,19 +95,21 @@
           <% logger.info("flash => #{flash.keys}") %>
           <% flash.each do |type, msg| %>
 
-            <% if type == 'notice' %>
-              <div class='alert alert-primary' role='alert'>
-                <%= msg %>
-              </div>
+            <% if type == 'errors' %>
+              <% msg.each do |error| %>
+                <div class='p-3 mb-2 bg-danger text-white' role='alert'>
+                  <%= error %>
+                </div>
+              <% end %>
             <% else %>
-              <div class='p-3 mb-2 bg-danger text-white' role='alert'>
+              <div class='alert alert-primary' role='alert'>
                 <%= msg %>
               </div>
             <% end %>
             
           <% end %>    
         </div>
-        <!-- End flash notifications --> 
+      <!-- End flash notifications --> 
 
 
     </header>
