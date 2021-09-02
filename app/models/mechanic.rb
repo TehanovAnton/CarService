@@ -9,7 +9,13 @@ class Mechanic < User
 
   accepts_nested_attributes_for :mechanic_services
 
+  validate :mechanic_services?
+
   protected
+
+  def mechanic_services?
+    errors.add(:mechanic_services, 'can\'t create mechanic without services') if mechanic_services.empty?
+  end
 
   def confirmation_required?
     false
