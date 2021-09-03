@@ -44,6 +44,7 @@ group :development, :test do
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'mailcatcher'
   gem 'pry'
+  gem 'factory_bot'
 end
 
 group :development do
