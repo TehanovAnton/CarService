@@ -44,6 +44,7 @@ group :development, :test do
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'mailcatcher'
   gem 'pry'
+  gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do
