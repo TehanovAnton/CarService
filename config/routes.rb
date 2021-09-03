@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do 
-
+Rails.application.routes.draw do
   scope ':locale', locale: /en|ru/ do
-    root 'users#guest', locale: :en
+    root 'users#guest', locale: I18n.locale
 
     devise_for :users
 
-    resources :clients, only: %i[index show edit update destroy guest] do
+    resources :clients, only: %i[index show update destroy guest] do
       resources :orders
     end
 
+    resources :users, only: %i[edit update]
+
     get '/no_orders', to: 'users#no_orders'
-    get '/mechanics', to: 'users#show_mechanics'    
+    get '/show_mechanics', to: 'users#show_mechanics'
+    get '/show_teamates', to: 'users#show_teamates'
 
     get '/guest', to: 'clients#guest'
     get '/me', to: 'clients#me'

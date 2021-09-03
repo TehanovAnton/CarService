@@ -3,11 +3,25 @@
 class UsersController < ApplicationController
   skip_before_action :requier_login, only: [:guest]
 
-  def guest
-  end
+  def guest; end
 
   def show_mechanics
     @mechanics = Mechanic.all
+  end
+
+  def show_teammates
+    @teammates = Teammate.all
+    binding.pry
+  end
+
+  def edit
+    @user = User.find_by(id: params[:id])
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.update(user_params)
+    redirect_to client_path, notice: 'updated successfully'
   end
 
   def destroy
@@ -18,7 +32,7 @@ class UsersController < ApplicationController
     end
 
     redirect_to users_path
-  end  
+  end
 
   private
 

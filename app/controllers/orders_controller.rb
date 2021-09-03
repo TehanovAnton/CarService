@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
     @mechanics = Mechanic.all
     @mechanics_fot_options = @mechanics.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
-    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h    
+    @services_for_options = Service.all.map { |service| [service.title, service.id] }.to_h
   end
 
   def create
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
       @order.save
       redirect_to actual_orders_path, notice: 'new order added'
     else
-      redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.map(&:message) }
+      redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.full_messages }
     end
   end
 
