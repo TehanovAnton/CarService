@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   scope ':locale', locale: /en|ru/ do
     root 'users#guest', locale: I18n.locale
 
-    devise_for :users
+    devise_for :users, locale: I18n.locale
 
     resources :clients, only: %i[index show update destroy guest] do
       resources :orders
