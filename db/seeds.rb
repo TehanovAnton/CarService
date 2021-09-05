@@ -33,27 +33,4 @@ positions.each do |position|
   Position.create(position: position, teammate_id: teamate.id)
 end
 
-services_attributes = [
-  { title: 'rubber replacement', price: 10 },
-  { title: 'technical inspectation', price: 15 },
-  { title: 'renovation work', price: 20 },
-  { title: 'replacement of parts', price: 10 }
-]
-
-services = services_attributes.map do |service_attributes|
-  Service.create(service_attributes)
-end
-
-def mechanic_params(mechanic_services)
-  mechanic_services = [mechanic_services] unless mechanic_services.is_a?(Array)
-  mechanic_services_attributes = mechanic_services.map { |service| { service_id: service.id } }
-
-  {
-    **generate_user_attributes,
-    mechanic_services_attributes: mechanic_services_attributes
-  }
-end
-
-services.each_slice(2) do |mechanic_services|
-  Mechanic.create(mechanic_params(mechanic_services))
-end
+FactoryBot.create(:mechanic)
