@@ -8,29 +8,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def generate_user_attributes
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.unique.last_name
-  email = Faker::Internet.unique.free_email(name: last_name)
-  phone_number = Faker::PhoneNumber.cell_phone_with_country_code
 
-  {
-    last_name: last_name,
-    first_name: first_name,
-    email: email,
-    phone_number: phone_number,
-    password: 'ewqqwe'
-  }
-end
-
-Admin.create(generate_user_attributes)
+FactoryBot.create(:admin)
 FactoryBot.create(:client, :tehanov_anton_email)
 
-positions = ['Chief Executive officer', 'Product Manager', 'Chief Engineer', 'Accountant']
-positions.each do |position|
-  teamate = Teammate.create(generate_user_attributes)
-
-  Position.create(position: position, teammate_id: teamate.id)
-end
+4.times { FactoryBot.create(:teammate) }
 
 FactoryBot.create(:mechanic)
