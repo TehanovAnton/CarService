@@ -23,6 +23,7 @@ def generate_user_attributes
   }
 end
 
+
 Admin.create(generate_user_attributes)
 User.create(generate_user_attributes)
 

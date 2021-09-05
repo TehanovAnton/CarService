@@ -16,6 +16,7 @@ gem 'figaro', '~> 1.2'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'sinatra'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
+gem 'rexml', '~> 3.2', '>= 3.2.5'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -45,7 +46,7 @@ group :development, :test do
   gem 'mailcatcher'
   gem 'pry'
   gem 'rspec-rails', '~> 5.0.0'
-  gem 'factory_bot'
+  gem "factory_bot_rails"
 end
 
 group :development do
