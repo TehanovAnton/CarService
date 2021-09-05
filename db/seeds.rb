@@ -24,7 +24,7 @@ def generate_user_attributes
 end
 
 Admin.create(generate_user_attributes)
-User.create(generate_user_attributes)
+FactoryBot.create(:client, :tehanov_anton_email)
 
 positions = ['Chief Executive officer', 'Product Manager', 'Chief Engineer', 'Accountant']
 positions.each do |position|
