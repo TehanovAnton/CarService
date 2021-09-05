@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/me', to: 'clients#me'
 
     get '/show_services', to: 'orders#show_services'
-    get '/actual_orders', to: 'orders#show_actual_orders'
+    get '/show_actual_orders', to: 'orders#show_actual_orders'
 
     get '/fake', to: 'fakes#index'
     get '/example', to: 'fakes#example'

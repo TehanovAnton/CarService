@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :mechanic_service do
-    association :mechanic
+  factory :service_order do
+    association :order
     association :service
   end
 end
