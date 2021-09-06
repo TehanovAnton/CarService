@@ -3,5 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe Mechanic, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  mechanic = FactoryBot.create(:mechanic)
+
+  it 'has at least one service' do
+    expect(mechanic.services.to_a).not_to be_empty
+  end
+
+  it 'has first name' do
+    expect(mechanic.first_name).not_to eq('')
+  end
+
+  it 'has last name' do
+    expect(mechanic.last_name).not_to eq('')
+  end
+
+  it 'has email' do
+    expect(mechanic.last_name).not_to eq('')
+  end
+
+  it 'has phone number' do
+    expect(mechanic.phone_number).not_to eq('')
+  end
 end
