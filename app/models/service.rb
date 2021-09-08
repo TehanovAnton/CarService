@@ -6,4 +6,6 @@ class Service < ApplicationRecord
 
   has_many :mechanic_services, dependent: :destroy
   has_many :mechanics, through: :mechanic_services
+
+  monetize :price_cents
 end

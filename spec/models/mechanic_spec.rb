@@ -6,7 +6,7 @@ RSpec.describe Mechanic, type: :model do
   mechanic = FactoryBot.create(:mechanic)
 
   it 'has at least one service' do
-    expect(mechanic.services.to_a).not_to be_empty
+    expect(mechanic.services).not_to be_empty
   end
 
   it 'has first name' do
