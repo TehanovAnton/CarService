@@ -17,6 +17,7 @@ gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'sinatra'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
+gem 'money-rails', '~> 1.14'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
