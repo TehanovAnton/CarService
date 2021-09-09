@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  order = FactoryBot.create(:order)
+  let(:order) { FactoryBot.create(:order) }
 
   it 'has not empty description' do
     expect(order.description).not_to eq('')

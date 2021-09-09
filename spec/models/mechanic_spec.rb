@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Mechanic, type: :model do
-  mechanic = FactoryBot.create(:mechanic)
+  let(:mechanic) { FactoryBot.create(:mechanic) }
 
   it 'has at least one service' do
     expect(mechanic.services).not_to be_empty

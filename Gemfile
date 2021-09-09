@@ -13,11 +13,11 @@ gem 'after_commit_everywhere', '~> 1.0'
 gem 'bootstrap'
 gem 'devise'
 gem 'figaro', '~> 1.2'
+gem 'money-rails', '~> 1.14'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'sinatra'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
-gem 'money-rails', '~> 1.14'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -66,7 +66,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'  
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

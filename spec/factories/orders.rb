@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :order do
     description { Faker::Coffee.blend_name }
-    association :service
+    association :client
     association :mechanic
     service_order_attributes { attributes_for(:service_order, service_id: mechanic.services.first.id) }
 
