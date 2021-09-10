@@ -2,6 +2,8 @@
 
 class User < ApplicationRecord
   validates :password, confirmation: true
+  validates :first_name, :last_name, :email,
+            :phone_number, exclusion: { in: [''], message: 'must not be blank' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
