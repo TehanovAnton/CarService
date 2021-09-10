@@ -13,7 +13,9 @@ gem 'after_commit_everywhere', '~> 1.0'
 gem 'bootstrap'
 gem 'devise'
 gem 'figaro', '~> 1.2'
+gem 'money-rails', '~> 1.14'
 gem 'pg', '~> 1.2', '>= 1.2.3'
+gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'sinatra'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
 
@@ -41,11 +43,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'mailcatcher'
   gem 'pry'
   gem 'rspec-rails', '~> 5.0.0'
-  gem 'factory_bot'
 end
 
 group :development do

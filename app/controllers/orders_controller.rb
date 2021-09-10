@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def show_actual_orders
     @orders = current_user.orders
-    redirect_to clients_path, notice: 'You have no orders yet' if @orders.empty?
+    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
   def show_services

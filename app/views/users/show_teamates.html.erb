@@ -20,14 +20,11 @@
               <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
+
           <div class="member-info">
-            <h4><%= t.first_name %> <%= t.last_name %></h4>
-            <span>
-              <% t.positions.each do |p| %>
-                <%= p.position %>
-              <% end %>
-            </span>
+            <h4><%= t.full_name%></h4>
           </div>
+          
         </div>
       </div>
     <% end %>

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_825_083_738) do
+ActiveRecord::Schema.define(version: 20_210_908_175_228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -45,13 +45,6 @@ ActiveRecord::Schema.define(version: 20_210_825_083_738) do
     t.index ['client_id'], name: 'index_orders_on_client_id'
   end
 
-  create_table 'positions', force: :cascade do |t|
-    t.string 'position'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'teammate_id', null: false
-  end
-
   create_table 'service_orders', force: :cascade do |t|
     t.integer 'order_id', null: false
     t.integer 'service_id', null: false
@@ -60,18 +53,12 @@ ActiveRecord::Schema.define(version: 20_210_825_083_738) do
   end
 
   create_table 'services', force: :cascade do |t|
-    t.integer 'price', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'title', null: false
+    t.integer 'price_cents', default: 0, null: false
+    t.string 'price_currency', default: 'USD', null: false
     t.index ['title'], name: 'index_services_on_title', unique: true
-  end
-
-  create_table 'specializations', force: :cascade do |t|
-    t.integer 'service_id', null: false
-    t.integer 'mechanic_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table 'users', force: :cascade do |t|
@@ -96,6 +83,4 @@ ActiveRecord::Schema.define(version: 20_210_825_083_738) do
 
   add_foreign_key 'orders', 'users', column: 'client_id'
   add_foreign_key 'orders', 'users', column: 'mechanic_id'
-  add_foreign_key 'specializations', 'services'
-  add_foreign_key 'specializations', 'users', column: 'mechanic_id'
 end

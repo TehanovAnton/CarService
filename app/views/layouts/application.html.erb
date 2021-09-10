@@ -41,7 +41,7 @@
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center justify-content-between">
 
-          <h1 class="logo"><a href="index.html"><%= t 'header.carservice' %></a></h1>
+          <h1 class="logo"><a href=''><%= t 'header.carservice' %></a></h1>
           <nav id="navbar" class="navbar">
             <ul> 
               <li><a class="nav-link scrollto" href=<%= url_for(locale: I18n.locale == :en ? :ru : :en) %>>switch locale</a></li>              
@@ -60,7 +60,7 @@
                   <li class="dropdown"><a><span><%= t 'header.Orders' %></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                       <li>
-                        <a href= <%= actual_orders_path %>><%= t 'header.Actual' %></a>
+                        <a href= <%= show_actual_orders_path %>><%= t 'header.Actual' %></a>
                       </li>
                       <li><%= link_to t('header.New'), new_client_order_path(current_user) %></li>
                     </ul>
