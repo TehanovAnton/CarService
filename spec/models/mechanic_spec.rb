@@ -4,24 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Mechanic, type: :model do
   let(:mechanic) { FactoryBot.create(:mechanic) }
+  let(:mechanic_without_services) { FactoryBot.build(:mechanic, service_id: nil) }
 
-  it 'has at least one service' do
+  it 'should have at least one service or be invalid' do
     expect(mechanic.services).not_to be_empty
-  end
-
-  it 'has first name' do
-    expect(mechanic.first_name).not_to eq('')
-  end
-
-  it 'has last name' do
-    expect(mechanic.last_name).not_to eq('')
-  end
-
-  it 'has email' do
-    expect(mechanic.last_name).not_to eq('')
-  end
-
-  it 'has phone number' do
-    expect(mechanic.phone_number).not_to eq('')
+    expect(mechanic_without_services).not_to be_valid
   end
 end

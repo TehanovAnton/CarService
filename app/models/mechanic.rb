@@ -14,7 +14,7 @@ class Mechanic < User
   protected
 
   def mechanic_services?
-    errors.add(:mechanic_services, 'can\'t create mechanic without services') if mechanic_services.empty?
+    errors.add(:mechanic_services, 'mechanic must have services') if mechanic_services.empty?
   end
 
   def confirmation_required?
