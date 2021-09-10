@@ -9,7 +9,7 @@ class Mechanic < User
 
   accepts_nested_attributes_for :mechanic_services
 
-  # validate :mechanic_services?
+  validate :mechanic_services?
 
   protected
 
