@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
     get '/no_orders', to: 'users#no_orders'
     get '/show_mechanics', to: 'users#show_mechanics'
-    get '/show_teamates', to: 'users#show_teamates'
+    get '/show_teammates', to: 'users#show_teammates'
 
     get '/guest', to: 'clients#guest'
     get '/me', to: 'clients#me'
