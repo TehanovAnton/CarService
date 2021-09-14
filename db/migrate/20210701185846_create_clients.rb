@@ -7,6 +7,7 @@ class CreateClients < ActiveRecord::Migration[6.1]
       t.string :last_name
       t.string :phone_number
       t.string :mail_adress
+      t.string 'encrypted_password', default: '', null: false
 
       t.timestamps
     end
