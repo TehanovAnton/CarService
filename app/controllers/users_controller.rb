@@ -21,23 +21,23 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     @user.update(user_params)
-    redirect_to client_path, notice: 'updated successfully'
+    redirect_to me_path, notice: 'updated successfully'
   end
 
   def destroy
-    @user = user_find_by_id(:id)
+    @user = User.find_by(id: params[:id])
     if current?(@user) || admin?(current_user)
       reset_session if current?(@user)
       @user.destroy
     end
 
-    redirect_to users_path
+    redirect_to root_path
   end
 
   private
 
   def user_params
-    params.require(@user.is_a?(Admin) ? :admin : :user).permit(:first_name, :last_name, :email, :phone_number)
+    params.require(@user.is_a?(Admin) ? :admin : :client).permit(:first_name, :last_name, :email, :phone_number)
   end
 
   def current?(user)
