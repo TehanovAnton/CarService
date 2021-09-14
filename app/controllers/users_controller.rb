@@ -3,8 +3,7 @@
 class UsersController < ApplicationController
   skip_before_action :requier_login, only: [:guest]
 
-  def guest
-  end
+  def guest; end
 
   def show_mechanics
     @mechanics = Mechanic.all
