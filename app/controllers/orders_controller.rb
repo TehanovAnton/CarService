@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       @order.save
-      redirect_to actual_orders_path, notice: 'new order added'
+      redirect_to show_actual_orders_path, notice: 'new order added'
     else
       redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.full_messages }
     end
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
     elsif @order.state == 'in_review'
       if Order.new(order_params).valid?
         @order.update(order_params)
-        redirect_to actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
+        redirect_to show_actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
       else
         redirect_to edit_client_order_path(client_id: params[:client_id], id: @order.id), notice: 'this mechanic can\'t do this service' unless current_user.is_a? Admin
       end
@@ -68,11 +68,11 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:client_id])
 
     Order.find_by(id: params[:id]).destroy
 
-    redirect_to actual_orders_path
+    redirect_to show_actual_orders_path
   end
 
   private

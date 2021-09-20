@@ -3,7 +3,7 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Order</h2>
+        <h2><%= t 'new_order.Order' %></h2>
       </div>
 
       <div class="row">
@@ -19,7 +19,7 @@
                   <%= f.hidden_field :client_id, value: @client.id %>
                   <%= f.text_field :description, class: 'form-control', id: 'description', required: true %>
 
-                  <%= f.label 'Description', for: 'description' %>
+                  <%= f.label t 'new_order.Description', for: 'description' %>
                 </div><br/>
                 <!-- End Description -->
 
@@ -29,7 +29,7 @@
                         options_for_select(@services_for_options), 
                         { class: 'form-select', id: 'services', aria_lable: 'Default select example' } )
                   %>
-                  <%= f.label 'Services', for: 'services' %>
+                  <%= f.label t 'new_order.Services', for: 'services' %>
                 </div><br/>
                 <!-- End Service select -->
 
@@ -39,7 +39,7 @@
                         options_for_select(@mechanics_fot_options), 
                         { class: 'form-select', id: 'mechanics', aria_lable: 'Default select example' } )
                   %>
-                  <%= f.label 'Mechanics', for: 'mechanics' %>
+                  <%= f.label t 'new_order.Mechanics', for: 'mechanics' %>
                 </div>
                 <!-- End Mechanic select -->
 
@@ -48,7 +48,7 @@
             <br/>
 
             <div class="text-center">
-              <%= f.button 'Create' %>
+              <%= f.button t 'new_order.Create' %>
             </div>
           <% end %>
         </div>
@@ -62,8 +62,8 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Mechanics</h2>
-        <p>Here you can see our mechanics.</p>
+        <h2><%= t 'new_order.Mechanics' %></h2>
+        <p><%= t 'new_order.Here_you_can_see_our_mechanics' %></p>
       </div>
 
       <div class="row">

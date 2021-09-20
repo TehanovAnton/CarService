@@ -60,7 +60,7 @@
     <div class="container">
 
       <div class="section-title">
-        <h2><%= t 'guest.services' %></h2>
+        <h2><%= t 'guest.Serivces' %></h2>
       </div>
 
       <div class="row">
@@ -179,9 +179,9 @@
         <div class="col-lg-2 col-md-6 footer-links">          
           <h4><%= t 'guest.useful_links' %></h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#"><%= t 'guest.home' %></a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#team"><%= t 'guest.team' %></a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#services"><%= t 'guest.services' %></a></li>
+            <li><i class="bx bx-chevron-right"></i> <%= link_to t('guest.home'), root_path %>
+            <li><i class="bx bx-chevron-right"></i> <%= link_to t('guest.team'), show_teammates_path %></li>
+            <li><i class="bx bx-chevron-right"></i> <%= link_to t('guest.services'), show_services_path %> </a></li>
           </ul>
         </div>
       </div>
