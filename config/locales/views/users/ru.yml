@@ -16,8 +16,6 @@ ru:
     Show_all: 'Показать всё'
     Sign_out: 'выйти'
 
-
-
   guest:
     Greate_Solution_For_Your_Car: "Отличное решение для вашего авто"
 
@@ -27,6 +25,7 @@ ru:
     Happy_Clients: "Счастливые клиенты"
     Hours_Of_Support: "Долгая Поддержка"
     Hard_Workers: "Трудо любивые работники"
+    Serivces: "СЕРВИСЫ"
 
     rubber_replacement: "Замена покрышек"
     technical_inspectation: "Технический осмотр"
@@ -57,6 +56,9 @@ ru:
     email: "Почта:"
     carserviceror_gmail_com: " carserviceror@gmail.com"
     useful_links: "Полезные ссылки"
+    home: "Главная"
+    team: "Команда"
+    services: "Сервисы"
 
   new_session:
     sign_in: "войти"
@@ -93,3 +95,35 @@ ru:
     Password: 'Пароль'
     Password_сonfirmation: 'Подтверждение пароля'
     Sing_up: 'Зарегистрировать'    
+
+  me:
+    Profile: "Профиль"
+    Here_you_can_see_your_infomatiom: "Здесь вы можете посмотреть информацию о себе."
+  
+  user_edit:
+    Edit: 'Редактировать'
+    Your_first_name: 'Ваше имя'
+    Your_last_name: 'Ваша фамилия'
+    Your_phone_numbe: 'Ваш номер телефона'
+    Your_email: 'Ваша почта'
+    Update: 'Обновить'
+  
+  new_order:
+    Order: 'Заказ'
+    Description: 'Описание'
+    Services: 'Сервис'
+    Mechanics: 'Механики'
+    Here_you_can_see_our_mechanics: 'Здесь вы можете увидеть наших механиков'
+    Create: 'Создать'
+
+  show_services: 
+    Services_information: 'Информация о сервисах'
+    Price: 'Цена: '
+
+  show_teammates:
+    Team: 'Команда'
+    Here_you_can_see_the_leaders_of_our_company_Each_of_them_is_a_real_professional_in_their_field: 'Здесь вы можете увидеть лидеров нашей команды. Каждый из них настоящий професионал в своей сфере.'
+
+  show_mechanics:
+    Mechanics: 'Механики'
+    Here_you_can_see_our_mechanics: 'Здесь вы можете увидеть наших механиков.'
