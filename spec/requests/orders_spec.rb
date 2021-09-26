@@ -27,9 +27,11 @@ RSpec.describe OrdersController, type: :controller do
     let(:user) { FactoryBot.create(:user) }
     let(:params) { { locale: I18n.locale, client_id: user.id } }
 
-    it 'redirects to root_path if has no orders' do
-      get :show_actual_orders, params: params
-      expect(response).to redirect_to(root_path)
+    context('with no orders') do
+      it 'redirects to root_path if has no orders' do
+        get :show_actual_orders, params: params
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 

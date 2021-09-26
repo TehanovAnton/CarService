@@ -7,8 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def show_actual_orders
-    @orders = current_user.orders
-    redirect_to root_path(I18n.locale), notice: t('flashes.You_have_no_orders_yet') if @orders.empty?
+    @orders = current_user.orders    
   end
 
   def show_services
@@ -68,8 +67,6 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @user = find_user(id: params[:client_id])
-
     find_order(params[:id]).destroy
 
     redirect_to show_actual_orders_path

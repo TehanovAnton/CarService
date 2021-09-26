@@ -60,7 +60,7 @@
                   <li class="dropdown"><a><span><%= t 'header.Orders' %></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                       <li>
-                        <a href= <%= show_actual_orders_path() %>><%= t 'header.Actual' %></a>
+                        <%= link_to t('header.Actual'), show_actual_orders_path() %>
                       </li>
                       <li><%= link_to t('header.New'), new_client_order_path(current_user) %></li>
                     </ul>

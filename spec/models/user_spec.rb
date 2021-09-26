@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, phone_number: '1234') }
   let(:user_with_empty_first_name) { FactoryBot.build(:user, first_name: '') }
   let(:user_with_empty_last_name) { FactoryBot.build(:user, last_name: '') }
   let(:user_with_empty_email) { FactoryBot.build(:user, email: '') }
@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
   
 
   it 'should have phone_number' do
-    expect(user.phone_number).not_to eq('')    
+    expect(user.phone_number).to eq('1234')
   end
   it 'invalid without phone_number' do
     expect(user_with_empty_phone_number).not_to be_valid
