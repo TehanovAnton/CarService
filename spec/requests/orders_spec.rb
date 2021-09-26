@@ -68,10 +68,9 @@ RSpec.describe OrdersController, type: :controller do
   describe 'POST create' do
     let(:user) { FactoryBot.create(:user) }
     let(:mechanic) { FactoryBot.create(:mechanic) }
-    let(:service) { FactoryBot.create(:service) }
-    let(:order) { FactoryBot.create(:order, mechanic: mechanic, service_id: mechanic.services.first.id, client: user) }
+    let(:service) { FactoryBot.create(:service) }    
     let(:params) do
-      { locale: I18n.locale, client_id: order.client.id, order: {
+      { locale: I18n.locale, client_id: user.id, order: {
         client_id: user.id,
         description: 'new order',
         service_order_attributes: { service_id: mechanic.services.first.id },
@@ -138,14 +137,13 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'POST destroy' do
     let(:user) { FactoryBot.create(:user) }
-    let(:order) { FactoryBot.create(:order, client: user) }
+    let!(:order) { FactoryBot.create(:order, client: user) }
     let(:params) do
       { locale: I18n.locale, client_id: order.client.id, id: order.id }
     end
 
-    it 'has a 302 status code' do
-      post :destroy, params: params
-      expect(response.status).to eq(302)
+    it 'removes order' do
+      expect { delete :destroy, params: params }.to change { Order.count }.by(-1)
     end
 
     it 'redirects to show_actual_orders_path' do
