@@ -112,19 +112,22 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'POST update' do
     let(:user) { FactoryBot.create(:user) }
+    let(:mechanic) { FactoryBot.create(:mechanic) }
     let(:order) { FactoryBot.create(:order, client: user) }
     let(:params) do
       { locale: I18n.locale, client_id: order.client.id, id: order.id, order: {
         client_id: order.client.id,
-        description: order.description,
-        service_order_attributes: { service_id: order.service.id },
-        mechanic_id: order.mechanic.id
+        description: 'new description',
+        service_order_attributes: { service_id: mechanic.services.first.id },
+        mechanic_id: mechanic.id
       } }
     end
 
-    it 'has a 302 status code' do
+    it 'updates order' do
       post :update, params: params
-      expect(response.status).to eq(302)
+      expect(Order.find(order.id).description).to eq('new description')
+      expect(Order.find(order.id).service).to eq(mechanic.services.first)
+      expect(Order.find(order.id).mechanic).to eq(mechanic)
     end
 
     it 'redirects to show_actual_orders_path if valid order' do
