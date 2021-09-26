@@ -36,7 +36,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(@user.is_a?(Admin) ? :admin : :client).permit(:first_name, :last_name, :email, :phone_number)
+    required_key = @user.is_a?(Admin) ? :admin : :client
+    params.require(required_key).permit(:first_name, :last_name, :email, :phone_number)
   end
 
   def current?(user)
