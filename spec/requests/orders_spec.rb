@@ -28,9 +28,9 @@ RSpec.describe OrdersController, type: :controller do
     let(:params) { { locale: I18n.locale, client_id: user.id } }
 
     context('with no orders') do
-      it 'redirects to root_path if has no orders' do
+      it ' does not redirect to show_actual_orders' do
         get :show_actual_orders, params: params
-        expect(response).to redirect_to(root_path)
+        expect(response).not_to redirect_to(show_actual_orders_path)
       end
     end
   end
@@ -67,23 +67,27 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'POST create' do
     let(:user) { FactoryBot.create(:user) }
-    let(:order) { FactoryBot.create(:order, client: user) }
+    let(:mechanic) { FactoryBot.create(:mechanic) }
+    let(:service) { FactoryBot.create(:service) }
+    let(:order) { FactoryBot.create(:order, mechanic: mechanic, service_id: mechanic.services.first.id, client: user) }
     let(:params) do
       { locale: I18n.locale, client_id: order.client.id, order: {
-        client_id: order.client.id,
-        description: order.description,
-        service_order_attributes: { service_id: order.service.id },
-        mechanic_id: order.mechanic.id
+        client_id: user.id,
+        description: 'new order',
+        service_order_attributes: { service_id: mechanic.services.first.id },
+        mechanic_id: mechanic.id
       } }
     end
 
-    it 'has a 302 status code' do
-      post :create, params: params
-      expect(response.status).to eq(302)
+    it 'create new Order' do
+      expect { post :create, params: params }.to change { Order.count }.by(1)
     end
 
-    it 'redirects to show_actual_orders_path if valid order' do
+    it 'has a desired params and redirects to correct page' do
       post :create, params: params
+      expect(Order.last.mechanic).to eq(mechanic)
+      expect(Order.last.client).to eq(user)
+      expect(Order.last.service).to eq(mechanic.services.first)
       expect(response).to redirect_to(show_actual_orders_path)
     end
   end
