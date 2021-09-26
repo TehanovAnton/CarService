@@ -12,6 +12,7 @@ ru:
     cannot_be_blank: 'не должны бять пустыми'
     price_cant_be_negative_or_0: 'цена не может быть отрицательной или 0'
     Blank_description: 'пустое описание'
+    should_not_be_zero: 'не должно быть 0'
 
   header:
     sign_in: "Войти"
