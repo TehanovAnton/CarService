@@ -33,7 +33,7 @@ class Order < ApplicationRecord
   end
 
   def valid_description?
-    errors.add(:order, 'Blank description') if description.empty?
+    errors.add(:order, I18n.t('flashes.Blank_description')) if description.empty?
   end
 
   def done?
