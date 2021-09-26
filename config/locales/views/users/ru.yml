@@ -1,4 +1,15 @@
 ru:
+  Edit: 'Изменить'
+  Delete: 'Удалить'
+
+  flashes:
+    You_have_no_orders_yet: 'У вас пока нет заказов'
+    new_order_added: 'новый заказ добавлен'
+    order_updated: 'заказ обнавлён'
+    this_mechanic_cant_do_this_service: 'выбраный механик не может выполнить укзаный сервис'
+    # order_state_updated: 'статус заказа обнавлён'
+    One_of_the_services_is_not_supported_by_mechanic: 'механик не может выполнить выбрваный сервис'
+
   header:
     sign_in: "Войти"
     sign_up: "Создать акаунт"
@@ -111,10 +122,12 @@ ru:
   new_order:
     Order: 'Заказ'
     Description: 'Описание'
-    Services: 'Сервис'
+    Services: 'Сервисы'
     Mechanics: 'Механики'
     Here_you_can_see_our_mechanics: 'Здесь вы можете увидеть наших механиков'
     Create: 'Создать'
+    Edit: 'Изментить заказ'
+    Update: 'Обновить'
 
   show_services: 
     Services_information: 'Информация о сервисах'

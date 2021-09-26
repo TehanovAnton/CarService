@@ -1,0 +1,6 @@
+ru:
+  devise:
+    sessions:
+      user:
+        signed_in: "вход успешен."
+        signed_out: "выход успешен."

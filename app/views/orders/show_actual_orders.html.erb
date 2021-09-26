@@ -18,8 +18,13 @@
 
                 <% if order.in_review? %>
                   <div class="social">
-                    <a href=<%= edit_client_order_path(current_user, order) %>>Edit</a>
-                    <%= link_to 'Delete', client_order_path(current_user, order), method: :delete%>
+                    <%
+=begin%>
+ <a href=<%= edit_client_order_path(current_user, order) %>><%= t('Edit') %></a> 
+<%
+=end%>
+                    <%= link_to t('Edit'), edit_client_order_path(current_user, order), method: :get%>
+                    <%= link_to t('Delete'), client_order_path(current_user, order), method: :delete%>
                   </div>
                 <% end %>
 

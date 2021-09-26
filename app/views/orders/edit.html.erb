@@ -3,7 +3,7 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Edit order</h2>
+        <h2><%= t('new_order.Edit') %></h2>
       </div>
 
       <div class="row">
@@ -20,7 +20,7 @@
                 <!-- Description -->
                 <div class="form-floating">
                   <%= f.text_field :description, class: 'form-control', required: true %>                  
-                  <%= f.label 'Description', for: 'order_description' %>
+                  <%= f.label t('new_order.Description'), for: 'order_description' %>
                 </div><br/>
                 <!-- End Description -->
                 
@@ -30,7 +30,7 @@
                         options_for_select(@services_for_options, @order.service.id), 
                         { class: 'form-select', id: 'services', aria_lable: 'Default select example' } )
                   %>
-                  <%= f.label 'Services', for: 'services' %>
+                  <%= f.label t('new_order.Services'), for: 'services' %>
                 </div><br/>
                 <!-- End Service select -->
 
@@ -40,7 +40,7 @@
                         options_for_select(@mechanic_fot_options, @order.mechanic.id), 
                         { class: 'form-select', id: 'mechanics', aria_lable: 'Default select example' } )
                   %>
-                  <%= f.label 'Mechanics', for: 'mechanics' %>
+                  <%= f.label t('new_order.Mechanics'), for: 'mechanics' %>
                 </div>
                 <!-- End Mechanic select -->
               </div>     
@@ -48,7 +48,7 @@
             <br/>              
 
             <div class="text-center">
-              <%= f.button 'Update'%>
+              <%= f.button t('new_order.Update')%>
             </div>
           <% end %>
         </div>
@@ -62,8 +62,8 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Mechanics</h2>
-        <p>Here you can see our mechanics.</p>
+        <h2><%= t('new_order.Mechanics') %></h2>
+        <p><%= t('new_order.Here_you_can_see_our_mechanics') %></p>
       </div>
 
       <div class="row">

@@ -52,7 +52,7 @@
                 <li class="dropdown"><a><span><%= t 'header.Profile' %></span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li><a href=<%= me_path %>><%= t 'header.Me' %></a></li>
-                    <li><a href=<%= edit_user_path(id: current_user) %>><%= t 'header.Edit' %></a></li>
+                    <li><a href=<%= edit_user_path(current_user) %>><%= t 'header.Edit' %></a></li>
                   </ul>
                 </li>
 
@@ -60,7 +60,7 @@
                   <li class="dropdown"><a><span><%= t 'header.Orders' %></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                       <li>
-                        <a href= <%= show_actual_orders_path %>><%= t 'header.Actual' %></a>
+                        <a href= <%= show_actual_orders_path() %>><%= t 'header.Actual' %></a>
                       </li>
                       <li><%= link_to t('header.New'), new_client_order_path(current_user) %></li>
                     </ul>
@@ -69,16 +69,16 @@
 
                 <li class="dropdown"><a href=''><span><%= t 'header.Services' %></span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
-                    <li><a href=<%= show_services_path %>><%= t 'header.info' %></a></li>
+                    <li><a href=<%= show_services_path() %>><%= t 'header.info' %></a></li>
                   </ul>
                 </li>
 
-                <li><a class="nav-link scrollto" href=<%= show_teammates_path %>><%= t 'header.team' %></a></li>
+                <li><a class="nav-link scrollto" href=<%= show_teammates_path() %>><%= t 'header.team' %></a></li>
 
-                <li><a class="nav-link scrollto" href=<%= show_mechanics_path %>><%= t 'header.Mechanics' %></a></li>
+                <li><a class="nav-link scrollto" href=<%= show_mechanics_path() %>><%= t 'header.Mechanics' %></a></li>
 
                 <% if current_user.is_a? Admin%>
-                  <li><a class="nav-link scrollto" href=<%= client_path(id: current_user, locale: I18n.locale) %> ><%= t 'header.Show_all' %></a></li>
+                  <li><a class="nav-link scrollto" href=<%= client_path(current_user) %> ><%= t 'header.Show_all' %></a></li>
                 <% end %>
 
                 <li><a class="nav-link scrollto" href=<%= destroy_user_session_path %> data-method='delete'><%= t 'header.Sign_out' %></a></li>          

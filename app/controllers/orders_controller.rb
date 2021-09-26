@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def show_actual_orders
     @orders = current_user.orders
-    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty?
+    redirect_to root_path(I18n.locale), notice: t('flashes.You_have_no_orders_yet') if @orders.empty?
   end
 
   def show_services
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       @order.save
-      redirect_to show_actual_orders_path, notice: 'new order added'
+      redirect_to show_actual_orders_path, notice: t('flashes.new_order_added')
     else
       redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.full_messages }
     end
@@ -58,13 +58,13 @@ class OrdersController < ApplicationController
     elsif @order.state == 'in_review'
       if Order.new(order_params).valid?
         @order.update(order_params)
-        redirect_to show_actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
+        redirect_to show_actual_orders_path, notice: t('flashes.order_updated') unless current_user.is_a? Admin
       else
-        redirect_to edit_client_order_path(client_id: params[:client_id], id: @order.id), notice: 'this mechanic can\'t do this service' unless current_user.is_a? Admin
+        redirect_to edit_client_order_path(client_id: params[:client_id], id: @order.id), notice: t('flashes.this_mechanic_cant_do_this_service') unless current_user.is_a? Admin
       end
     end
 
-    redirect_to client_path(current_user), notice: 'order state updated' if current_user.is_a? Admin
+    redirect_to client_path(current_user), notice: t('flashes.order_state_updated') if current_user.is_a? Admin
   end
 
   def destroy

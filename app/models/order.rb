@@ -29,7 +29,7 @@ class Order < ApplicationRecord
   validate :valid_mechanic?
 
   def valid_mechanic?
-    errors.add(:services, 'One of the services is not supported by mechanic') unless mechanic.services.include?(service_order.service)
+    errors.add(:services, I18n.t('flashes.One_of_the_services_is_not_supported_by_mechanic')) unless mechanic.services.include?(service_order.service)
   end
 
   def valid_description?
