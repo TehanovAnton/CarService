@@ -8,8 +8,8 @@ class Service < ApplicationRecord
   has_many :mechanics, through: :mechanic_services
 
   validate :valid_price?
-  validates :title_cannot_be_blank?
-  validates :price, exclusion: { in: [0], message: 'should not be zero' }
+  validate :title_cannot_be_blank?
+  validate :price_cant_be_zero?
 
   monetize :price_cents
 
