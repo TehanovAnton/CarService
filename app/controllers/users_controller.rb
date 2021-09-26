@@ -14,17 +14,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    @user = find_user(params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    @user = find_user(params[:id])
     @user.update(user_params)
     redirect_to me_path, notice: 'updated successfully'
   end
 
   def destroy
-    @user = User.find_by(id: params[:id])
+    @user = find_user(params[:id])
     if current?(@user) || admin?(current_user)
       reset_session if current?(@user)
       @user.destroy

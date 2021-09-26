@@ -2,7 +2,7 @@
 
 class OrdersController < ApplicationController
   def index
-    @client = Client.find_by(id: params[:client_id])
+    @client = find_client(params[:client_id])
     @orders = @client.orders
   end
 
@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @client = Client.find_by(id: params[:client_id])
+    @client = find_client(params[:client_id])
     @order = @client.orders.build
 
     @mechanics = Mechanic.all
@@ -36,8 +36,8 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @client = Client.find_by(id: params[:client_id])
-    @order = Order.find_by(id: params[:id])
+    @client = find_client(params[:client_id])
+    @order = find_order(params[:id])
     @mechanics = Mechanic.all
     @mechanic_fot_options = @mechanics.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
 
@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find_by(id: params[:id])
+    @order = find_order(params[:id])
 
     if params[:state]
       case @order.state
@@ -68,9 +68,9 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id: params[:client_id])
+    @user = find_user(id: params[:client_id])
 
-    Order.find_by(id: params[:id]).destroy
+    find_order(params[:id]).destroy
 
     redirect_to show_actual_orders_path
   end
@@ -79,5 +79,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:description, :client_id, :mechanic_id, service_order_attributes: :service_id)
+  end
+
+  def find_order(order_id)
+    Order.find(order_id)
   end
 end
