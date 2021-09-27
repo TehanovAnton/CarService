@@ -69,17 +69,21 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  # ?????
   describe 'POST update' do
-    let(:user) { FactoryBot.create(:user) }
+    let!(:user) { FactoryBot.create(:user) }
     let(:params) do
       { locale: I18n.locale, id: user.id, client: {
-        first_name: user.first_name, last_name: user.last_name, phone_number: user.phone_number, email: user.email
+        first_name: 'new_fn', last_name: 'new_ln', phone_number: '111', email: 'new@gmail.com'
       } }
     end
 
-    it 'has a 302 status' do
-      post :update, params: params
-      expect(response.status).to eq(302)
+    it 'updates user' do
+      expect { put :update, params: params }.to change { user.first_name }
+      # expect(user.first_name).to eq('new_fn')
+      # expect(user.last_name).to eq('new_ln')
+      # expect(user.phone_number).to eq('111')
+      # expect(user.email).to eq('new@gmail.com')
     end
 
     it 'redirects to me' do
@@ -89,12 +93,11 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'POST destroy' do
-    let(:user) { FactoryBot.create(:user) }
+    let!(:user) { FactoryBot.create(:user) }
     let(:params) { { locale: I18n.locale, id: user.id } }
 
-    it 'has a 302 status' do
-      post :destroy, params: params
-      expect(response.status).to eq(302)
+    it 'removes user' do
+      expect { delete :destroy, params: params }.to change { User.count }.by(-1)
     end
 
     it 'redirects to root' do

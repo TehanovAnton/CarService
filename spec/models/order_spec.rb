@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
   let(:order_with_specific_mechahic) { FactoryBot.create(:order, mechanic: mechanic, service_id: mechanic.services.first.id) }
 
   let(:client) { FactoryBot.create(:client) }
-  let(:order_with_specific_client) { FactoryBot.create(:order, client: client) }  
+  let(:order_with_specific_client) { FactoryBot.create(:order, client: client) }
 
   let(:order) { FactoryBot.create(:order) }
   let(:order_with_empty_description) { FactoryBot.build(:order, description: '') }
@@ -41,14 +41,14 @@ RSpec.describe Order, type: :model do
   end
 
   it 'service stored corectly' do
-    expect(order_with_specific_service.service).to be == service
+    expect(order_with_specific_service.service).to eq(service)
   end
 
   it 'mechanic stored corectly' do
-    expect(order_with_specific_mechahic.mechanic).to be == mechanic
+    expect(order_with_specific_mechahic.mechanic).to eq(mechanic)
   end
 
   it 'client stored corectly' do
-    expect(order_with_specific_client.client).to be == client
+    expect(order_with_specific_client.client).to eq(client)
   end
 end

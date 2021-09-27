@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def show_actual_orders
-    @orders = current_user.orders    
+    @orders = current_user.orders
   end
 
   def show_services

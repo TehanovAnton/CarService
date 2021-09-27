@@ -68,7 +68,7 @@ RSpec.describe OrdersController, type: :controller do
   describe 'POST create' do
     let(:user) { FactoryBot.create(:user) }
     let(:mechanic) { FactoryBot.create(:mechanic) }
-    let(:service) { FactoryBot.create(:service) }    
+    let(:service) { FactoryBot.create(:service) }
     let(:params) do
       { locale: I18n.locale, client_id: user.id, order: {
         client_id: user.id,
