@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = find_user(params[:id])
     @user.update(user_params)
+    puts "new obj: #{@user.first_name} #{@user.last_name} #{@user.phone_number} #{@user.email}"
     redirect_to me_path, notice: 'updated successfully'
   end
 

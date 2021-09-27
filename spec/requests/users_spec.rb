@@ -71,7 +71,7 @@ RSpec.describe UsersController, type: :controller do
 
   # ?????
   describe 'POST update' do
-    let!(:user) { FactoryBot.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
     let(:params) do
       { locale: I18n.locale, id: user.id, client: {
         first_name: 'new_fn', last_name: 'new_ln', phone_number: '111', email: 'new@gmail.com'
@@ -79,11 +79,12 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'updates user' do
-      expect { put :update, params: params }.to change { user.first_name }
-      # expect(user.first_name).to eq('new_fn')
-      # expect(user.last_name).to eq('new_ln')
-      # expect(user.phone_number).to eq('111')
-      # expect(user.email).to eq('new@gmail.com')
+      put :update, params: params
+      user.reload
+      expect(user.first_name).to eq('new_fn')
+      expect(user.last_name).to eq('new_ln')
+      expect(user.phone_number).to eq('111')
+      expect(user.email).to eq('new@gmail.com')
     end
 
     it 'redirects to me' do
