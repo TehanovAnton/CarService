@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get '/no_orders', to: 'users#no_orders'
     get '/show_mechanics', to: 'users#show_mechanics'
     get '/show_teammates', to: 'users#show_teammates'
+    get '/forget_password', to: 'users#forget_password'
+    get '/send_reset_password_instructions', to: 'users#send_reset_password_instructions'
 
     get '/guest', to: 'clients#guest'
     get '/me', to: 'clients#me'

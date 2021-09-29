@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  before :each do
-    # user.confirm
-    # sign_in user
+  before :each do |options|
+    unless options.metadata[:no_sign_in]
+      user.confirm
+      sign_in user
+    end
   end
 
   describe 'GET guest' do
@@ -71,12 +73,22 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'create user devise' do
     let(:user) { FactoryBot.create(:user) }
-    it 'sent email' do
-      ActionMailer::Base.delivery_method = :test
+
+    it 'sent email', no_sign_in: true do
       expect { user }.to change { ActionMailer::Base.deliveries.size }.by(1)
       expect(ActionMailer::Base.deliveries.last[:To].value).to eq(user.email)
-      # expect(ActionMailer::Base.deliveries.last[:From].value).to eq(ENV['GMAIL_SENDER_USERNAME'])
       expect(ActionMailer::Base.deliveries.last[:Subject].value).to eq('Confirmation instructions')
+    end
+  end
+
+  describe 'reset password' do
+    let(:user) { FactoryBot.create(:user) }
+
+    it 'send email with instructions' do
+      user
+      expect { user.send_reset_password_instructions }.to change { ActionMailer::Base.deliveries.size }.by(1)
+      expect(ActionMailer::Base.deliveries.last[:To].value).to eq(user.email)
+      expect(ActionMailer::Base.deliveries.last[:Subject].value).to eq('Reset password instructions')
     end
   end
 
