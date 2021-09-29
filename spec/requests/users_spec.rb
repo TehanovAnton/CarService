@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   before :each do
-    user.confirm
-    sign_in user
+    # user.confirm
+    # sign_in user
   end
 
   describe 'GET guest' do
@@ -69,7 +69,17 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  # ?????
+  describe 'create user devise' do
+    let(:user) { FactoryBot.create(:user) }
+    it 'sent email' do
+      ActionMailer::Base.delivery_method = :test
+      expect { user }.to change { ActionMailer::Base.deliveries.size }.by(1)
+      expect(ActionMailer::Base.deliveries.last[:To].value).to eq(user.email)
+      # expect(ActionMailer::Base.deliveries.last[:From].value).to eq(ENV['GMAIL_SENDER_USERNAME'])
+      expect(ActionMailer::Base.deliveries.last[:Subject].value).to eq('Confirmation instructions')
+    end
+  end
+
   describe 'POST update' do
     let(:user) { FactoryBot.create(:user) }
     let(:params) do
