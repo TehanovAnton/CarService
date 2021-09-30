@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   # before_action :guest_only_for_unauthorized
 
   rescue_from ActionController::RoutingError, with: -> { render_404 } unless Rails.application.config.consider_all_requests_local
+  rescue_from ActiveRecord::RecordNotFound, with: -> { render_404 } unless Rails.application.config.consider_all_requests_local
 
   def self.sign?(params)
     controller = params[:controller]
@@ -49,6 +50,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def find_user(user_id)
+    User.find(user_id)
+  end
+
+  def find_client(client_id)
+    Client.find(client_id)
+  end
 
   def guest_only_for_unauthorized
     redirect_to clients_path if params[:action] == Constants[:users_guest_action] && current_user

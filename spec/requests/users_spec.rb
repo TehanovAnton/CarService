@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  before :each do
-    user.confirm
-    sign_in user
+  before :each do |options|
+    unless options.metadata[:no_sign_in]
+      user.confirm
+      sign_in user
+    end
   end
 
   describe 'GET guest' do
@@ -69,17 +71,42 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'create user devise' do
+    let(:user) { FactoryBot.create(:user) }
+
+    it 'sent email', no_sign_in: true do
+      expect { user }.to change { ActionMailer::Base.deliveries.size }.by(1)
+      expect(ActionMailer::Base.deliveries.last[:To].value).to eq(user.email)
+      expect(ActionMailer::Base.deliveries.last[:Subject].value).to eq('Confirmation instructions')
+    end
+  end
+
+  describe 'reset password' do
+    let(:user) { FactoryBot.create(:user) }
+
+    it 'send email with instructions' do
+      user
+      expect { user.send_reset_password_instructions }.to change { ActionMailer::Base.deliveries.size }.by(1)
+      expect(ActionMailer::Base.deliveries.last[:To].value).to eq(user.email)
+      expect(ActionMailer::Base.deliveries.last[:Subject].value).to eq('Reset password instructions')
+    end
+  end
+
   describe 'POST update' do
     let(:user) { FactoryBot.create(:user) }
     let(:params) do
       { locale: I18n.locale, id: user.id, client: {
-        first_name: user.first_name, last_name: user.last_name, phone_number: user.phone_number, email: user.email
+        first_name: 'new_fn', last_name: 'new_ln', phone_number: '111', email: 'new@gmail.com'
       } }
     end
 
-    it 'has a 302 status' do
-      post :update, params: params
-      expect(response.status).to eq(302)
+    it 'updates user' do
+      put :update, params: params
+      user.reload
+      expect(user.first_name).to eq('new_fn')
+      expect(user.last_name).to eq('new_ln')
+      expect(user.phone_number).to eq('111')
+      expect(user.email).to eq('new@gmail.com')
     end
 
     it 'redirects to me' do
@@ -89,12 +116,11 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'POST destroy' do
-    let(:user) { FactoryBot.create(:user) }
+    let!(:user) { FactoryBot.create(:user) }
     let(:params) { { locale: I18n.locale, id: user.id } }
 
-    it 'has a 302 status' do
-      post :destroy, params: params
-      expect(response.status).to eq(302)
+    it 'removes user' do
+      expect { delete :destroy, params: params }.to change { User.count }.by(-1)
     end
 
     it 'redirects to root' do

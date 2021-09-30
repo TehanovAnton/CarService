@@ -24,16 +24,16 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :service_order, allow_destroy: true
 
   validates :state, inclusion: { in: %w[in_review in_progress done] }
-  validate :valid_description?
+  validate :description_cant_be_blank?
 
-  validate :valid_mechanic?
+  validate :mechanic_can_do_service?
 
-  def valid_mechanic?
-    errors.add(:services, 'One of the services is not supported by mechanic') unless mechanic.services.include?(service_order.service)
+  def mechanic_can_do_service?
+    errors.add(:services, I18n.t('flashes.One_of_the_services_is_not_supported_by_mechanic')) unless mechanic.services.include?(service_order.service)
   end
 
-  def valid_description?
-    errors.add(:order, 'Blank description') if description.empty?
+  def description_cant_be_blank?
+    errors.add(:order, I18n.t('flashes.Blank_description')) if description.empty?
   end
 
   def done?

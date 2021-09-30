@@ -2,13 +2,12 @@
 
 class OrdersController < ApplicationController
   def index
-    @client = Client.find_by(id: params[:client_id])
+    @client = find_client(params[:client_id])
     @orders = @client.orders
   end
 
   def show_actual_orders
     @orders = current_user.orders
-    redirect_to root_path, notice: 'You have no orders yet' if @orders.empty?
   end
 
   def show_services
@@ -16,7 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @client = Client.find_by(id: params[:client_id])
+    @client = find_client(params[:client_id])
     @order = @client.orders.build
 
     @mechanics = Mechanic.all
@@ -29,15 +28,15 @@ class OrdersController < ApplicationController
 
     if @order.valid?
       @order.save
-      redirect_to show_actual_orders_path, notice: 'new order added'
+      redirect_to show_actual_orders_path, notice: t('flashes.new_order_added')
     else
       redirect_to new_client_order_path(@order.client), flash: { errors: @order.errors.full_messages }
     end
   end
 
   def edit
-    @client = Client.find_by(id: params[:client_id])
-    @order = Order.find_by(id: params[:id])
+    @client = find_client(params[:client_id])
+    @order = find_order(params[:id])
     @mechanics = Mechanic.all
     @mechanic_fot_options = @mechanics.map { |mechanic| [mechanic.full_name, mechanic.id] }.to_h
 
@@ -46,7 +45,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find_by(id: params[:id])
+    @order = find_order(params[:id])
 
     if params[:state]
       case @order.state
@@ -58,19 +57,17 @@ class OrdersController < ApplicationController
     elsif @order.state == 'in_review'
       if Order.new(order_params).valid?
         @order.update(order_params)
-        redirect_to show_actual_orders_path, notice: 'order updated' unless current_user.is_a? Admin
+        redirect_to show_actual_orders_path, notice: t('flashes.order_updated') unless current_user.is_a? Admin
       else
-        redirect_to edit_client_order_path(client_id: params[:client_id], id: @order.id), notice: 'this mechanic can\'t do this service' unless current_user.is_a? Admin
+        redirect_to edit_client_order_path(client_id: params[:client_id], id: @order.id), notice: t('flashes.this_mechanic_cant_do_this_service') unless current_user.is_a? Admin
       end
     end
 
-    redirect_to client_path(current_user), notice: 'order state updated' if current_user.is_a? Admin
+    redirect_to client_path(current_user), notice: t('flashes.order_state_updated') if current_user.is_a? Admin
   end
 
   def destroy
-    @user = User.find_by(id: params[:client_id])
-
-    Order.find_by(id: params[:id]).destroy
+    find_order(params[:id]).destroy
 
     redirect_to show_actual_orders_path
   end
@@ -79,5 +76,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:description, :client_id, :mechanic_id, service_order_attributes: :service_id)
+  end
+
+  def find_order(order_id)
+    Order.find(order_id)
   end
 end

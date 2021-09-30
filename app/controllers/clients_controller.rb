@@ -12,6 +12,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(@client.is_a?(Admin) ? :admin : :client).permit(:first_name, :last_name, :email, :phone_number)
+    required_key = @client.is_a?(Admin) ? :admin : :client
+    params.require(required_key).permit(:first_name, :last_name, :email, :phone_number)
   end
 end

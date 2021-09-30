@@ -13,4 +13,10 @@ RSpec.describe Mechanic, type: :model do
   it 'is invalid without services' do
     expect(mechanic_without_services).not_to be_valid
   end
+
+  it 'can have many orders' do
+    # in this orders clients will be different
+    2.times { FactoryBot.create(:order, mechanic: mechanic, service_id: mechanic.services.first.id) }
+    expect(mechanic.orders.count).to be > 1
+  end
 end
