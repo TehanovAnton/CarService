@@ -17,7 +17,7 @@ RSpec.describe Service, type: :model do
   end
 
   it 'has price value more than 0' do
-    expect(service.price).not_to be < 0
+    expect(service.price).to be > 0
   end
 
   it 'is invalid with negative price value ' do

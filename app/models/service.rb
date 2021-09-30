@@ -8,12 +8,20 @@ class Service < ApplicationRecord
   has_many :mechanics, through: :mechanic_services
 
   validate :valid_price?
-  validates :title, exclusion: { in: [''], message: 'must\'t be blank' }
-  validates :price, exclusion: { in: [0], message: 'must\'t be zero' }
+  validate :title_cannot_be_blank?
+  validate :price_cant_be_zero?
 
   monetize :price_cents
 
   def valid_price?
-    errors.add(:services, 'price cant be negative or 0') if price <= 0
+    errors.add(:services, I18n.t('flashes.price_cant_be_negative_or_0')) if price <= 0
+  end
+
+  def title_cannot_be_blank?
+    errors.add(:title, I18n.t('flashes.cannot_be_blank')) if title.empty?
+  end
+
+  def price_cant_be_zero?
+    errors.add(:title, I18n.t('flashes.should_not_be_zero')) if price.zero?
   end
 end
