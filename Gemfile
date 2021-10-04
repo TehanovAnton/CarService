@@ -18,6 +18,9 @@ gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'sinatra'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.2'
+gem 'elasticsearch-model', '~> 7.2'
+gem 'elasticsearch-rails', '~> 7.2'
+gem 'jquery-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

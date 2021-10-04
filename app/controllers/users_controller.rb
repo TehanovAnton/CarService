@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions]
+  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions test search form]
+
+  def search
+
+  end
+
+  def test
+  end 
+
+  def form
+  end
 
   def guest; end
 
@@ -38,8 +48,6 @@ class UsersController < ApplicationController
   end
 
   def send_reset_password_instructions
-    # find and process error
-    binding.pry
     user = find_user_by_email(params[:email])
     user.send_reset_password_instructions
     redirect_to root_path, notification: "we sent instructions on #{params[:email]}"
