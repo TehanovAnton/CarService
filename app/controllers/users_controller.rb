@@ -1,16 +1,30 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions test search form]
+  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions index search show find]
 
-  def search
+  @@arr = []
 
+  def index
+    @elements = @@arr
   end
 
-  def test
-  end 
+  def search
+    @search_obj
+  end
 
-  def form
+  def find
+    @element = params[:text]
+    @@arr.push(@element)
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to show_path }
+    end
+  end
+
+  def show
+    @elements = @@arr
   end
 
   def guest; end

@@ -1,0 +1,10 @@
+
+<p>TestPage</p>
+
+<div id="arr">
+  <%= render partial: 'element', collection: @elements %>
+</div>
+
+<div id='search'>
+  <%= link_to 'New Band', search_path, remote: true %>
+</div>
