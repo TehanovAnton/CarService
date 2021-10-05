@@ -44,11 +44,30 @@
           <h1 class="logo"><a href=''><%= t 'header.carservice' %></a></h1>
           <nav id="navbar" class="navbar">
             <ul> 
-              <li><a class="nav-link scrollto" href=<%= url_for(locale: I18n.locale == :en ? :ru : :en) %>>switch locale</a></li>              
+              <li>
+                <%= form_with url: search_path, local: false, model: @text do |form| %>
 
+                  <div class="form-floating">         
+                    <%= form.text_field :text, class: 'form-control', id: 'text', required: true %>
+                    <%= form.label 'Search', for: 'text' %>
+
+                    <%= form.submit 'Searh', id: 'search_button', hidden: true %>
+                  </div>
+                <% end %>  
+
+                <div id='results' style='position: relative; z-index: 2;'>   
+                </div>   
+              </li>
+
+              <!-- Switch locale -->
+              <li><a class="nav-link scrollto" href=<%= url_for(locale: I18n.locale == :en ? :ru : :en) %>>switch locale</a></li>       
+
+              <!-- Home -->
               <li><a class="nav-link scrollto active" href=<%= root_path(locale: I18n.locale) %>><%= t 'header.home' %></a> </li>
 
               <% if current_user %>
+
+                <!-- Profile -->
                 <li class="dropdown"><a><span><%= t 'header.Profile' %></span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li><a href=<%= me_path %>><%= t 'header.Me' %></a></li>
@@ -56,6 +75,7 @@
                   </ul>
                 </li>
 
+                <!-- Orders -->
                 <% if current_user.is_a?(Client) %>       
                   <li class="dropdown"><a><span><%= t 'header.Orders' %></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -67,23 +87,31 @@
                   </li>         
                 <% end %>
 
+                <!-- Services -->
                 <li class="dropdown"><a href=''><span><%= t 'header.Services' %></span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                     <li><a href=<%= show_services_path() %>><%= t 'header.info' %></a></li>
                   </ul>
                 </li>
 
+                <!-- Temmates -->
                 <li><a class="nav-link scrollto" href=<%= show_teammates_path() %>><%= t 'header.team' %></a></li>
 
+                <!-- Mechanics -->
                 <li><a class="nav-link scrollto" href=<%= show_mechanics_path() %>><%= t 'header.Mechanics' %></a></li>
-
+                
                 <% if current_user.is_a? Admin%>
+                  <!-- Show all -->
                   <li><a class="nav-link scrollto" href=<%= client_path(current_user) %> ><%= t 'header.Show_all' %></a></li>
                 <% end %>
 
+                <!-- Signout -->
                 <li><a class="nav-link scrollto" href=<%= destroy_user_session_path %> data-method='delete'><%= t 'header.Sign_out' %></a></li>          
               <% else %>
+                <!-- Sign in -->
                 <li><a class="nav-link scrollto active" href=<%= new_user_session_path %>><%= t 'header.sign_in' %></a> </li>
+
+                <!-- Sign up -->
                 <li><a class="nav-link scrollto active" href=<%= new_user_registration_path %>><%= t 'header.sign_up' %></a> </li>
               <% end %>
             </ul>
@@ -123,3 +151,10 @@
 
   </body>
 </html>
+
+<script>
+  $('#text').on('input', () =>
+  {
+    $('#search_button').click()
+  })
+</script>

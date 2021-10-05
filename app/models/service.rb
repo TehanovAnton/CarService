@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'elasticsearch/model'
+
 class Service < ApplicationRecord
+  include Elasticsearch::Model
+
   has_many :service_orders
   has_many :orders, through: :service_orders
 
@@ -25,3 +29,6 @@ class Service < ApplicationRecord
     errors.add(:title, I18n.t('flashes.should_not_be_zero')) if price.zero?
   end
 end
+
+Service.__elasticsearch__.create_index!
+Service.import

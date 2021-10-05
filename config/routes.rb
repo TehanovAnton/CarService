@@ -17,10 +17,8 @@ Rails.application.routes.draw do
     get '/show_teammates', to: 'users#show_teammates'
     get '/forget_password', to: 'users#forget_password'
     get '/send_reset_password_instructions', to: 'users#send_reset_password_instructions'
-    get '/index', to: 'users#index'
-    get '/search', to: 'users#search'
-    get '/show', to: 'users#show'
-    post '/find', to: 'users#find'
+
+    post '/search', to: 'users#search'
 
     get '/guest', to: 'clients#guest'
     get '/me', to: 'clients#me'

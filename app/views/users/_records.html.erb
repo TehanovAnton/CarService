@@ -1,0 +1,32 @@
+<%
+=begin%>
+ <select class="form-select form-select-sm" size=3 aria-label=".form-select-sm example">
+  <% @records.each do |record| %>  
+    <% if record.class.name.equal? Service.name %>
+
+      <option> <%= link_to record.title, show_services_path %> </option>
+
+    <% elsif record.class.name.equal? Order.name %>
+
+      <option> <%= link_to record.description, show_actual_orders_path %> </option>
+
+    <% end %>
+  <% end %>
+</select> 
+<%
+=end%>
+
+
+<div>
+  <% @records.each do |record| %>  
+    <% if record.class.name.equal? Service.name %>
+
+      <p> <%= link_to record.title, show_services_path %> </p>
+
+    <% elsif record.class.name.equal? Order.name %>
+
+      <p> <%= link_to record.description, show_actual_orders_path %> </p>
+
+    <% end %>
+  <% end %>
+</div>

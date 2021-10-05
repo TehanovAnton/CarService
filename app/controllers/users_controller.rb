@@ -1,25 +1,14 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions index search show find]
-
-  @@arr = []
-
-  def index
-    @elements = @@arr
-  end
+  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions search]
 
   def search
-    @search_obj
-  end
-
-  def find
-    @element = params[:text]
-    @@arr.push(@element)
+    @records = Elasticsearch::Model.search(params[:text], [Order, Service]).records.to_a
 
     respond_to do |format|
       format.js
-      format.html { redirect_to show_path }
+      format.html { redirect_to root_path }
     end
   end
 
@@ -58,8 +47,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def forget_password
-  end
+  def forget_password; end
 
   def send_reset_password_instructions
     user = find_user_by_email(params[:email])
@@ -69,9 +57,10 @@ class UsersController < ApplicationController
 
   private
 
-  def find_user_by_email email
+  def find_user_by_email(email)
     user = User.find_by(email: email)
     raise ActiveRecord::RecordNotFound unless user
+
     user
   end
 

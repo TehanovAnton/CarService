@@ -6,5 +6,16 @@
 </div>
 
 <div id='search'>
-  <%= link_to 'New Band', search_path, remote: true %>
+  <%= form_with url: find_path, local: false, model: @text do |form| %>
+    <%= form.text_field :text %>
+    <%= form.submit 'search', id: 'search_btn' %>
+  <% end %>
 </div>
+
+<script>
+  $('#text').on("input", () => 
+  {
+    console.log('in')
+    $('#search_btn').click()
+  })
+</script>
