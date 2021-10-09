@@ -37,9 +37,7 @@ class UsersController < ApplicationController
   def forget_password
   end
 
-  def send_reset_password_instructions
-    # find and process error
-    binding.pry
+  def send_reset_password_instructions    
     user = find_user_by_email(params[:email])
     user.send_reset_password_instructions
     redirect_to root_path, notification: "we sent instructions on #{params[:email]}"
