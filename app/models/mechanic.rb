@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'elasticsearch/model'
+
 class Mechanic < User
+  include Elasticsearch::Model
+
   has_many :orders
   has_many :clients, through: :orders
 
@@ -21,3 +25,6 @@ class Mechanic < User
     false
   end
 end
+
+Mechanic.__elasticsearch__.create_index!
+Mechanic.import

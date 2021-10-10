@@ -3,6 +3,10 @@
 class UsersController < ApplicationController
   skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions]
 
+  def show
+    @elements = @@arr
+  end
+
   def guest; end
 
   def show_mechanics
@@ -34,8 +38,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def forget_password
-  end
+  def forget_password; end
 
   def send_reset_password_instructions
     user = find_user_by_email(params[:email])
@@ -45,9 +48,10 @@ class UsersController < ApplicationController
 
   private
 
-  def find_user_by_email email
+  def find_user_by_email(email)
     user = User.find_by(email: email)
     raise ActiveRecord::RecordNotFound unless user
+
     user
   end
 

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'elasticsearch/model'
+
 class Order < ApplicationRecord
+  include Elasticsearch::Model
+
   include AASM
   aasm column: 'state', whiny_transitions: false do
     state :in_review, initial: true
@@ -40,3 +44,6 @@ class Order < ApplicationRecord
     state == 'done'
   end
 end
+
+Order.__elasticsearch__.create_index!
+Order.import

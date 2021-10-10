@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  scope ':locale', locale: /en|ru/ do
-    root 'users#guest', locale: I18n.locale
+  get 'search/search'
+  root '/en', controller: 'users', action: 'guest'
 
+  scope ':locale', locale: /en|ru/ do
     devise_for :users, locale: I18n.locale
 
     resources :clients, only: %i[index show] do
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
     get '/show_teammates', to: 'users#show_teammates'
     get '/forget_password', to: 'users#forget_password'
     get '/send_reset_password_instructions', to: 'users#send_reset_password_instructions'
+
+    post '/search', to: 'search#search'
 
     get '/guest', to: 'clients#guest'
     get '/me', to: 'clients#me'
