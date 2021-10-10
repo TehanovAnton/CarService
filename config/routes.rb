@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'search/search'
   root '/en', controller: 'users', action: 'guest'
 
   scope ':locale', locale: /en|ru/ do
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     get '/forget_password', to: 'users#forget_password'
     get '/send_reset_password_instructions', to: 'users#send_reset_password_instructions'
 
-    post '/search', to: 'users#search'
+    post '/search', to: 'search#search'
 
     get '/guest', to: 'clients#guest'
     get '/me', to: 'clients#me'

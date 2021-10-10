@@ -1,16 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions search]
-
-  def search
-    @records = Elasticsearch::Model.search(params[:text], [Order, Service]).records.to_a
-
-    respond_to do |format|
-      format.js
-      format.html { redirect_to root_path }
-    end
-  end
+  skip_before_action :requier_login, only: %i[guest forget_password send_reset_password_instructions]
 
   def show
     @elements = @@arr
